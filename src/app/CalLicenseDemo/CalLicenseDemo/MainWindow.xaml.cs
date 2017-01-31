@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,11 +24,13 @@ namespace CalLicenseDemo
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            pp.IsOpen = true;
+            ManagementObjectSearcher mos = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Processor");
+            ManagementObjectCollection proDetails = mos.Get();
+            foreach (ManagementBaseObject o in mos.Get())
+            {
+                Console.WriteLine(o["Name"]);
+            }
+           
         }
     }
 }
