@@ -6,6 +6,13 @@
              xmlns:local="clr-namespace:CalLicenseDemo.Views"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600" Background="Black">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Styles/DefaultStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid Margin="0,0,0,28" MaxHeight="300" MaxWidth="300">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -48,9 +55,9 @@
             <TextBox Text="Name" Foreground="LightGray" Margin="0,0,20,0"/>
         </StackPanel>
         <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Margin="0,27.667,0,36">
-            <Button x:Name="button" Content="PURCHASE" Background="LightBlue" Height="30" Click="button_Click" />
+            <Button Style="{StaticResource DefaultButtonStyle}" x:Name="button" Content="PURCHASE" Background="LightBlue" Height="30" Click="button_Click" />
             <Popup x:Name="PPRedirectToAmountPage" Placement="Mouse">
-                <local:RedirectToAmountPage Width="465" Height="229"/>
+                <local:RedirectToAmountPaymentPage Width="465" Height="229"/>
             </Popup>
 
         </StackPanel>

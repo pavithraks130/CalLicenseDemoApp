@@ -18,9 +18,9 @@ namespace CalLicenseDemo.Views
     /// <summary>
     /// Interaction logic for RedirectToAmountPage.xaml
     /// </summary>
-    public partial class RedirectToAmountPage : UserControl
+    public partial class RedirectToAmountPaymentPage : UserControl
     {
-        public RedirectToAmountPage()
+        public RedirectToAmountPaymentPage()
         {
             InitializeComponent();
         }

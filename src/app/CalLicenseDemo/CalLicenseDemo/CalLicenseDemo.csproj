@@ -74,8 +74,21 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Logic\Base36.cs" />
-    <Compile Include="ViewModel\BaseEntity.cs" />
-    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="PaymentOption.xaml.cs">
+      <DependentUpon>PaymentOption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreditCardDetails.xaml.cs">
+      <DependentUpon>CreditCardDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DebitCardDetails.xaml.cs">
+      <DependentUpon>DebitCardDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OtherPaymentDetails.xaml.cs">
+      <DependentUpon>OtherPaymentDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RedirectToAmountPaymentPage.xaml.cs">
+      <DependentUpon>RedirectToAmountPaymentPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,9 +104,29 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PaymentOption.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\DefaultStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreditCardDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DebitCardDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OtherPaymentDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RedirectToAmountPaymentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
