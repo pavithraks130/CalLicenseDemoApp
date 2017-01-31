@@ -457,7 +457,7 @@ namespace LicenseKey
 					tokens[lop].datatype.UseBytes = flagBytes;
 					tokens[lop].datatype.CheckToken(licenseTemplate, tokens[lop].InitialValue, tokens[lop].CharacterToken);
 				}
-				catch (Exception ex) 
+				catch (Exception ) 
 				{
 					throw;
 				}
@@ -487,7 +487,7 @@ namespace LicenseKey
 									{
 										GetRandomNumber(scnt);
 									}
-									catch (Exception ex) 
+									catch (Exception ) 
 									{
 										throw;
 									}
@@ -497,7 +497,7 @@ namespace LicenseKey
 									{
 										strLicensekey = GetChecksumNumber(strLicensekey, scnt, true);
 									}
-									catch (Exception ex) 
+									catch (Exception ) 
 									{
 										throw;
 									}
@@ -545,7 +545,7 @@ namespace LicenseKey
 							{
 								GetRandomNumber(scnt);
 							}
-							catch (Exception ex) 
+							catch (Exception ) 
 							{
 								throw;
 							}
@@ -555,7 +555,7 @@ namespace LicenseKey
 							{
 								strLicensekey = GetChecksumNumber(strLicensekey, scnt, true);
 							}
-							catch (Exception ex) 
+							catch (Exception ) 
 							{
 								throw;
 							}

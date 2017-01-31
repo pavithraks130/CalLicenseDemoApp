@@ -62,7 +62,7 @@ namespace LicenseKey
 					tokvalue = Convert.ToInt32(tokStream, 16);
 				}
 			}
-			catch(Exception ex)
+			catch(Exception )
 			{
 				// throw a exception that the user can understand. 
 				throw new ApplicationException("Enter a number based on the base selected");
