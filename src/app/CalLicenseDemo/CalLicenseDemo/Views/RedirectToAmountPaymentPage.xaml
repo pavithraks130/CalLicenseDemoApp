@@ -18,7 +18,7 @@
         </StackPanel>
         <DockPanel Grid.Row="1">
             <Label Content="Enter amount:" Foreground="White" DockPanel.Dock="Left" />
-            <TextBox  Text="Enter Amount" DockPanel.Dock="Right"/>
+            <TextBox  Text="Enter Amount" DockPanel.Dock="Right" Foreground="LightGray"/>
         </DockPanel>
         <DockPanel HorizontalAlignment="Left" Grid.Row="2" Width="471" Margin="0,0.333,0,-60">
             <Button Content="Submit"  DockPanel.Dock="Left" Width="91" Margin="0,37,0,10.333"/>

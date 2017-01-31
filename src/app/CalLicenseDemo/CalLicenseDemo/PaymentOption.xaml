@@ -31,7 +31,7 @@
                             <TextBlock Text="Credit Card" Foreground="Blue" />
                         </StackPanel>
                     </TabItem.Header>
-                    <local:CreditCardDetails />
+                    <local:CreditAndDebitCardDetails />
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
@@ -39,6 +39,7 @@
                             <TextBlock Text="Debit Card" Foreground="Red" />
                         </StackPanel>
                     </TabItem.Header>
+                    <local:CreditAndDebitCardDetails />
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
@@ -46,6 +47,7 @@
                             <TextBlock Text="Net Banking" Foreground="Green" />
                         </StackPanel>
                     </TabItem.Header>
+                    <local:OtherPaymentDetails />
                 </TabItem>
             </TabControl>
         </Grid>

@@ -27,11 +27,9 @@ namespace CalLicenseDemo.Views
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow((DependencyObject)sender);
-            if (parentWindow != null)
-            {
-                parentWindow.Close();
-            }
+            Window parentWindow = Window.GetWindow(this);
+            parentWindow.Close();
+
         }
     }
 }

@@ -74,14 +74,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Logic\Base36.cs" />
+    <Compile Include="Logic\LicenseLogic.cs" />
+    <Compile Include="Logic\UserLogic.cs" />
+    <Compile Include="Model\Logic\ValidateData.cs" />
     <Compile Include="PaymentOption.xaml.cs">
       <DependentUpon>PaymentOption.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreditCardDetails.xaml.cs">
-      <DependentUpon>CreditCardDetails.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DebitCardDetails.xaml.cs">
-      <DependentUpon>DebitCardDetails.xaml</DependentUpon>
+    <Compile Include="Views\CreditAndDebitCardDetails.xaml.cs">
+      <DependentUpon>CreditAndDebitCardDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OtherPaymentDetails.xaml.cs">
       <DependentUpon>OtherPaymentDetails.xaml</DependentUpon>
@@ -98,8 +98,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DatabaseContext\LicenseAppDBContext.cs" />
-    <Compile Include="Logic\LicenseLogic.cs" />
-    <Compile Include="Logic\UserLogic.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -112,11 +110,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CreditCardDetails.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\DebitCardDetails.xaml">
+    <Page Include="Views\CreditAndDebitCardDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
