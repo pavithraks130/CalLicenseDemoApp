@@ -76,7 +76,7 @@
     <Compile Include="Logic\Base36.cs" />
     <Compile Include="Logic\LicenseLogic.cs" />
     <Compile Include="Logic\UserLogic.cs" />
-    <Compile Include="Model\Logic\ValidateData.cs" />
+    <Compile Include="Model\Logic\DataValidations.cs" />
     <Compile Include="PaymentOption.xaml.cs">
       <DependentUpon>PaymentOption.xaml</DependentUpon>
     </Compile>

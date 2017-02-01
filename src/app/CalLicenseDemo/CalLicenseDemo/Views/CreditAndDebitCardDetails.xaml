@@ -57,7 +57,7 @@
         <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Margin="0,27.667,0,36">
             <Button Style="{StaticResource DefaultButtonStyle}" x:Name="button" Content="PURCHASE" Background="LightBlue" Height="30" Click="button_Click" />
             <Popup x:Name="PPRedirectToAmountPage" Placement="Mouse">
-                <local:RedirectToAmountPaymentPage Width="465" Height="229"/>
+                <local:RedirectToAmountPaymentPage Width="451" Height="358"/>
             </Popup>
 
         </StackPanel>

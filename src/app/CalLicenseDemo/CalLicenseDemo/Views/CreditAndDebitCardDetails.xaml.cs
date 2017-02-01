@@ -35,7 +35,7 @@ namespace CalLicenseDemo
         }
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (ValidateData.IsValidCardDetails(textBox, ListofMonths, txtCVV, listOfYears))
+            if (DataValidations.IsValidCardDetails(textBox, ListofMonths, txtCVV, listOfYears))
                 PPRedirectToAmountPage.IsOpen = true;
             else
                 MessageBox.Show("Please enter valid detailes");
