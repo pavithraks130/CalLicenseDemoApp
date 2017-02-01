@@ -33,7 +33,7 @@
                 <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="1" Grid.Column="1" Name="lblUserName" Content="Username:" HorizontalAlignment="Right" ></Label>
                 <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="2" Grid.Column="1" Name="lblPassword" Content="Password:" HorizontalAlignment="Right"></Label>
                 <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="4" Grid.Column="1" Name="lblNewUserSignUp" Content="New User? Sign Up!" HorizontalAlignment="Center"></Label>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="4" Grid.Column="2" Name="lblChangePassword" Content="Change Password >>"></Label>
+                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="4" Grid.Column="2" Name="lblChangePassword" Content="Change Password >>" Grid.ColumnSpan="2" Margin="0.333,1.333,117.667,0" VerticalAlignment="Top"></Label>
                 <TextBox Margin="5" Grid.Row="1" Grid.Column="2" Name="txtUserName"></TextBox>
                 <PasswordBox Margin="5" Grid.Row="2" Grid.Column="2" Name="txtPassword"></PasswordBox>
                 <Button Style="{StaticResource DefaultButtonStyle}"  Margin="5" Grid.Row="3" Grid.Column="2" Name="btnLogin" Content="Login"></Button>
@@ -92,7 +92,10 @@
                 <TextBox Margin="5" Grid.Row="3" Grid.Column="2" Name="txtEmailID"></TextBox>
                 <TextBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword"></TextBox>
                 <TextBox Margin="5" Grid.Row="5" Grid.Column="2" Name="txtOrganization"></TextBox>
-                <Button Style="{StaticResource DefaultButtonStyle}"  Margin="5" Grid.Row="6" Grid.Column="2" Name="btnRegisterAndPay" Content="Register and Pay"></Button>
+                <Button Style="{StaticResource DefaultButtonStyle}"  Margin="5" Grid.Row="6" Grid.Column="2" Name="btnRegisterAndPay" Content="Register and Pay" Click="btnRegisterAndPay_Click"></Button>
+                <Popup x:Name="paymentOption" Placement="Center">
+                    <local:PaymentOption/>
+                </Popup>
             </Grid>
         </TabItem>
     </TabControl>

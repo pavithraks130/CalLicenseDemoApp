@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalLicenseDemo", "src\app\CalLicenseDemo\CalLicenseDemo\CalLicenseDemo.csproj", "{B174DD0F-837F-4EAE-A4A6-85D0FBA2D251}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReferenceAssembly", "ReferenceAssembly", "{06786561-FD39-4850-B4E6-F96B884A7B5B}"
 	ProjectSection(SolutionItems) = preProject
 		ReferenceAssembly\System.Data.SQLite.dll = ReferenceAssembly\System.Data.SQLite.dll
 		ReferenceAssembly\System.Data.SQLite.xml = ReferenceAssembly\System.Data.SQLite.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseKey", "src\app\CalLicenseDemo\LicenseKey\LicenseKey.csproj", "{1DC3F930-86BE-4404-8366-49BF479244E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalLicenseDemo", "src\app\CalLicenseDemo\CalLicenseDemo.csproj", "{B174DD0F-837F-4EAE-A4A6-85D0FBA2D251}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseKey", "src\app\LicenseKey\LicenseKey.csproj", "{1DC3F930-86BE-4404-8366-49BF479244E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

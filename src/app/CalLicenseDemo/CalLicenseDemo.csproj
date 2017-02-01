@@ -78,7 +78,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\SingletonLicense.cs" />
+    <Compile Include="DatabaseContext\LicenseAppDBContext.cs" />
+    <Compile Include="Logic\LicenseLogic.cs" />
+    <Compile Include="Logic\LoginLogic.cs" />
     <Compile Include="Logic\Base36.cs" />
+    <Compile Include="Model\Logic\ValidateData.cs" />
+    <Compile Include="PaymentOption.xaml.cs">
+      <DependentUpon>PaymentOption.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreditAndDebitCardDetails.xaml.cs">
+      <DependentUpon>CreditAndDebitCardDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OtherPaymentDetails.xaml.cs">
+      <DependentUpon>OtherPaymentDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RedirectToAmountPaymentPage.xaml.cs">
+      <DependentUpon>RedirectToAmountPaymentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201702010900351_init.cs" />
     <Compile Include="Migrations\201702010900351_init.Designer.cs">
       <DependentUpon>201702010900351_init.cs</DependentUpon>
@@ -95,16 +111,30 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DatabaseContext\LicenseAppDBContext.cs" />
-    <Compile Include="Logic\LicenseLogic.cs" />
-    <Compile Include="Logic\LoginLogic.cs" />
+    
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PaymentOption.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Styles\DefaultStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreditAndDebitCardDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OtherPaymentDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RedirectToAmountPaymentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="CalLicenseDemo.CreditAndDebitCardDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CalLicenseDemo.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600" Background="Black">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Styles/DefaultStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Margin="0,0,0,28" MaxHeight="300" MaxWidth="300">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="69*" />
+            <RowDefinition Height="76*" />
+            <RowDefinition Height="66*" />
+            <RowDefinition Height="125*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Label Content="Payment Details" Foreground="White" />
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+            <Image Height="29" Source="..\Resourse\Fluke.png" Stretch="Fill" RenderTransformOrigin="0.511,0.688"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+
+            <Label x:Name="label" Content="16 digit card number" FontWeight="Bold" FontSize="8" FontStyle="Oblique" Margin="0,0,0,0" Height="19" Foreground="White"/>
+            <TextBox x:Name="textBox" Height="18" TextWrapping="Wrap" Text="" Margin="0,0,0,0"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Orientation="Vertical" Grid.Row="1" Grid.Column="0" Margin="-25,53.333,5,43.333" Grid.RowSpan="3" Height="76">
+            <Label x:Name="label2" Content="Expiry Date" FontSize="8" FontStyle="Oblique"  Margin="30,0,47,44"  FontWeight="Bold" Foreground="White" />
+            <ComboBox x:Name="ListofMonths" Height="28"  Text="Month" VerticalAlignment="Top" Margin="30,-30,10,30" />
+        </StackPanel>
+        <StackPanel  Grid.Row="2" Margin="145,10,5,5" Grid.ColumnSpan="2">
+            <ComboBox x:Name="listOfYears" Height="31" Margin="10,20,-0.333,0" IsSynchronizedWithCurrentItem="True" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        </StackPanel>
+        <StackPanel  Grid.Row="2" Grid.Column="2">
+            <Label x:Name="label5" Content="CVV" FontSize="8" FontStyle="Oblique" DockPanel.Dock="Right" FontWeight="Bold" Width="152" Grid.Row="1" Grid.Column="2" Margin="0,5" Foreground="White"/>
+            <TextBox  x:Name="txtCVV" Height="30" />
+        </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="0">
+            <Label Content="Name on the card" FontWeight="Bold" FontSize="8" FontStyle="Oblique" Foreground="White" Height="20" Margin="0,0,45,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Margin="85,61.667,75,0.333" Grid.RowSpan="2">
+            <TextBox Text="Name" Foreground="LightGray" Margin="0,0,20,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Margin="0,27.667,0,36">
+            <Button Style="{StaticResource DefaultButtonStyle}" x:Name="button" Content="PURCHASE" Background="LightBlue" Height="30" Click="button_Click" />
+            <Popup x:Name="PPRedirectToAmountPage" Placement="Mouse">
+                <local:RedirectToAmountPaymentPage Width="465" Height="229"/>
+            </Popup>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

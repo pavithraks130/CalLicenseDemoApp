@@ -32,5 +32,10 @@ namespace CalLicenseDemo
             }
            
         }
+
+        private void btnRegisterAndPay_Click(object sender, RoutedEventArgs e)
+        {
+            paymentOption.IsOpen = true;
+        }
     }
 }
