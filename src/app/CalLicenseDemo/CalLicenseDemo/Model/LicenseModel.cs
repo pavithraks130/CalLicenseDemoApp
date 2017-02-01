@@ -22,6 +22,9 @@ namespace CalLicenseDemo.Model
         public string TypeName { get; set; }
         public string Description { get; set; }
         public int ActiveDuration { get; set; }
+
+        public ICollection<Feature> FeatureList { get; set; }
+
     }
 
     public class License
@@ -53,7 +56,7 @@ namespace CalLicenseDemo.Model
             ActivationDate = DateTime.MinValue;
             License = new License();
         }
-
+        [Key]
         public int UserLicenseId { get; set; }
         public string UserKey { get; set; }
         public bool IsExpired { get; set; }
@@ -66,5 +69,16 @@ namespace CalLicenseDemo.Model
         [ForeignKey("LicenseId")]
         public virtual License License { get; set; }
     }
+
+    public class Feature
+    {
+        [Key]
+        public int FeatureId { get; set; }
+        public string FeatureTitle { get; set; }
+
+        public virtual ICollection<LicenseType> LicenseTypes { get; set; }
+    }
+
+  
 
 }

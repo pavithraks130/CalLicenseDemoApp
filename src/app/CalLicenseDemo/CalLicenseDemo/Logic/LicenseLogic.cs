@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Management;
@@ -10,10 +11,11 @@ using System.Threading.Tasks;
 using CalLicenseDemo.DatabaseContext;
 using CalLicenseDemo.Model;
 using LicenseKey;
+using Newtonsoft.Json;
 
 namespace CalLicenseDemo.Logic
 {
-    class LicenseLogic
+    class LicenseLogic : IDisposable
     {
         public UserModel User { get; set; }
 
@@ -26,19 +28,59 @@ namespace CalLicenseDemo.Logic
             _dbContext = new LicenseAppDBContext();
         }
 
+        public void ActivateSubscription(string subscriptionType)
+        {
+            //code for creating the licensekey and mapping with user and updating on the server.
+            string liceseKey = GenerateLicense(subscriptionType);
+
+            UserLicenseJsonData licenseDetails;
+            LicenseType licType = _dbContext.LicenseType.ToList().FirstOrDefault(l => l.TypeId.ToString() == subscriptionType);
+            var folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "CalibrationLicense");
+
+            //Checking the directory in app data. the License file will be saved in the appdata folder
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            //checking the license file for adding the new license records to the file.
+            if (File.Exists(Path.Combine(folderPath, "LicenseData.json")))
+            {
+                byte[] deserializeData = (byte[])File.ReadAllBytes(Path.Combine(folderPath, "LicenseData.json"));
+                string data = Encoding.ASCII.GetString(deserializeData);
+                licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(data);
+            }
+            else
+                licenseDetails = new UserLicenseJsonData();
+
+            //adding the new license record to the list
+            LicenseDetails detail = new LicenseDetails();
+            detail.LicenseKey = liceseKey;
+            detail.Type = licType;
+            licenseDetails.LicenseList.Add(detail);
+
+            //Saving the license file
+            string datalicence = JsonConvert.SerializeObject(detail);
+            byte[] serializedata = Encoding.ASCII.GetBytes(datalicence);
+            File.WriteAllBytes(Path.Combine(folderPath, "LicenseData.json"), serializedata);
+        }
+
         public string GenerateLicense(string subscriptionType)
         {
             bool status;
-            status = CreateUserInfo();
+            //status = CreateUserInfo();
             string userUniqueId = UniqueuserIdentifier();
-            string licenseKey = GetlicenseKey();
-            if (status)
-                status = UpdateSubScriptionDetails(userUniqueId, licenseKey, subscriptionType);
+            string licenseKey = string.Empty;
+            while (String.IsNullOrEmpty(licenseKey))
+            {
+                string key = GetlicenseKey();
+                if (!(_dbContext.License.ToList().Any(l => l.LicenseKey == key)))
+                    licenseKey = key;
+            }
+
+            status = UpdateSubScriptionDetails(userUniqueId, licenseKey, subscriptionType);
             if (status)
                 return licenseKey;
             else
                 return string.Empty;
-
         }
 
         public string GetlicenseKey()
@@ -54,7 +96,6 @@ namespace CalLicenseDemo.Logic
             keygeneration.CreateKey();
             return keygeneration.GetLicenseKey();
         }
-
 
         public bool UpdateSubScriptionDetails(string userUniqueId, string licenseKey, string subscriptiontype)
         {
@@ -160,12 +201,9 @@ namespace CalLicenseDemo.Logic
             return _dbContext.LicenseType.ToList();
         }
 
-        public bool ValidateLicense()
+        public void Dispose()
         {
-
-            return true;
+            _dbContext.Dispose();
         }
-
-
     }
 }
