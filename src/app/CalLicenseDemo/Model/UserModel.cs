@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CalLicenseDemo.Model
 {
-    public class UserModel
+    public class User
     {
         [Key]
         public int UserId { get; set; }
@@ -23,9 +23,9 @@ namespace CalLicenseDemo.Model
         [ForeignKey("TeamID")]
         public virtual Team Organization { get; set; }
 
-        public List<UserLicense> Licenses { get; set; }
+        public virtual List<UserLicense> Licenses { get; set; }
 
-        public UserModel()
+        public User()
         {
             FName = string.Empty;
             LName = string.Empty;

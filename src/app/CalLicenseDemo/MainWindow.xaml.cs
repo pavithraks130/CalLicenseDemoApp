@@ -24,13 +24,6 @@ namespace CalLicenseDemo
         public MainWindow()
         {
             InitializeComponent();
-            ManagementObjectSearcher mos = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_Processor");
-            ManagementObjectCollection proDetails = mos.Get();
-            foreach (ManagementBaseObject o in mos.Get())
-            {
-                Console.WriteLine(o["Name"]);
-            }
-           
         }
 
         private void btnRegisterAndPay_Click(object sender, RoutedEventArgs e)

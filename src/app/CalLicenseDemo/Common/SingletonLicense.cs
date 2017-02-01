@@ -11,7 +11,7 @@ namespace CalLicenseDemo.Common
     {
         public List<Feature> FeatureList { get; set; }
 
-        public  UserModel User { get; set; }
+        public  User User { get; set; }
 
         private static SingletonLicense _instance = null;
         public static SingletonLicense Instance

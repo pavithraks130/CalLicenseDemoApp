@@ -16,7 +16,7 @@ namespace CalLicenseDemo.DatabaseContext
         {
         }
         public DbSet<Team> Team { get; set; }
-        public DbSet<UserModel> User { get; set; }
+        public DbSet<User> User { get; set; }
         public DbSet<LicenseType> LicenseType { get; set; }
         public DbSet<License> License { get; set; }
         public  DbSet<UserLicense> UserLicense { get; set; }
