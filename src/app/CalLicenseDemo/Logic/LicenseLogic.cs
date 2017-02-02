@@ -17,7 +17,7 @@ namespace CalLicenseDemo.Logic
 {
     class LicenseLogic : IDisposable
     {
-        public UserModel User { get; set; }
+        public User User { get; set; }
 
         public string ErrorMessage { get; set; }
 

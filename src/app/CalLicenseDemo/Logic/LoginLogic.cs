@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using CalLicenseDemo.Common;
@@ -21,8 +22,9 @@ namespace CalLicenseDemo.Logic
 
         public bool ValidateUser(string userName, string password)
         {
+            
             string encryptedPassword = password;
-            UserModel user = _dbContext.User.ToList().FirstOrDefault(u => u.Email == userName && u.Password == encryptedPassword);
+            User user = _dbContext.User.ToList().FirstOrDefault(u => u.Email == userName && u.Password == encryptedPassword);
             if (user != null) SingletonLicense.Instance.User = user;
             return user != null;
         }
@@ -52,6 +54,15 @@ namespace CalLicenseDemo.Logic
                     }
                 }
             }
+        }
+
+        public  bool ValidateOldPassword(string password)
+        {
+            return false;
+        }
+        public bool UpdatePassword(string oldPassword,string newPassword)
+        {
+            return true;
         }
 
         public void Dispose()
