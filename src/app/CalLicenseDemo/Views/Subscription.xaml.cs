@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace CalLicenseDemo.Views
 {
     /// <summary>
-    /// Interaction logic for NewUser.xaml
+    /// Interaction logic for Subscription.xaml
     /// </summary>
-    public partial class NewUser : UserControl
+    public partial class Subscription : NavigationWindow
     {
-        public NewUser()
+        public Subscription()
         {
             InitializeComponent();
         }

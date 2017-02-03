@@ -1,4 +1,4 @@
-﻿<Window x:Class="CalLicenseDemo.MainWindow"
+﻿<NavigationWindow x:Class="CalLicenseDemo.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:CalLicenseDemo"
          xmlns:temp="clr-namespace:CalLicenseDemo.Views"
         mc:Ignorable="d"
-        Title="MET/CAL Runtime" Height="350" Width="525" Background="Black">
-    <Window.Resources>
+        Title="MET/CAL Runtime" Height="350" Width="525" Background="Black" Source="Views/LoginUser.xaml">
+    <!--<Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Styles/DefaultStyles.xaml" />
@@ -20,6 +20,6 @@
             <RowDefinition Height=".2*"/>
         </Grid.RowDefinitions>
         <temp:LoginUser/>
-    </Grid>
+    </Grid>-->
 
-</Window>
+</NavigationWindow>

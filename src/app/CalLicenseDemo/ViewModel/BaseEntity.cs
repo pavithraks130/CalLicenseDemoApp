@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace CalLicenseDemo.ViewModel
 {
-    class BaseEntity : INotifyPropertyChanged
+    internal class BaseEntity : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -18,15 +14,16 @@ namespace CalLicenseDemo.ViewModel
         }
     }
 
-    class RelayCommand : ICommand
+    internal class RelayCommand : ICommand
     {
-        public event EventHandler CanExecuteChanged;
-        Action<object> _action;
+        private readonly Action<object> _action;
 
         public RelayCommand(Action<object> action)
         {
-            this._action = action;
+            _action = action;
         }
+
+        public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
