@@ -13,183 +13,166 @@
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-using System;
+
 using System.Text.RegularExpressions;
 
 namespace LicenseKey
 {
-	/// <summary>
-	/// A Summary description for Checksum.
-	/// </summary>
-	public class Checksum
-	{
-		/// <summary>
-		/// The enumerated types of the different Algorithms 
-		/// </summary>
-		public enum ChecksumType 
-		{
-			/// <summary>
-			/// Algorithm type 1, a simple add
-			/// </summary>
-			Type1,
-			/// <summary>
-			///  Algorithm type 2, a simple add
-			/// </summary>
-			Type2,
-		};
+    /// <summary>
+    ///     A Summary description for Checksum.
+    /// </summary>
+    public class Checksum
+    {
+        /// <summary>
+        ///     The enumerated types of the different Algorithms
+        /// </summary>
+        public enum ChecksumType
+        {
+            /// <summary>
+            ///     Algorithm type 1, a simple add
+            /// </summary>
+            Type1,
 
-		ChecksumType	checksumType; 
-		ushort	r;
-		ushort	c1;
-		ushort	c2;
-		uint	sum;
+            /// <summary>
+            ///     Algorithm type 2, a simple add
+            /// </summary>
+            Type2
+        }
 
-		/// <summary>
-		/// The constructor for the checksum class.
-		/// </summary>
-		public Checksum()
-		{
-		}
+        private ushort c1;
+        private ushort c2;
+
+        private ushort r;
 
 
-		/// <summary>
-		/// Gets the Checksum Number.
-		/// </summary>
-		/// <example>
-		/// <code>
-		/// chknum = chk.ChecksumNumber; 
-		/// </code>
-		/// </example>
-		public uint ChecksumNumber
-		{
-			get { return sum; }
-		}
-		
-
-		/// <summary>
-		/// Initialize any of the internal variables.
-		/// </summary>
-		private void Init()
-		{
-			sum = 0;
-			r   = 55665;
-			c1  = 52845;
-			c2  = 22719;
-		}
+        /// <summary>
+        ///     Gets the Checksum Number.
+        /// </summary>
+        /// <example>
+        ///     <code>
+        /// chknum = chk.ChecksumNumber; 
+        /// </code>
+        /// </example>
+        public uint ChecksumNumber { get; private set; }
 
 
-		/// <summary>
-		/// Get/Set the property to use the different Checksum Algorithms.
-		/// </summary>
-		/// <example>
-		/// <code>
-		/// chk.CheckSumAlgorithm = Checksum.ChecksumType.Type2; 
-		/// </code>
-		/// </example>
-		/// <returns>The selected checksum Algorithm.
-		/// </returns>
-		public ChecksumType ChecksumAlgorithm 
-		{
-			get { return checksumType; }
-			set	
-			{
-				checksumType = value;
-			}
-		}
+        /// <summary>
+        ///     Get/Set the property to use the different Checksum Algorithms.
+        /// </summary>
+        /// <example>
+        ///     <code>
+        /// chk.CheckSumAlgorithm = Checksum.ChecksumType.Type2; 
+        /// </code>
+        /// </example>
+        /// <returns>
+        ///     The selected checksum Algorithm.
+        /// </returns>
+        public ChecksumType ChecksumAlgorithm { get; set; }
 
 
-		/// <summary>
-		/// Add the selected bytes together. 
-		/// </summary>
-		/// <param name="vvalue">The byte to add into the sum.</param>
-		private void Add(byte vvalue)
-		{
-			byte cipher = (byte)((ulong)((vvalue ^ (r >> 8))));
-			r = (ushort)((cipher + r) * c1 + c2);
-			sum += cipher;
-		}
+        /// <summary>
+        ///     Initialize any of the internal variables.
+        /// </summary>
+        private void Init()
+        {
+            ChecksumNumber = 0;
+            r = 55665;
+            c1 = 52845;
+            c2 = 22719;
+        }
 
-		/// <summary>
-		/// Algorithm 1. A simple byte add
-		/// </summary>
-		/// <param name="buffer">The input string to calculate the checksum.</param>
-		private void Calcchk1(string buffer)
-		{
-			byte ba; 
 
-			for(int i = 0; i < buffer.Length; i++)
-			{
-				ba = (byte)buffer[i];
-				Add(ba);
-			}
-		} 
+        /// <summary>
+        ///     Add the selected bytes together.
+        /// </summary>
+        /// <param name="vvalue">The byte to add into the sum.</param>
+        private void Add(byte vvalue)
+        {
+            var cipher = (byte) (ulong) (vvalue ^ (r >> 8));
+            r = (ushort) ((cipher + r) * c1 + c2);
+            ChecksumNumber += cipher;
+        }
 
-		/// <summary>
-		/// Algorithm 2. A simple byte add
-		/// </summary>
-		/// <param name="buffer">The input string to calculate the checksum.</param>
-		private void Calcchk2(string buffer)
-		{
-			string	mystring;	// my local string incase the string is an odd length
-			ushort	word16a;	// short is an int16
-			ushort	word16b;	// short is an int16
-			ushort	word16;		// short is an int16
-			uint	sumtemp;
-			int		count;
+        /// <summary>
+        ///     Algorithm 1. A simple byte add
+        /// </summary>
+        /// <param name="buffer">The input string to calculate the checksum.</param>
+        private void Calcchk1(string buffer)
+        {
+            byte ba;
 
-			mystring = buffer;
-			count = mystring.Length;
-			mystring = mystring + "00";	// add one to the length
+            for (var i = 0; i < buffer.Length; i++)
+            {
+                ba = (byte) buffer[i];
+                Add(ba);
+            }
+        }
 
-			for(int i = 0; i < count; i= i + 2)
-			{
-				word16a = (ushort)(((int)mystring[i]<<8)&0xFF00);
-				word16b = (ushort)((int)mystring[i+1]&0xFF);
-				word16 = (ushort)(word16a + word16b);
-				sum = sum + (uint) word16;
-			}
-			// take only 16 bits out of the 32 bit sum and add up the carries
-			sumtemp = sum>>16;
-			while ((sumtemp) != 0) 
-			{
-				sum = (sum & 0xFFFF)+(sum >> 16);
-				sumtemp = sum>>16;
-			}
+        /// <summary>
+        ///     Algorithm 2. A simple byte add
+        /// </summary>
+        /// <param name="buffer">The input string to calculate the checksum.</param>
+        private void Calcchk2(string buffer)
+        {
+            string mystring; // my local string incase the string is an odd length
+            ushort word16a; // short is an int16
+            ushort word16b; // short is an int16
+            ushort word16; // short is an int16
+            uint sumtemp;
+            int count;
 
-			// one's complement the result
-			sum = ~sum;
+            mystring = buffer;
+            count = mystring.Length;
+            mystring = mystring + "00"; // add one to the length
 
-		}
+            for (var i = 0; i < count; i = i + 2)
+            {
+                word16a = (ushort) ((mystring[i] << 8) & 0xFF00);
+                word16b = (ushort) (mystring[i + 1] & 0xFF);
+                word16 = (ushort) (word16a + word16b);
+                ChecksumNumber = ChecksumNumber + word16;
+            }
+            // take only 16 bits out of the 32 bit sum and add up the carries
+            sumtemp = ChecksumNumber >> 16;
+            while (sumtemp != 0)
+            {
+                ChecksumNumber = (ChecksumNumber & 0xFFFF) + (ChecksumNumber >> 16);
+                sumtemp = ChecksumNumber >> 16;
+            }
 
-		/// <summary>
-		/// Clean the input string of any unwanted characters.
-		/// </summary>
-		/// <param name="strIn">The input string to clean unwanted characters.</param>
-		/// <returns>The cleaned string.</returns>
-		private static string CleanInput(string strIn)
-		{
-			// Replace invalid characters with empty strings.
-			// such as the dash that we have in the string
-			return Regex.Replace(strIn, @"-", ""); 
-		}
+            // one's complement the result
+            ChecksumNumber = ~ChecksumNumber;
+        }
 
-		/// <summary>
-		/// Calculate the checksum based on the selected Algorithm. 
-		/// </summary>
-		/// <param name="licenseKey">The completed license key string.</param>
-		public void CalculateChecksum(string licenseKey)
-		{
-			Init();					// initialize any internal variables.
-			licenseKey = CleanInput(licenseKey);	// strip out any illegal characters such as a dash. 
-			switch(checksumType)
-			{
-				case ChecksumType.Type1:
-					Calcchk1(licenseKey);	// add the values. 
-					break;
-				case ChecksumType.Type2:
-					Calcchk2(licenseKey);	// checksum the value using method 2
-					break;
-			}
-		}
-	}
+        /// <summary>
+        ///     Clean the input string of any unwanted characters.
+        /// </summary>
+        /// <param name="strIn">The input string to clean unwanted characters.</param>
+        /// <returns>The cleaned string.</returns>
+        private static string CleanInput(string strIn)
+        {
+            // Replace invalid characters with empty strings.
+            // such as the dash that we have in the string
+            return Regex.Replace(strIn, @"-", "");
+        }
+
+        /// <summary>
+        ///     Calculate the checksum based on the selected Algorithm.
+        /// </summary>
+        /// <param name="licenseKey">The completed license key string.</param>
+        public void CalculateChecksum(string licenseKey)
+        {
+            Init(); // initialize any internal variables.
+            licenseKey = CleanInput(licenseKey); // strip out any illegal characters such as a dash. 
+            switch (ChecksumAlgorithm)
+            {
+                case ChecksumType.Type1:
+                    Calcchk1(licenseKey); // add the values. 
+                    break;
+                case ChecksumType.Type2:
+                    Calcchk2(licenseKey); // checksum the value using method 2
+                    break;
+            }
+        }
+    }
 }

@@ -6,17 +6,12 @@
     <members>
         <member name="T:LicenseKey.CharacterDatatype">
             <summary>
-            Summary description for CharacterDatatype.
-            </summary>
-        </member>
-        <member name="M:LicenseKey.CharacterDatatype.#ctor">
-            <summary>
-            The CharacterDatatype contructor.
+                Summary description for CharacterDatatype.
             </summary>
         </member>
         <member name="M:LicenseKey.CharacterDatatype.CheckTokenSize(System.String,System.Int32)">
             <summary>
-            Check the token size.
+                Check the token size.
             </summary>
             <param name="tokStream">The input stream of the token.</param>
             <param name="rcnt">The size of the input token.</param>
@@ -24,7 +19,7 @@
         </member>
         <member name="M:LicenseKey.CharacterDatatype.CheckToken(System.String,System.String,System.Char)">
             <summary>
-            Check the token.
+                Check the token.
             </summary>
             <param name="LicTempInp">The license template.</param>
             <param name="tokinp">The token value.</param>
@@ -32,127 +27,123 @@
         </member>
         <member name="M:LicenseKey.CharacterDatatype.CreateStringRepresentation(System.Int32)">
             <summary>
-            Create the string representation of the token.
+                Create the string representation of the token.
             </summary>
             <param name="targetLength">The length of the string.</param>
             <returns>The string value.</returns>
         </member>
         <member name="T:LicenseKey.Checksum">
             <summary>
-            A Summary description for Checksum.
+                A Summary description for Checksum.
             </summary>
         </member>
         <member name="T:LicenseKey.Checksum.ChecksumType">
             <summary>
-            The enumerated types of the different Algorithms 
+                The enumerated types of the different Algorithms
             </summary>
         </member>
         <member name="F:LicenseKey.Checksum.ChecksumType.Type1">
             <summary>
-            Algorithm type 1, a simple add
+                Algorithm type 1, a simple add
             </summary>
         </member>
         <member name="F:LicenseKey.Checksum.ChecksumType.Type2">
             <summary>
-             Algorithm type 2, a simple add
-            </summary>
-        </member>
-        <member name="M:LicenseKey.Checksum.#ctor">
-            <summary>
-            The constructor for the checksum class.
+                Algorithm type 2, a simple add
             </summary>
         </member>
         <member name="P:LicenseKey.Checksum.ChecksumNumber">
             <summary>
-            Gets the Checksum Number.
+                Gets the Checksum Number.
             </summary>
             <example>
-            <code>
+                <code>
             chknum = chk.ChecksumNumber; 
             </code>
             </example>
         </member>
-        <member name="M:LicenseKey.Checksum.Init">
-            <summary>
-            Initialize any of the internal variables.
-            </summary>
-        </member>
         <member name="P:LicenseKey.Checksum.ChecksumAlgorithm">
             <summary>
-            Get/Set the property to use the different Checksum Algorithms.
+                Get/Set the property to use the different Checksum Algorithms.
             </summary>
             <example>
-            <code>
+                <code>
             chk.CheckSumAlgorithm = Checksum.ChecksumType.Type2; 
             </code>
             </example>
-            <returns>The selected checksum Algorithm.
+            <returns>
+                The selected checksum Algorithm.
             </returns>
+        </member>
+        <member name="M:LicenseKey.Checksum.Init">
+            <summary>
+                Initialize any of the internal variables.
+            </summary>
         </member>
         <member name="M:LicenseKey.Checksum.Add(System.Byte)">
             <summary>
-            Add the selected bytes together. 
+                Add the selected bytes together.
             </summary>
             <param name="vvalue">The byte to add into the sum.</param>
         </member>
         <member name="M:LicenseKey.Checksum.Calcchk1(System.String)">
             <summary>
-            Algorithm 1. A simple byte add
+                Algorithm 1. A simple byte add
             </summary>
             <param name="buffer">The input string to calculate the checksum.</param>
         </member>
         <member name="M:LicenseKey.Checksum.Calcchk2(System.String)">
             <summary>
-            Algorithm 2. A simple byte add
+                Algorithm 2. A simple byte add
             </summary>
             <param name="buffer">The input string to calculate the checksum.</param>
         </member>
         <member name="M:LicenseKey.Checksum.CleanInput(System.String)">
             <summary>
-            Clean the input string of any unwanted characters.
+                Clean the input string of any unwanted characters.
             </summary>
             <param name="strIn">The input string to clean unwanted characters.</param>
             <returns>The cleaned string.</returns>
         </member>
         <member name="M:LicenseKey.Checksum.CalculateChecksum(System.String)">
             <summary>
-            Calculate the checksum based on the selected Algorithm. 
+                Calculate the checksum based on the selected Algorithm.
             </summary>
             <param name="licenseKey">The completed license key string.</param>
         </member>
         <member name="T:LicenseKey.Datatype">
             <summary>
-            Base class for the data types that will be used.
+                Base class for the data types that will be used.
             </summary>
         </member>
         <member name="F:LicenseKey.Datatype.flagBase10">
             <summary>
-            do we use base 10 or base 16
+                do we use base 10 or base 16
             </summary>
         </member>
         <member name="F:LicenseKey.Datatype.flagBytes">
             <summary>
-            do we use bytes or bits
+                do we use bytes or bits
             </summary>
         </member>
         <member name="M:LicenseKey.Datatype.#ctor">
             <summary>
-            The datatype base contructor
+                The datatype base contructor
             </summary>
         </member>
         <member name="P:LicenseKey.Datatype.UseBytes">
             <summary>
-            Get/Set the property to use bytes or bits in the operations. 
+                Get/Set the property to use bytes or bits in the operations.
             </summary>
         </member>
         <member name="P:LicenseKey.Datatype.UseBase10">
             <summary>
-            Get/Set the property to use base 10 (true) or base 16 (false) for the numbers.
+                Get/Set the property to use base 10 (true) or base 16 (false) for the numbers.
             </summary>
         </member>
         <member name="M:LicenseKey.Datatype.CheckTokenSize(System.String,System.Int32)">
             <summary>
-            Check the token size.
+                Check the token size.
             </summary>
             <param name="tokStream">The input stream of the token.</param>
             <param name="rcnt">The size of the input token.</param>
@@ -160,7 +151,7 @@
         </member>
         <member name="M:LicenseKey.Datatype.CheckToken(System.String,System.String,System.Char)">
             <summary>
-            Check the token.
+                Check the token.
             </summary>
             <param name="LicTempInp">The license template.</param>
             <param name="tokinp">The token value.</param>
@@ -168,118 +159,52 @@
         </member>
         <member name="M:LicenseKey.Datatype.CreateStringRepresentation(System.Int32)">
             <summary>
-            Create the string representation of the token.
+                Create the string representation of the token.
             </summary>
             <param name="targetLength">The length of the string.</param>
             <returns>The string value.</returns>
         </member>
         <member name="T:LicenseKey.GenerateKey">
             <summary>
-            A Summary description for GenerateKey.
+                A Summary description for GenerateKey.
             </summary>
             <remarks>
-            This is the License Key class for generating License keys.
-            It provides implementations of all License key operations. 
+                This is the License Key class for generating License keys.
+                It provides implementations of all License key operations.
             </remarks>
         </member>
         <member name="T:LicenseKey.GenerateKey.TokenTypes">
             <summary>
-            Enumerated data types.
+                Enumerated data types.
             </summary>
         </member>
         <member name="F:LicenseKey.GenerateKey.TokenTypes.NUMBER">
             <summary>
-            The data type is Numeric.
+                The data type is Numeric.
             </summary>
         </member>
         <member name="F:LicenseKey.GenerateKey.TokenTypes.DATE">
             <summary>
-             The data type is Date.
+                The data type is Date.
             </summary>
         </member>
         <member name="F:LicenseKey.GenerateKey.TokenTypes.CHARACTER">
             <summary>
-            The data type is Character.
+                The data type is Character.
             </summary>
-        </member>
-        <member name="T:LicenseKey.GenerateKey.Tokens">
-            <summary>
-            Internal structure for the tokens.
-            </summary>
-        </member>
-        <member name="F:LicenseKey.GenerateKey.Tokens.tokenType">
-            <summary>
-            The data type
-            </summary>
-        </member>
-        <member name="F:LicenseKey.GenerateKey.Tokens.characterToken">
-            <summary>
-            The character token
-            </summary>
-        </member>
-        <member name="F:LicenseKey.GenerateKey.Tokens.initialValue">
-            <summary>
-            The value of the item
-            </summary>
-        </member>
-        <member name="F:LicenseKey.GenerateKey.Tokens.datatype">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:LicenseKey.GenerateKey.Tokens.Add(System.Char,LicenseKey.GenerateKey.TokenTypes,System.String)">
-            <summary>
-            Add a token into the collection.
-            </summary>
-            <param name="characterTokenAdd">The character token.</param>
-            <param name="tokenTypeAdd">The data type.</param>
-            <param name="dataValue">The data value.</param>
-        </member>
-        <member name="P:LicenseKey.GenerateKey.Tokens.CharacterToken">
-            <summary>
-            Property to set/get the character token.
-            </summary>		
-        </member>
-        <member name="P:LicenseKey.GenerateKey.Tokens.TokenType">
-            <summary>
-            Property to set/get the character token.
-            </summary>		
-        </member>
-        <member name="P:LicenseKey.GenerateKey.Tokens.InitialValue">
-            <summary>
-            Property to set/get the current value.
-            </summary>		
-        </member>
-        <member name="M:LicenseKey.GenerateKey.FindToken(System.Char)">
-            <summary>
-            Find the token in the array. return the offset otherwise return a -1.
-            </summary>
-            <param name="tokenToFind">Token to find in the array structre.</param>
-            <returns>Offset otherwise a -1</returns>
         </member>
         <member name="M:LicenseKey.GenerateKey.#ctor">
             <summary>
-            GenerateKey constructor.
+                GenerateKey constructor.
             </summary>
-        </member>
-        <member name="M:LicenseKey.GenerateKey.GetLicenseKey">
-            <summary>
-            Method used to get the final license key.
-            </summary>
-            <example>
-            <code>
-            finalkey = gkey.GetLicenseKey(); 
-            </code>
-            </example>
-            <returns>The license key.</returns>
         </member>
         <member name="P:LicenseKey.GenerateKey.UseBytes">
             <summary>
-            Get/Set the property to use bytes or bits in the template string
-            and for all operations. 
+                Get/Set the property to use bytes or bits in the template string
+                and for all operations.
             </summary>
             <example>
-            <code>
+                <code>
             gkey.UseBytes = false; 
             </code>
             </example>
@@ -287,10 +212,10 @@
         </member>
         <member name="P:LicenseKey.GenerateKey.UseBase10">
             <summary>
-            Get/Set the property to use base 10 (true) or base 16 (false) for the numbers.
+                Get/Set the property to use base 10 (true) or base 16 (false) for the numbers.
             </summary>
             <example>
-            <code>
+                <code>
             gkey.UseBase10 = true; 
             </code>
             </example>
@@ -298,10 +223,10 @@
         </member>
         <member name="P:LicenseKey.GenerateKey.ChecksumAlgorithm">
             <summary>
-            Get/Set the property to the Checksum Algorithm.
+                Get/Set the property to the Checksum Algorithm.
             </summary>
             <example>
-            <code>
+                <code>
             gkey.CheckSumAlgorithm = ChecksumType.Type1; 
             </code>
             </example>
@@ -309,10 +234,10 @@
         </member>
         <member name="P:LicenseKey.GenerateKey.MaxTokens">
             <summary>
-            Get/Set the maximum number of tokens that will be used.
+                Get/Set the maximum number of tokens that will be used.
             </summary>
             <example>
-            <code>
+                <code>
             gkey.MaxTokens = 3; 
             </code>
             </example>
@@ -320,25 +245,43 @@
         </member>
         <member name="P:LicenseKey.GenerateKey.LicenseTemplate">
             <summary>
-            Get/Set the license template string.
+                Get/Set the license template string.
             </summary>
             <example>
-            <code>
+                <code>
             gkey.LicenseTemplate = "xxvv-xxxxxxxx-xxxxxxxx-ppxx"; 
             </code>
             </example>
             <returns>The license template.</returns>
         </member>
+        <member name="M:LicenseKey.GenerateKey.FindToken(System.Char)">
+            <summary>
+                Find the token in the array. return the offset otherwise return a -1.
+            </summary>
+            <param name="tokenToFind">Token to find in the array structre.</param>
+            <returns>Offset otherwise a -1</returns>
+        </member>
+        <member name="M:LicenseKey.GenerateKey.GetLicenseKey">
+            <summary>
+                Method used to get the final license key.
+            </summary>
+            <example>
+                <code>
+            finalkey = gkey.GetLicenseKey(); 
+            </code>
+            </example>
+            <returns>The license key.</returns>
+        </member>
         <member name="M:LicenseKey.GenerateKey.AddToken(System.Int32,System.String,LicenseKey.GenerateKey.TokenTypes,System.String)">
             <summary>
-            Add a token into the array. 
+                Add a token into the array.
             </summary>
             <param name="location">Location of the data within the array.</param>
             <param name="characterToken">The string representation of the characer token.</param>
             <param name="tokenTypeAdd">The type of value that will be used in the transformation.</param>
             <param name="initialValue">The initial value of the data.</param>
             <example>
-            <code>
+                <code>
             gkey.AddToken(0, "v", LicenseKey.GenerateKey.TokenTypes.NUMBER, "1"); 
             </code>
             </example>
@@ -347,13 +290,13 @@
         </member>
         <member name="M:LicenseKey.GenerateKey.GetRandomNumber(System.Int32)">
             <summary>
-            Get a random number so we can add it into the license key string. 
+                Get a random number so we can add it into the license key string.
             </summary>
             <param name="numberLength">The size of the field.</param>
         </member>
         <member name="M:LicenseKey.GenerateKey.GetChecksumNumber(System.String,System.Int32,System.Boolean)">
             <summary>
-            Get the checksum number so we can add it into the license key string. 
+                Get the checksum number so we can add it into the license key string.
             </summary>
             <param name="Licensekey">The license key string.</param>
             <param name="numberLength">The size of the field.</param>
@@ -361,10 +304,10 @@
         </member>
         <member name="M:LicenseKey.GenerateKey.CreateKey">
             <summary>
-            Create the License key.
+                Create the License key.
             </summary>
             <example>
-            <code>
+                <code>
             gkey = new GenerateKey();
             gkey.LicenseTemplate = "vvvvppppxxxxxxxxxxxx-wwwwwwwwxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxx";
             gkey.MaxTokens = 3;
@@ -383,21 +326,21 @@
         </member>
         <member name="M:LicenseKey.GenerateKey.MatchInput(System.String)">
             <summary>
-            See if the input string has a checksum character.
+                See if the input string has a checksum character.
             </summary>
             <param name="strIn">The input string to check.</param>
             <returns>bool flag.</returns>
         </member>
         <member name="M:LicenseKey.GenerateKey.CleanInput(System.String)">
             <summary>
-            Clean the input string of any unwanted characters.
+                Clean the input string of any unwanted characters.
             </summary>
             <param name="strIn">The input string to clean unwanted characters.</param>
             <returns>The cleaned string.</returns>
         </member>
         <member name="M:LicenseKey.GenerateKey.CheckInputLegalBit(System.String,System.String)">
             <summary>
-            Check the legal input for bit templates.
+                Check the legal input for bit templates.
             </summary>
             <param name="lictemp">The license Template.</param>
             <param name="lickey">The license Key.</param>
@@ -405,7 +348,7 @@
         </member>
         <member name="M:LicenseKey.GenerateKey.CheckInputLegalByte(System.String,System.String)">
             <summary>
-            Check the legal input for byte templates.
+                Check the legal input for byte templates.
             </summary>
             <param name="lictemp">The license Template.</param>
             <param name="lickey">The license Key.</param>
@@ -413,7 +356,7 @@
         </member>
         <member name="M:LicenseKey.GenerateKey.CheckInputLegal(System.String,System.String)">
             <summary>
-            Check the legal input for all templates.
+                Check the legal input for all templates.
             </summary>
             <param name="lictemp">The license Template.</param>
             <param name="lickey">The license Key.</param>
@@ -421,25 +364,25 @@
         </member>
         <member name="M:LicenseKey.GenerateKey.DisassembleKeyBytes(System.String)">
             <summary>
-            Disassemble the Key for the Bytes mode.
+                Disassemble the Key for the Bytes mode.
             </summary>
             <param name="token">What token to search and dissemble for.</param>
             <returns>The string with the result.</returns>
         </member>
         <member name="M:LicenseKey.GenerateKey.DisassembleKeyBits(System.String)">
             <summary>
-            Disassemble the Key for the Bits mode.
+                Disassemble the Key for the Bits mode.
             </summary>
             <param name="token">What token to search and dissemble for.</param>
             <returns>The string with the result.</returns>
         </member>
         <member name="M:LicenseKey.GenerateKey.DisassembleKey(System.String)">
             <summary>
-            Dissassemble the license key based on the template.
+                Dissassemble the license key based on the template.
             </summary>
             <param name="token">The token that you want disassembled.</param>
             <example>
-            <code>
+                <code>
             result = gkey.DisassembleKey("p"); 
             </code>
             </example>
@@ -447,19 +390,61 @@
             <exception cref="T:System.ApplicationException">Thrown when the Licensekey Template Is Empty</exception>
             <returns>The token value represented as a string.</returns>
         </member>
-        <member name="T:LicenseKey.NumberDatatype">
+        <member name="T:LicenseKey.GenerateKey.Tokens">
             <summary>
-            Summary description for NumberDatatype.
+                Internal structure for the tokens.
             </summary>
         </member>
-        <member name="M:LicenseKey.NumberDatatype.#ctor">
+        <member name="F:LicenseKey.GenerateKey.Tokens.tokenType">
             <summary>
-            The NumberDatatype contructor
+                The data type
+            </summary>
+        </member>
+        <member name="F:LicenseKey.GenerateKey.Tokens.characterToken">
+            <summary>
+                The character token
+            </summary>
+        </member>
+        <member name="F:LicenseKey.GenerateKey.Tokens.initialValue">
+            <summary>
+                The value of the item
+            </summary>
+        </member>
+        <member name="F:LicenseKey.GenerateKey.Tokens.datatype">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:LicenseKey.GenerateKey.Tokens.Add(System.Char,LicenseKey.GenerateKey.TokenTypes,System.String)">
+            <summary>
+                Add a token into the collection.
+            </summary>
+            <param name="characterTokenAdd">The character token.</param>
+            <param name="tokenTypeAdd">The data type.</param>
+            <param name="dataValue">The data value.</param>
+        </member>
+        <member name="P:LicenseKey.GenerateKey.Tokens.CharacterToken">
+            <summary>
+                Property to set/get the character token.
+            </summary>
+        </member>
+        <member name="P:LicenseKey.GenerateKey.Tokens.TokenType">
+            <summary>
+                Property to set/get the character token.
+            </summary>
+        </member>
+        <member name="P:LicenseKey.GenerateKey.Tokens.InitialValue">
+            <summary>
+                Property to set/get the current value.
+            </summary>
+        </member>
+        <member name="T:LicenseKey.NumberDatatype">
+            <summary>
+                Summary description for NumberDatatype.
             </summary>
         </member>
         <member name="M:LicenseKey.NumberDatatype.CheckTokenSize(System.String,System.Int32)">
             <summary>
-            Check the token size
+                Check the token size
             </summary>
             <param name="tokStream">The input stream of the token.</param>
             <param name="rcnt">The size of the input token.</param>
@@ -467,7 +452,7 @@
         </member>
         <member name="M:LicenseKey.NumberDatatype.CheckToken(System.String,System.String,System.Char)">
             <summary>
-            Check the token.
+                Check the token.
             </summary>
             <param name="LicTempInp">The license template.</param>
             <param name="tokinp">The token value.</param>
@@ -475,19 +460,19 @@
         </member>
         <member name="M:LicenseKey.NumberDatatype.CreateStringRepresentation(System.Int32)">
             <summary>
-            Create the string representation of the token.
+                Create the string representation of the token.
             </summary>
             <param name="targetLength">The length of the string.</param>
             <returns>The string value.</returns>
         </member>
         <member name="T:LicenseKey.NumberDisplay">
             <summary>
-            A Summary description for NumberDisplay.
+                A Summary description for NumberDisplay.
             </summary>
         </member>
         <member name="M:LicenseKey.NumberDisplay.TrimCheckSum(System.UInt32,System.Int32,System.Boolean)">
             <summary>
-            Trim the number to the desired length.
+                Trim the number to the desired length.
             </summary>
             <param name="sum">The number that you want the display for.</param>
             <param name="numberLength">The length of the trim that you want.</param>
@@ -495,41 +480,43 @@
         </member>
         <member name="M:LicenseKey.NumberDisplay.CreateNumberString(System.UInt32,System.Int32,System.Boolean)">
             <summary>
-            Create a string representing the number. 
+                Create a string representing the number.
             </summary>
             <param name="sum">The number that you want the display for.</param>
             <param name="numberLength">The length of the display (visible) that you want.</param>
             <param name="useBase10">The base of the number you want, (10)true or (16)false.</param>
             <example>
-            <code>
+                <code>
             txtChkNumStr.Text = NumberDisplay.CreateNumberString(csum, numberLength, useBase10); 
             </code>
             </example>
             <returns>The resulting string.</returns>
-            <remarks>Remember that the length should be the visible part.
-             This has nothing to do with bytes or bits.</remarks>
+            <remarks>
+                Remember that the length should be the visible part.
+                This has nothing to do with bytes or bits.
+            </remarks>
         </member>
         <member name="T:LicenseKey.Randomm">
             <summary>
-            A Summary description for Random.
+                A Summary description for Random.
             </summary>
             <remarks>
-            This is an random number class for licensekey.
-            It provides implementations of all random numbers. 
+                This is an random number class for licensekey.
+                It provides implementations of all random numbers.
             </remarks>
         </member>
         <member name="M:LicenseKey.Randomm.#ctor">
             <summary>
-            The random class returns random numbers based on a base. 
+                The random class returns random numbers based on a base.
             </summary>
         </member>
         <member name="M:LicenseKey.Randomm.SetMaxLength(System.Int32)">
             <summary>
-            Sets the max Length of the number. 
+                Sets the max Length of the number.
             </summary>
             <param name="maxLength">The length of the number. Needs to be 1-9.</param>
             <example>
-            <code>
+                <code>
             rnd.SetMaxLength(numberLength); 
             </code>
             </example>
@@ -538,10 +525,10 @@
         </member>
         <member name="M:LicenseKey.Randomm.GetRandomNumber">
             <summary>
-            Get a random number.
+                Get a random number.
             </summary>
             <example>
-            <code>
+                <code>
             rannum = rnd.GetRandomNumber(); 
             </code>
             </example>
