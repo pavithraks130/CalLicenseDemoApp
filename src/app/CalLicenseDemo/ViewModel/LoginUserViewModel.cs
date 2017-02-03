@@ -59,17 +59,17 @@ namespace CalLicenseDemo.ViewModel
 
         public void LoginUser(object param)
         {
-            if (!IsVlaiEmail()) 
+            if (Email == null || Email == "" || !IsVlaiEmail())
             {
-                MessageBox.Show("Please enter valid email address","Warning");
+                MessageBox.Show("Please enter valid email address", "Warning");
                 return;
             }
             if (Password == null || Password == "")
             {
-                MessageBox.Show("Please enter valid password","Warning");
+                MessageBox.Show("Please enter valid password", "Warning");
                 return;
             }
-                var logic = new LoginLogic();
+            var logic = new LoginLogic();
             IsEnableLogin = false;
             var status = logic.ValidateUser(Email, Password);
 
@@ -93,10 +93,10 @@ namespace CalLicenseDemo.ViewModel
         {
             Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
             Match match = regex.Match(Email);
-            if (Email != null && Email != "" && match.Success)
+            if (match.Success)
             {
                 return true;
-           }
+            }
             return false;
         }
     }
