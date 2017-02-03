@@ -19,18 +19,17 @@ namespace CalLicenseDemo.Views
     /// <summary>
     /// Interaction logic for LoginUserPage.xaml
     /// </summary>
-    public partial class LoginUser : UserControl
+    public partial class LoginUser : Page
     {
         public LoginUser()
         {
             InitializeComponent();
-            DataContext = new LoginUserViewModel(); 
+            DataContext = new LoginUserViewModel();
         }
 
         private void buttonNewUser_Click(object sender, RoutedEventArgs e)
         {
-            NewUser newUser = new NewUser();
-            this.Content = newUser;
-                }
+            this.NavigationService.Navigate(new RegisterUser());
+        }
     }
 }

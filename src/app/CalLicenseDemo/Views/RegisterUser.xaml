@@ -5,6 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,../Styles/DefaultStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid Margin="20" Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*" />
@@ -39,8 +47,9 @@
                  Text="{Binding LName, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, Mode=TwoWay}" />
         <TextBox Margin="5" Grid.Row="3" Grid.Column="2" Name="txtEmailID"
                  Text="{Binding Email,NotifyOnSourceUpdated=True,NotifyOnValidationError=True, Mode=TwoWay}" />
-        <TextBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword"
-                 Text="{Binding Password, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
+        
+        <PasswordBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword"
+                  Password="{Binding Password, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
         <TextBox Margin="5" Grid.Row="5" Grid.Column="2" Name="txtOrganization"
                  Text="{Binding Organization, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
         <Button Style="{StaticResource DefaultButtonStyle}" Margin="5" Grid.Row="6" Grid.Column="2"

@@ -83,12 +83,10 @@
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Model\License.cs" />
     <Compile Include="Model\UserLicense.cs" />
+    <Compile Include="ViewModel\LoginUserViewModel.cs" />
     <Compile Include="ViewModel\RedirectToAmountPaymentPageViewModel.cs" />
     <Compile Include="Views\LoginUser.xaml.cs">
       <DependentUpon>LoginUser.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NewUser.xaml.cs">
-      <DependentUpon>NewUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PaymentContainerWindow.xaml.cs">
       <DependentUpon>PaymentContainerWindow.xaml</DependentUpon>
@@ -100,9 +98,6 @@
     <Compile Include="ViewModel\RegistrationViewModel.cs" />
     <Compile Include="Views\CreditAndDebitCardDetails.xaml.cs">
       <DependentUpon>CreditAndDebitCardDetails.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OtherPaymentDetails.xaml.cs">
       <DependentUpon>OtherPaymentDetails.xaml</DependentUpon>
@@ -117,7 +112,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\UserLicenseDataJson.cs" />
     <Compile Include="ViewModel\BaseEntity.cs" />
-    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="Views\RegisterUser.xaml.cs">
       <DependentUpon>RegisterUser.xaml</DependentUpon>
     </Compile>
@@ -143,10 +137,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewUser.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\PaymentContainerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,10 +152,6 @@
     <Page Include="Views\CreditAndDebitCardDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Login.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OtherPaymentDetails.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -6,13 +6,13 @@ using CalLicenseDemo.Views;
 
 namespace CalLicenseDemo.ViewModel
 {
-    internal class LoginViewModel : BaseEntity
+    internal class LoginUserViewModel : BaseEntity
     {
         private string _email;
 
         public string _password;
 
-        public LoginViewModel()
+        public LoginUserViewModel()
         {
             LoginCommand = new RelayCommand(LoginUser);
         }
@@ -40,13 +40,7 @@ namespace CalLicenseDemo.ViewModel
         public ICommand LoginCommand { get; set; }
         public ICommand SignUpNewUser { get; set; }
 
-        public Visibility UserControlVisibility
-        {
-            get
-            {
-                return _userControlVisibility;
-            }
-
+      
         public void LoginUser(object param)
         {
             var logic = new LoginLogic();
