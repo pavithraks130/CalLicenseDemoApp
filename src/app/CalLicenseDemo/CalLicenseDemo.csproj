@@ -230,7 +230,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="LicenseSoftware.sqlite" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
