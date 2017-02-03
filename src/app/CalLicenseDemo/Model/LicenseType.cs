@@ -20,6 +20,9 @@ namespace CalLicenseDemo.Model
         public string Description { get; set; }
         public int ActiveDuration { get; set; }
 
+        public  string ImageUrl { get; set; }
+
+        public double Price { get; set; }
         public ICollection<Feature> FeatureList { get; set; }
     }
 }

@@ -53,8 +53,8 @@
         <PasswordBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword" psw:PasswordHelper.Attach="True" psw:PasswordHelper.Password="{Binding Password , Mode=TwoWay}"  PasswordChar="*" FontSize="16"
                 Height="30"  />
         <TextBox Margin="5" Grid.Row="5" Grid.Column="2" Name="txtOrganization"
-                 Text="{Binding Organization, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" Height="30" />
-        <Button Style="{StaticResource DefaultButtonStyle}" Margin="4.667,5,5.333,5" Grid.Row="6" Grid.Column="2"
-                Name="btnRegisterAndPay" Content="Register and Pay" Command="{Binding RegterCommand}" Height="30" />
+                 Text="{Binding Organization, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
+        <Button Style="{StaticResource DefaultButtonStyle}" Margin="5" Grid.Row="6" Grid.Column="2"
+                Name="btnRegisterAndPay" Content="Register and Pay" Command="{Binding RegisterCommand}" />
     </Grid>
 </Page>

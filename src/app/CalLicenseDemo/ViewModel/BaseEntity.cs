@@ -4,10 +4,12 @@ using System.Windows.Input;
 
 namespace CalLicenseDemo.ViewModel
 {
-    internal class BaseEntity : INotifyPropertyChanged
+    public class BaseEntity : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public Action NavigateNextPage;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        
         public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

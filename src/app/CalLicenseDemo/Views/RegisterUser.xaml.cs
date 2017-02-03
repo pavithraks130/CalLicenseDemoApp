@@ -11,7 +11,10 @@ namespace CalLicenseDemo.Views
         public RegisterUser()
         {
             InitializeComponent();
-            DataContext = new RegistrationViewModel();
+            var viewmodel = new RegistrationViewModel(NavigationService);
+            viewmodel.NavigateNextPage += delegate { this.NavigationService.Navigate(new SubscriptonScreen()); };
+            DataContext = viewmodel;
         }
+
     }
 }

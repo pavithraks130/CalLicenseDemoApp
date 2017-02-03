@@ -1,19 +1,17 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
+using System.Windows.Navigation;
 using CalLicenseDemo.Logic;
 using CalLicenseDemo.Model;
+using CalLicenseDemo.Views;
 
 namespace CalLicenseDemo.ViewModel
 {
     internal class RegistrationViewModel : BaseEntity
     {
+        //public event EventHandler NavigateNextPage;
+
         private readonly User user;
-
-        public RegistrationViewModel()
-        {
-            user = new User();
-            RegterCommand = new RelayCommand(RegisterNewUser);
-        }
-
         public string FName
         {
             get { return user.FName; }
@@ -65,12 +63,25 @@ namespace CalLicenseDemo.ViewModel
         }
 
 
-        private ICommand RegterCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
+
+        public NavigationService Service { get; set; }
+
+
+        public RegistrationViewModel(NavigationService service)
+        {
+            user = new User();
+            Service = service;
+            RegisterCommand = new RelayCommand(RegisterNewUser);
+        }
 
         private void RegisterNewUser(object param)
         {
-            var logic = new LicenseLogic {User = user};
+            var logic = new LicenseLogic { User = user };
             var status = logic.CreateUserInfo();
+            if (NavigateNextPage != null)
+                NavigateNextPage();
+            //Service.Navigate(new SubscriptonScreen());
         }
     }
 }

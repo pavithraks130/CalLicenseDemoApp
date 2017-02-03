@@ -170,7 +170,7 @@ namespace CalLicenseDemo.Logic
         {
             try
             {
-                if (_dbContext.User.ToList().Any(u => u.Email == User.Email && u.Password == User.Password))
+                if (_dbContext.User.ToList().Any(u => u.Email == User.Email))
                 {
                     ErrorMessage = "Email id is lready registered";
                     return false;
@@ -189,9 +189,10 @@ namespace CalLicenseDemo.Logic
                     _team = _dbContext.Team.Add(User.Organization);
                     User.TeamID = _team.TeamId;
                     User = _dbContext.User.Add(User);
+                    _dbContext.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
