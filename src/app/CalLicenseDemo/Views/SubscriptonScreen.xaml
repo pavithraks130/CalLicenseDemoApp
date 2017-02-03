@@ -16,28 +16,40 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Subscription Type" Style="{StaticResource TextBlockHeaderTextStyle}" />
-            <ListView FlowDirection="LeftToRight" DataContext="{Binding SubscriptionList}">
+            <ListView FlowDirection="LeftToRight" x:Name="lvFeatureList" ItemsSource="{Binding SubscriptionList}" Background="Black" Margin="20" Width="Auto">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" FlowDirection="LeftToRight"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid Margin="10">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.3*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="0.3" />
+                                <RowDefinition Height="0.3*" />
+                                <RowDefinition Height="0.3*" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="0.2*" />
+                                <RowDefinition Height="0.2*" />
                             </Grid.RowDefinitions>
-                            <Image Source="{Binding ImageSource}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-                            <Label Content="Features" Grid.Row="1" Style="{StaticResource LabelDefaultStyle}"
-                                   Grid.Column="0" />
-                            <Label Content="{Binding FetaureList}" Style="{StaticResource LabelDefaultStyle}"
-                                   Grid.Row="1" Grid.Column="1" />
-                            <Label Content="Price" Grid.Row="2" Style="{StaticResource LabelDefaultStyle}"
-                                   Grid.Column="0" />
-                            <Label Content="{Binding Price}" Style="{StaticResource LabelDefaultStyle}" Grid.Row="2"
-                                   Grid.Column="1" />
+                            <Image Source="{Binding ImageUrl}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+                            <TextBlock Text="subscription Type" Grid.Row="1" Style="{StaticResource TextBlockDefaultStyle}"
+                                   Grid.Column="0" Margin="10" />
+                            <TextBlock Text="{Binding TypeName}" Style="{StaticResource TextBlockDefaultStyle}"
+                                   Grid.Row="1" Grid.Column="1" Margin="10" />
+                            <TextBlock Text="Features" Grid.Row="2" Style="{StaticResource TextBlockDefaultStyle}"
+                                   Grid.Column="0" Margin="10"/>
+                            <TextBlock Text="{Binding Description}" Style="{StaticResource TextBlockDefaultStyle}"
+                                   Grid.Row="2" Grid.Column="1" Margin="10"/>
+                            <TextBlock Text="Price" Grid.Row="3" Style="{StaticResource TextBlockDefaultStyle}"
+                                   Grid.Column="0" Margin="10" />
+                            <TextBlock Text="{Binding Price}" Style="{StaticResource TextBlockDefaultStyle}" Grid.Row="3"
+                                   Grid.Column="1" Margin="10" />
+                            <Button Content="BuyNow" Style="{StaticResource DefaultButtonStyle}" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" CommandParameter="{Binding TypeId}"></Button>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

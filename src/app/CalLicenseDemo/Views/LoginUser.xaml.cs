@@ -24,10 +24,12 @@ namespace CalLicenseDemo.Views
         public LoginUser()
         {
             InitializeComponent();
-            DataContext = new LoginUserViewModel();
+            var viewModel = new LoginUserViewModel();
+            viewModel.NavigateNextPage  += delegate { this.NavigationService.Navigate(new Dashboard()); }; 
+            DataContext = viewModel;
         }
 
-        private void buttonNewUser_Click(object sender, RoutedEventArgs e)
+        private void ButtonNewUser_OnClick(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new RegisterUser());
         }

@@ -12,7 +12,9 @@ namespace CalLicenseDemo.Views
         {
             InitializeComponent();
             //Navigation Service is an inbuilt prperty of page
-            DataContext = new SubscriptionViewModel(this.NavigationService);
+            var viewmodel = new SubscriptionViewModel();
+            viewmodel.NavigateNextPage += () => { this.NavigationService.Navigate(new PaymentOption()); };
+            DataContext = viewmodel;
         }
     }
 }

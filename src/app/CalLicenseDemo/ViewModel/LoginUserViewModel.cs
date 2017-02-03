@@ -72,11 +72,19 @@ namespace CalLicenseDemo.ViewModel
                 var logic = new LoginLogic();
             IsEnableLogin = false;
             var status = logic.ValidateUser(Email, Password);
+
             if (status)
             {
-                logic.GetFeatureList();
-                if (SingletonLicense.Instance.FeatureList.Count == 0)
-                    MessageBox.Show("Please Subscribe for License , all the current licenses are expired!");
+                if (NavigateNextPage != null)
+                    NavigateNextPage();
+                //logic.GetFeatureList();
+                //if (SingletonLicense.Instance.FeatureList.Count == 0)
+                //    MessageBox.Show("Please Subscribe for License , all the current licenses are expired!");
+            }
+            else
+            {
+                MessageBox.Show(logic.ErrorMessage);
+                logic.ErrorMessage = String.Empty;
             }
             IsEnableLogin = true;
         }

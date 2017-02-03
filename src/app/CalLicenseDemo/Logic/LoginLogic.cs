@@ -13,6 +13,8 @@ namespace CalLicenseDemo.Logic
     {
         private readonly LicenseAppDBContext _dbContext;
 
+        public string ErrorMessage { get; set; }
+
         public LoginLogic()
         {
             _dbContext = new LicenseAppDBContext();
@@ -26,8 +28,22 @@ namespace CalLicenseDemo.Logic
         public bool ValidateUser(string userName, string password)
         {
             var encryptedPassword = password;
-            var user = _dbContext.User.ToList().FirstOrDefault(u => u.Email == userName && u.Password == encryptedPassword);
-            if (user != null) SingletonLicense.Instance.User = user;
+            var status = _dbContext.User.ToList().Any(u => u.Email.ToLower() == userName.ToLower());
+            User user = null;
+            if (status)
+            {
+                user =
+                    _dbContext.User.ToList()
+                        .FirstOrDefault(u => u.Email.ToLower() == userName.ToLower() && u.Password == encryptedPassword);
+                if (user != null)
+                    SingletonLicense.Instance.User = user;
+                else
+                    ErrorMessage = "Specified Credentials are invalid";
+            }
+            else
+            {
+                ErrorMessage = "Specified Email is not registered";
+            }
             return user != null;
         }
 

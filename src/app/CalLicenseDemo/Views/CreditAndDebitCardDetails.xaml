@@ -8,7 +8,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/DefaultStyles.xaml" />
+                <ResourceDictionary Source="../Styles/DefaultStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -29,7 +29,7 @@
         <Label Content="Payment Details" Foreground="White" Grid.Row="0" Grid.Column="0" Margin="0,13,35,2.333" />
         <!--</StackPanel>-->
         <!--<StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">-->
-        <Image Source="..\Resourse\Fluke.png" Stretch="Fill" RenderTransformOrigin="0.511,0.688" Grid.Row="0" Grid.Column="2" Margin="21,13,27,10.333"/>
+        <Image Source="../Resources/Fluke.png" Stretch="Fill" RenderTransformOrigin="0.511,0.688" Grid.Row="0" Grid.Column="2" Margin="21,13,27,10.333"/>
         <!--</StackPanel>-->
         <!--<StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="0,7,0,0.333">-->
 

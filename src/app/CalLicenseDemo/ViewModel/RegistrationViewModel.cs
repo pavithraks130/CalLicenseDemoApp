@@ -9,8 +9,6 @@ namespace CalLicenseDemo.ViewModel
 {
     internal class RegistrationViewModel : BaseEntity
     {
-        //public event EventHandler NavigateNextPage;
-
         private readonly User user;
         public string FName
         {

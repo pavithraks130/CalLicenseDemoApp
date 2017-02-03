@@ -13,15 +13,14 @@ namespace CalLicenseDemo.ViewModel
 {
     class SubscriptionViewModel : BaseEntity
     {
-        private ICommand BuyCommand { get; set; }
-        private List<LicenseType> SubscriptionList { get; set; }
+        public ICommand BuyCommand { get; set; }
+        public List<LicenseType> SubscriptionList { get; set; }
 
-        private NavigationService Service { get; set; }
+        public NavigationService Service { get; set; }
 
-        public SubscriptionViewModel(NavigationService service)
+        public SubscriptionViewModel()
         {
             BuyCommand = new RelayCommand(RedirectToPayment);
-            Service = service;
             LoadSubscriptionList();
         }
 
@@ -42,7 +41,8 @@ namespace CalLicenseDemo.ViewModel
             else
             {
                 SingletonLicense.Instance.SelectedSubscription = typeObj;
-                Service.Navigate(new PaymentOption());
+                if (NavigateNextPage != null)
+                    NavigateNextPage();
             }
         }
     }

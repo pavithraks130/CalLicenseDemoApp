@@ -136,7 +136,7 @@ namespace CalLicenseDemo.Logic
             mos = new ManagementObjectSearcher("SELECT * FROM Win32_BaseBoard");
             var moc = mos.Get();
             foreach (ManagementObject mo in moc)
-                motherBoard = (string) mo["SerialNumber"];
+                motherBoard = (string)mo["SerialNumber"];
 
             var drive = "C";
             var dsk = new ManagementObject(@"win32_logicaldisk.deviceid=""" + drive + @":""");
@@ -188,9 +188,10 @@ namespace CalLicenseDemo.Logic
                 {
                     _team = _dbContext.Team.Add(User.Organization);
                     User.TeamID = _team.TeamId;
-                    User = _dbContext.User.Add(User);
-                    _dbContext.SaveChanges();
                 }
+                User = _dbContext.User.Add(User);
+                _dbContext.SaveChanges();
+
             }
             catch (Exception ex)
             {
