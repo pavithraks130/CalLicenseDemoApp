@@ -112,9 +112,9 @@
                 <TextBox Margin="5" Grid.Row="5" Grid.Column="2" Name="txtOrganization" />
                 <Button Style="{StaticResource DefaultButtonStyle}" Margin="5" Grid.Row="6" Grid.Column="2"
                         Name="btnRegisterAndPay" Content="Register and Pay" Click="btnRegisterAndPay_Click" />
-                <Popup x:Name="paymentOption" Placement="Center">
+                <!--<Popup x:Name="paymentOption" Placement="Center">
                     <local:PaymentOption />
-                </Popup>
+                </Popup>-->
             </Grid>
         </TabItem>
     </TabControl>

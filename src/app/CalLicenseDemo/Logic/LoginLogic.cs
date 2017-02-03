@@ -65,5 +65,17 @@ namespace CalLicenseDemo.Logic
         {
             return true;
         }
+
+        public string CreateSalt(int size)
+        {
+            byte[] bytedata = new byte[size];
+
+            return string.Empty;
+        }
+
+        public string CreatePasswordhash()
+        {
+            return string.Empty;
+        }
     }
 }

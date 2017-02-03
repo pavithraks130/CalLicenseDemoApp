@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CalLicenseDemo.Views.SubscriptonScreen"
+﻿<Page x:Class="CalLicenseDemo.Views.SubscriptonScreen"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -36,8 +36,8 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <Popup x:Name="paymentOption" Placement="Center">
+        <!--<Popup x:Name="paymentOption" Placement="Center">
             <local:PaymentOption />
-        </Popup>
+        </Popup>-->
     </Grid>
-</UserControl>
+</Page>

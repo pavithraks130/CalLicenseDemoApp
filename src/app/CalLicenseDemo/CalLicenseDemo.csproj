@@ -91,6 +91,9 @@
     <Compile Include="Views\CreditAndDebitCardDetails.xaml.cs">
       <DependentUpon>CreditAndDebitCardDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OtherPaymentDetails.xaml.cs">
       <DependentUpon>OtherPaymentDetails.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,9 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="Views\RegisterUser.xaml.cs">
       <DependentUpon>RegisterUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Subscription.xaml.cs">
+      <DependentUpon>Subscription.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SubscriptonScreen.xaml.cs">
       <DependentUpon>SubscriptonScreen.xaml</DependentUpon>
@@ -135,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\OtherPaymentDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -144,6 +154,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\RegisterUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Subscription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
