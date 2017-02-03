@@ -1,103 +1,101 @@
+using System.Data.Entity.Migrations;
+
 namespace CalLicenseDemo.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class init : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Feature",
-                c => new
+                    "dbo.Feature",
+                    c => new
                     {
-                        FeatureId = c.Int(nullable: false, identity: true),
-                        FeatureTitle = c.String(),
+                        FeatureId = c.Int(false, true),
+                        FeatureTitle = c.String()
                     })
                 .PrimaryKey(t => t.FeatureId);
-            
+
             CreateTable(
-                "dbo.LicenseType",
-                c => new
+                    "dbo.LicenseType",
+                    c => new
                     {
-                        TypeId = c.Int(nullable: false, identity: true),
+                        TypeId = c.Int(false, true),
                         TypeName = c.String(),
                         Description = c.String(),
-                        ActiveDuration = c.Int(nullable: false),
+                        ActiveDuration = c.Int(false)
                     })
                 .PrimaryKey(t => t.TypeId);
-            
+
             CreateTable(
-                "dbo.License",
-                c => new
+                    "dbo.License",
+                    c => new
                     {
-                        LicenseId = c.Int(nullable: false, identity: true),
+                        LicenseId = c.Int(false, true),
                         LicenseKey = c.String(),
-                        IsAvailable = c.Boolean(nullable: false),
-                        LicenseTypeId = c.Int(nullable: false),
+                        IsAvailable = c.Boolean(false),
+                        LicenseTypeId = c.Int(false)
                     })
                 .PrimaryKey(t => t.LicenseId)
-                .ForeignKey("dbo.LicenseType", t => t.LicenseTypeId, cascadeDelete: true)
+                .ForeignKey("dbo.LicenseType", t => t.LicenseTypeId, true)
                 .Index(t => t.LicenseTypeId);
-            
+
             CreateTable(
-                "dbo.Team",
-                c => new
+                    "dbo.Team",
+                    c => new
                     {
-                        TeamId = c.Int(nullable: false, identity: true),
+                        TeamId = c.Int(false, true),
                         Name = c.String(),
-                        GroupEmail = c.String(),
+                        GroupEmail = c.String()
                     })
                 .PrimaryKey(t => t.TeamId);
-            
+
             CreateTable(
-                "dbo.UserModel",
-                c => new
+                    "dbo.UserModel",
+                    c => new
                     {
-                        UserId = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(false, true),
                         FName = c.String(),
                         LName = c.String(),
                         Email = c.String(),
                         Password = c.String(),
-                        TeamID = c.Int(nullable: false),
+                        TeamID = c.Int(false)
                     })
                 .PrimaryKey(t => t.UserId)
-                .ForeignKey("dbo.Team", t => t.TeamID, cascadeDelete: true)
+                .ForeignKey("dbo.Team", t => t.TeamID, true)
                 .Index(t => t.TeamID);
-            
+
             CreateTable(
-                "dbo.UserLicense",
-                c => new
+                    "dbo.UserLicense",
+                    c => new
                     {
-                        UserLicenseId = c.Int(nullable: false, identity: true),
+                        UserLicenseId = c.Int(false, true),
                         UserKey = c.String(),
-                        IsExpired = c.Boolean(nullable: false),
-                        IsDeleted = c.Boolean(nullable: false),
-                        ActivationDate = c.DateTime(nullable: false),
-                        UserId = c.Int(nullable: false),
-                        LicenseId = c.Int(nullable: false),
+                        IsExpired = c.Boolean(false),
+                        IsDeleted = c.Boolean(false),
+                        ActivationDate = c.DateTime(false),
+                        UserId = c.Int(false),
+                        LicenseId = c.Int(false)
                     })
                 .PrimaryKey(t => t.UserLicenseId)
-                .ForeignKey("dbo.License", t => t.LicenseId, cascadeDelete: true)
-                .ForeignKey("dbo.UserModel", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.License", t => t.LicenseId, true)
+                .ForeignKey("dbo.UserModel", t => t.UserId, true)
                 .Index(t => t.UserId)
                 .Index(t => t.LicenseId);
-            
+
             CreateTable(
-                "dbo.LicenseTypeFeature",
-                c => new
+                    "dbo.LicenseTypeFeature",
+                    c => new
                     {
-                        LicenseType_TypeId = c.Int(nullable: false),
-                        Feature_FeatureId = c.Int(nullable: false),
+                        LicenseType_TypeId = c.Int(false),
+                        Feature_FeatureId = c.Int(false)
                     })
-                .PrimaryKey(t => new { t.LicenseType_TypeId, t.Feature_FeatureId })
-                .ForeignKey("dbo.LicenseType", t => t.LicenseType_TypeId, cascadeDelete: true)
-                .ForeignKey("dbo.Feature", t => t.Feature_FeatureId, cascadeDelete: true)
+                .PrimaryKey(t => new {t.LicenseType_TypeId, t.Feature_FeatureId})
+                .ForeignKey("dbo.LicenseType", t => t.LicenseType_TypeId, true)
+                .ForeignKey("dbo.Feature", t => t.Feature_FeatureId, true)
                 .Index(t => t.LicenseType_TypeId)
                 .Index(t => t.Feature_FeatureId);
-            
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.UserModel", "TeamID", "dbo.Team");
@@ -106,12 +104,12 @@ namespace CalLicenseDemo.Migrations
             DropForeignKey("dbo.License", "LicenseTypeId", "dbo.LicenseType");
             DropForeignKey("dbo.LicenseTypeFeature", "Feature_FeatureId", "dbo.Feature");
             DropForeignKey("dbo.LicenseTypeFeature", "LicenseType_TypeId", "dbo.LicenseType");
-            DropIndex("dbo.LicenseTypeFeature", new[] { "Feature_FeatureId" });
-            DropIndex("dbo.LicenseTypeFeature", new[] { "LicenseType_TypeId" });
-            DropIndex("dbo.UserLicense", new[] { "LicenseId" });
-            DropIndex("dbo.UserLicense", new[] { "UserId" });
-            DropIndex("dbo.UserModel", new[] { "TeamID" });
-            DropIndex("dbo.License", new[] { "LicenseTypeId" });
+            DropIndex("dbo.LicenseTypeFeature", new[] {"Feature_FeatureId"});
+            DropIndex("dbo.LicenseTypeFeature", new[] {"LicenseType_TypeId"});
+            DropIndex("dbo.UserLicense", new[] {"LicenseId"});
+            DropIndex("dbo.UserLicense", new[] {"UserId"});
+            DropIndex("dbo.UserModel", new[] {"TeamID"});
+            DropIndex("dbo.License", new[] {"LicenseTypeId"});
             DropTable("dbo.LicenseTypeFeature");
             DropTable("dbo.UserLicense");
             DropTable("dbo.UserModel");

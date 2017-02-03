@@ -1,18 +1,16 @@
+using System.Data.Entity.Migrations;
+using CalLicenseDemo.DatabaseContext;
+
 namespace CalLicenseDemo.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<CalLicenseDemo.DatabaseContext.LicenseAppDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<LicenseAppDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(CalLicenseDemo.DatabaseContext.LicenseAppDBContext context)
+        protected override void Seed(LicenseAppDBContext context)
         {
             //  This method will be called after migrating to the latest version.
 

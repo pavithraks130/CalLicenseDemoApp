@@ -101,6 +101,9 @@
     <Compile Include="Views\CreditAndDebitCardDetails.xaml.cs">
       <DependentUpon>CreditAndDebitCardDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OtherPaymentDetails.xaml.cs">
       <DependentUpon>OtherPaymentDetails.xaml</DependentUpon>
     </Compile>
@@ -114,7 +117,16 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\UserLicenseDataJson.cs" />
     <Compile Include="ViewModel\BaseEntity.cs" />
-    <Compile Include="ViewModel\LoginUserViewModel.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="Views\RegisterUser.xaml.cs">
+      <DependentUpon>RegisterUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Subscription.xaml.cs">
+      <DependentUpon>Subscription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SubscriptonScreen.xaml.cs">
+      <DependentUpon>SubscriptonScreen.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -151,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\OtherPaymentDetails.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -158,6 +174,18 @@
     <Page Include="Views\RedirectToAmountPaymentPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RegisterUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Subscription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SubscriptonScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

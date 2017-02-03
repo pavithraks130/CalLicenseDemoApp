@@ -1,18 +1,19 @@
-using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
+
 //
 // Additions from FxCop
 //
+
 [assembly: ComVisible(false)]
-[assembly: SecurityPermission(SecurityAction.RequestRefuse, UnmanagedCode=false)] 
+[assembly: SecurityPermission(SecurityAction.RequestRefuse, UnmanagedCode = false)]
 //
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
+
 [assembly: AssemblyTitle("LicenseKey")]
 [assembly: AssemblyDescription("Generates License keys")]
 [assembly: AssemblyConfiguration("")]
@@ -20,7 +21,7 @@ using System.Security.Permissions;
 [assembly: AssemblyProduct("LicenseKey")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+[assembly: AssemblyCulture("")]
 
 //
 // Version information for an assembly consists of the following four values:
@@ -60,6 +61,7 @@ using System.Security.Permissions;
 //   (*) Delay Signing is an advanced option - see the Microsoft .NET Framework
 //       documentation for more information on this.
 //
+
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyFile("")]
 [assembly: AssemblyKeyName("")]
