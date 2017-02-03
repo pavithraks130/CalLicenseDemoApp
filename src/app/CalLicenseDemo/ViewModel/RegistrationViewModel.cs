@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,8 @@ namespace CalLicenseDemo.ViewModel
         {
             var logic = new LicenseLogic {User = user};
             bool status =logic.CreateUserInfo();
+
         }
+
     }
 }
