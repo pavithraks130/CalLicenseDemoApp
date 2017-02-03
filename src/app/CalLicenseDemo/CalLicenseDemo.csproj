@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Model\License.cs" />
+    <Compile Include="Model\PasswordHelper.cs" />
     <Compile Include="Model\UserLicense.cs" />
     <Compile Include="ViewModel\LoginUserViewModel.cs" />
     <Compile Include="ViewModel\RedirectToAmountPaymentPageViewModel.cs" />
