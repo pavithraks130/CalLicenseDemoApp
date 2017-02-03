@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace CalLicenseDemo.ViewModel
 {
-    class ChangePassword : BaseEntity
+    class ChangePasswordViewModel : BaseEntity
     {
         private string _oldPasswod;
         private string _newPasswrd;
@@ -19,7 +19,7 @@ namespace CalLicenseDemo.ViewModel
 
         public ICommand ChangePasswordCommand { get; set; }
 
-        public ChangePassword()
+        public ChangePasswordViewModel()
         {
             ChangePasswordCommand = new RelayCommand(ChangeOldPassword);
         }

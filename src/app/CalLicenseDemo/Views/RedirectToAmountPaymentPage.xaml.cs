@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CalLicenseDemo.ViewModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CalLicenseDemo.Views
 {
@@ -30,6 +19,7 @@ namespace CalLicenseDemo.Views
         public RedirectToAmountPaymentPage()
         {
             InitializeComponent();
+            DataContext = new RedirectToAmountPaymentPageViewModel();
             m_oWorker = new BackgroundWorker();
             m_oWorker.DoWork += new DoWorkEventHandler(m_oWorker_DoWork);
             m_oWorker.ProgressChanged += new ProgressChangedEventHandler(m_oWorker_ProgressChanged);
@@ -72,7 +62,8 @@ namespace CalLicenseDemo.Views
         {
             //Here you play with the main UI thread
             ProgressBarPayment.Value = e.ProgressPercentage;
-            lblProgress.Content = "Payment is in Processing......" + ProgressBarPayment.Value.ToString() + "%";
+            
+            lblProgress.Content = ProgressBarPayment.Value < 60 ? "Authentication is in Progress......" + ProgressBarPayment.Value.ToString() + "%" : "Payment is in Progress......" + ProgressBarPayment.Value.ToString() + "%";
         }
 
         /// <summary>
@@ -84,8 +75,10 @@ namespace CalLicenseDemo.Views
         void m_oWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             //time consuming operation
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 200; i++)
             {
+                if(i<150)
+                Thread.Sleep(200);
                 Thread.Sleep(100);
                 m_oWorker.ReportProgress(i);
 

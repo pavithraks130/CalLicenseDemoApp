@@ -24,18 +24,19 @@ namespace CalLicenseDemo
         public CreditAndDebitCardDetails()
         {
             InitializeComponent();
-            for(int year=2017;year<2050;year++)
-            listOfYears.Items.Add(year);
+            for (int year = 2017; year < 2050; year++)
+                listOfYears.Items.Add(year);
             ListofMonths.Items.Add("Select Month");
             for (int month = 1; month <= 12; month++)
             {
                 ListofMonths.Items.Add(+month);
-            }     
+            }
 
         }
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (DataValidations.IsValidCardDetails(textBox, ListofMonths, txtCVV, listOfYears))
+            // if (DataValidations.IsValidCardDetails(textBox, ListofMonths, txtCVV, listOfYears))
+            if (true)
                 PPRedirectToAmountPage.IsOpen = true;
             else
                 MessageBox.Show("Please enter valid detailes");

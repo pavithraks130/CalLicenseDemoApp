@@ -10,20 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CalLicenseDemo
+namespace CalLicenseDemo.Views
 {
     /// <summary>
-    /// Interaction logic for PaymentOption.xaml
+    /// Interaction logic for PaymentContainerWindow.xaml
     /// </summary>
-    public partial class PaymentOption : UserControl
+    public partial class PaymentContainerWindow : Window
     {
-        public PaymentOption()
+        public PaymentContainerWindow()
         {
             InitializeComponent();
         }
-
     }
 }

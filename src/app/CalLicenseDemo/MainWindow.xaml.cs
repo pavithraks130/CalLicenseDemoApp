@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Management;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CalLicenseDemo.ViewModel;
+using CalLicenseDemo.Views;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CalLicenseDemo
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainWindow mainWindow;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -28,7 +20,10 @@ namespace CalLicenseDemo
 
         private void btnRegisterAndPay_Click(object sender, RoutedEventArgs e)
         {
-            paymentOption.IsOpen = true;
+            var newWindow = new PaymentContainerWindow();
+            newWindow.Height = 700;
+            newWindow.Width = 600;
+            newWindow.Show();
         }
     }
 }

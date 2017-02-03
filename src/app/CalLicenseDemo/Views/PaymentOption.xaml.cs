@@ -3,13 +3,14 @@
 namespace CalLicenseDemo
 {
     /// <summary>
-    /// Interaction logic for OtherPaymentDetails.xaml
+    /// Interaction logic for PaymentOption.xaml
     /// </summary>
-    public partial class OtherPaymentDetails : UserControl
+    public partial class PaymentOption : UserControl
     {
-        public OtherPaymentDetails()
+        public PaymentOption()
         {
             InitializeComponent();
         }
+
     }
 }

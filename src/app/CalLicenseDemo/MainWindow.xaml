@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalLicenseDemo"
+         xmlns:temp="clr-namespace:CalLicenseDemo.Views"
         mc:Ignorable="d"
-        Title="MET/CAL Runtime" Height="350" Width="525" >
+        Title="MET/CAL Runtime" Height="350" Width="525" Background="Black">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -13,90 +14,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <TabControl Background="Black">
-        <TabItem>
-            <Grid Margin="20" Background="Black">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.4*"></RowDefinition>
-                    <RowDefinition Height="0.15*"></RowDefinition>
-                    <RowDefinition Height="0.15*"></RowDefinition>
-                    <RowDefinition Height="0.15*"></RowDefinition>
-                    <RowDefinition Height="0.1*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="pack://application:,,,/Resources/LoginTitle.png"></Image>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="1" Grid.Column="1" Name="lblUserName" Content="Username:" HorizontalAlignment="Right" ></Label>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="2" Grid.Column="1" Name="lblPassword" Content="Password:" HorizontalAlignment="Right"></Label>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="4" Grid.Column="1" Name="lblNewUserSignUp" Content="New User? Sign Up!" HorizontalAlignment="Center"></Label>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="4" Grid.Column="2" Name="lblChangePassword" Content="Change Password >>" Grid.ColumnSpan="2" Margin="0.333,1.333,117.667,0" VerticalAlignment="Top"></Label>
-                <TextBox Margin="5" Grid.Row="1" Grid.Column="2" Name="txtUserName"></TextBox>
-                <PasswordBox Margin="5" Grid.Row="2" Grid.Column="2" Name="txtPassword"></PasswordBox>
-                <Button Style="{StaticResource DefaultButtonStyle}"  Margin="5" Grid.Row="3" Grid.Column="2" Name="btnLogin" Content="Login"></Button>
-            </Grid>
-        </TabItem>
-        <TabItem>
-            <Grid Margin="20" Background="Black">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.35*"></RowDefinition>
-                    <RowDefinition Height="0.15*"></RowDefinition>
-                    <RowDefinition Height="0.15*"></RowDefinition>
-                    <RowDefinition Height="0.15*"></RowDefinition>
-                    <RowDefinition Height="0.15*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="pack://application:,,,/Resources/LoginTitle.png"></Image>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="1" Grid.Column="1" Name="lblOldPassword" Content="Old Password:" HorizontalAlignment="Right" ></Label>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="2" Grid.Column="1" Name="lblNewPassword" Content="New Password:" HorizontalAlignment="Right"></Label>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="3" Grid.Column="1" Name="lblConfirmNewPassword" Content="Re-enter New Password:" HorizontalAlignment="Right"></Label>
-                <TextBox Margin="5" Grid.Row="1" Grid.Column="2" Name="txtOldPassword"></TextBox>
-                <PasswordBox Margin="5" Grid.Row="2" Grid.Column="2" Name="txtNewPassword"></PasswordBox>
-                <PasswordBox Margin="5" Grid.Row="3" Grid.Column="2" Name="txtConfirmNewPassword"></PasswordBox>
-                <Button Style="{StaticResource DefaultButtonStyle}"  Margin="5" Grid.Row="4" Grid.Column="2" Name="btnChangePassword" Content="Change Password"></Button>
-            </Grid>
-        </TabItem>
-        <TabItem>
-            <Grid Margin="20" Background="Black">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.25*"></RowDefinition>
-                    <RowDefinition Height="0.12*"></RowDefinition>
-                    <RowDefinition Height="0.12*"></RowDefinition>
-                    <RowDefinition Height="0.12*"></RowDefinition>
-                    <RowDefinition Height="0.12*"></RowDefinition>
-                    <RowDefinition Height="0.12*"></RowDefinition>
-                    <RowDefinition Height="0.15*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="pack://application:,,,/Resources/LoginTitle.png"></Image>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="1" Grid.Column="1" Name="lblFirstName" Content="First Name:" HorizontalAlignment="Right" ></Label>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="2" Grid.Column="1" Name="lblLastName" Content="Last Name:" HorizontalAlignment="Right"></Label>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="3" Grid.Column="1" Name="lblEmailID" Content="Email ID:" HorizontalAlignment="Right"></Label>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="4" Grid.Column="1" Name="lblRegPassword" Content="Password:" HorizontalAlignment="Right"></Label>
-                <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="5" Grid.Column="1" Name="lblOrganization" Content="Organization:" HorizontalAlignment="Right"></Label>
-                <TextBox Margin="5" Grid.Row="1" Grid.Column="2" Name="txtFirstName"></TextBox>
-                <TextBox Margin="5" Grid.Row="2" Grid.Column="2" Name="txtLastName"></TextBox>
-                <TextBox Margin="5" Grid.Row="3" Grid.Column="2" Name="txtEmailID"></TextBox>
-                <TextBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword"></TextBox>
-                <TextBox Margin="5" Grid.Row="5" Grid.Column="2" Name="txtOrganization"></TextBox>
-                <Button Style="{StaticResource DefaultButtonStyle}"  Margin="5" Grid.Row="6" Grid.Column="2" Name="btnRegisterAndPay" Content="Register and Pay" Click="btnRegisterAndPay_Click"></Button>
-                <Popup x:Name="paymentOption" Placement="Center">
-                    <local:PaymentOption/>
-                </Popup>
-            </Grid>
-        </TabItem>
-    </TabControl>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".9*"/>
+            <RowDefinition Height=".2*"/>
+        </Grid.RowDefinitions>
+        <temp:LoginUser/>
+    </Grid>
+
 </Window>

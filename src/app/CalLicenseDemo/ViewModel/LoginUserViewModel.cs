@@ -7,16 +7,18 @@ using System.Windows;
 using System.Windows.Input;
 using CalLicenseDemo.Common;
 using CalLicenseDemo.Logic;
+using CalLicenseDemo.Views;
 
 namespace CalLicenseDemo.ViewModel
 {
-    class LoginViewModel : BaseEntity
+    class LoginUserViewModel : BaseEntity
     {
-        private string _email;
-        public string Email
+        private string _userName;
+        private Visibility _userControlVisibility;
+        public string UserName
         {
-            get { return _email; }
-            set { _email = value; OnPropertyChanged("Email"); }
+            get { return _userName; }
+            set { _userName = value; OnPropertyChanged("UserName"); }
         }
 
         public string _password;
@@ -27,16 +29,40 @@ namespace CalLicenseDemo.ViewModel
         }
 
         public ICommand LoginCommand { get; set; }
+        public ICommand SignUpNewUser { get; set; }
 
-        public LoginViewModel()
+        public Visibility UserControlVisibility
+        {
+            get
+            {
+                return _userControlVisibility;
+            }
+
+            set
+            {
+                _userControlVisibility = value;
+            }
+        }
+
+        public LoginUserViewModel()
         {
             LoginCommand = new RelayCommand(LoginUser);
+            SignUpNewUser = new RelayCommand(SignUpNewUsers);
+        }
+
+        private void SignUpNewUsers(object newUserDetails)
+        {
+            MainWindow mainwindow = new MainWindow();
+            mainwindow.DataContext = new LoginUser();
+            mainwindow.ShowDialog();
+
+
         }
 
         public void LoginUser(object param)
         {
             LoginLogic logic = new LoginLogic();
-            bool status = logic.ValidateUser(Email, Password);
+            bool status = logic.ValidateUser(UserName, Password);
             if (status)
             {
                 logic.GetFeatureList();
