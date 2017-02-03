@@ -80,11 +80,20 @@
     <Compile Include="Migrations\201702011700065_init1.Designer.cs">
       <DependentUpon>201702011700065_init1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702031006018_PriceColumnInLicenseType.cs" />
+    <Compile Include="Migrations\201702031006018_PriceColumnInLicenseType.Designer.cs">
+      <DependentUpon>201702031006018_PriceColumnInLicenseType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702031041529_ImageColumnInLicenseType.cs" />
+    <Compile Include="Migrations\201702031041529_ImageColumnInLicenseType.Designer.cs">
+      <DependentUpon>201702031041529_ImageColumnInLicenseType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Model\License.cs" />
     <Compile Include="Model\UserLicense.cs" />
     <Compile Include="ViewModel\LoginUserViewModel.cs" />
     <Compile Include="ViewModel\RedirectToAmountPaymentPageViewModel.cs" />
+    <Compile Include="ViewModel\SubscriptionViewModel.cs" />
     <Compile Include="Views\LoginUser.xaml.cs">
       <DependentUpon>LoginUser.xaml</DependentUpon>
     </Compile>
@@ -195,6 +204,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702011700065_init1.resx">
       <DependentUpon>201702011700065_init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702031006018_PriceColumnInLicenseType.resx">
+      <DependentUpon>201702031006018_PriceColumnInLicenseType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702031041529_ImageColumnInLicenseType.resx">
+      <DependentUpon>201702031041529_ImageColumnInLicenseType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

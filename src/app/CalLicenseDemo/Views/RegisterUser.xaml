@@ -48,11 +48,11 @@
         <TextBox Margin="5" Grid.Row="3" Grid.Column="2" Name="txtEmailID"
                  Text="{Binding Email,NotifyOnSourceUpdated=True,NotifyOnValidationError=True, Mode=TwoWay}" />
         
-        <PasswordBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword"
-                  Password="{Binding Password, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
+        <TextBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword"
+                  Text="{Binding Password, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
         <TextBox Margin="5" Grid.Row="5" Grid.Column="2" Name="txtOrganization"
                  Text="{Binding Organization, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
         <Button Style="{StaticResource DefaultButtonStyle}" Margin="5" Grid.Row="6" Grid.Column="2"
-                Name="btnRegisterAndPay" Content="Register and Pay" Command="{Binding RegterCommand}" />
+                Name="btnRegisterAndPay" Content="Register and Pay" Command="{Binding RegisterCommand}" />
     </Grid>
 </Page>

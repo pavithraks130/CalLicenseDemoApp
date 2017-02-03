@@ -26,8 +26,7 @@ namespace CalLicenseDemo.Logic
         public bool ValidateUser(string userName, string password)
         {
             var encryptedPassword = password;
-            var user =
-                _dbContext.User.ToList().FirstOrDefault(u => u.Email == userName && u.Password == encryptedPassword);
+            var user = _dbContext.User.ToList().FirstOrDefault(u => u.Email == userName && u.Password == encryptedPassword);
             if (user != null) SingletonLicense.Instance.User = user;
             return user != null;
         }
