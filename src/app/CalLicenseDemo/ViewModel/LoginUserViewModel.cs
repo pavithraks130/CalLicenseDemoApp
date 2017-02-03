@@ -10,8 +10,9 @@ namespace CalLicenseDemo.ViewModel
     {
         private string _email;
 
-        public string _password;
+        private string _password;
 
+        private bool _isEnableLogin = true;
         public LoginUserViewModel()
         {
             LoginCommand = new RelayCommand(LoginUser);
@@ -40,10 +41,34 @@ namespace CalLicenseDemo.ViewModel
         public ICommand LoginCommand { get; set; }
         public ICommand SignUpNewUser { get; set; }
 
-      
+        public bool IsEnableLogin
+        {
+            get
+            {
+                return _isEnableLogin;
+            }
+
+            set
+            {
+                _isEnableLogin = value;
+                OnPropertyChanged("IsEnableLogin");
+            }
+        }
+
         public void LoginUser(object param)
         {
-            var logic = new LoginLogic();
+            if (Email == null || Email == "") 
+            {
+                MessageBox.Show("Please enter valid email address","Warning");
+                return;
+            }
+            if (Password == null || Password == "")
+            {
+                MessageBox.Show("Please enter valid password","Warning");
+                return;
+            }
+                var logic = new LoginLogic();
+            IsEnableLogin = false;
             var status = logic.ValidateUser(Email, Password);
             if (status)
             {
@@ -51,6 +76,7 @@ namespace CalLicenseDemo.ViewModel
                 if (SingletonLicense.Instance.FeatureList.Count == 0)
                     MessageBox.Show("Please Subscribe for License , all the current licenses are expired!");
             }
+            IsEnableLogin = true;
         }
     }
 }

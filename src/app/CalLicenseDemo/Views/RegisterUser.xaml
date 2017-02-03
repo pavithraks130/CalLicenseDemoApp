@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:psw ="clr-namespace:CalLicenseDemo.Model"
+      
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Page.Resources>
@@ -42,17 +44,17 @@
         <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="5" Grid.Column="1" Name="lblOrganization"
                Content="Organization:" HorizontalAlignment="Right" />
         <TextBox Margin="5" Grid.Row="1" Grid.Column="2" Name="txtFirstName"
-                 Text="{Binding FName, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
+                 Text="{Binding FName, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" Height="30" />
         <TextBox Margin="5" Grid.Row="2" Grid.Column="2" Name="txtLastName"
-                 Text="{Binding LName, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, Mode=TwoWay}" />
+                 Text="{Binding LName, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, Mode=TwoWay}" Height="30"/>
         <TextBox Margin="5" Grid.Row="3" Grid.Column="2" Name="txtEmailID"
-                 Text="{Binding Email,NotifyOnSourceUpdated=True,NotifyOnValidationError=True, Mode=TwoWay}" />
-        
-        <PasswordBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword"
-                  Password="{Binding Password, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
+                 Text="{Binding Email,NotifyOnSourceUpdated=True,NotifyOnValidationError=True, Mode=TwoWay}" Height="30" />
+
+        <PasswordBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword" psw:PasswordHelper.Attach="True" psw:PasswordHelper.Password="{Binding Password , Mode=TwoWay}"  PasswordChar="*" FontSize="16"
+                Height="30"  />
         <TextBox Margin="5" Grid.Row="5" Grid.Column="2" Name="txtOrganization"
-                 Text="{Binding Organization, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
-        <Button Style="{StaticResource DefaultButtonStyle}" Margin="5" Grid.Row="6" Grid.Column="2"
-                Name="btnRegisterAndPay" Content="Register and Pay" Command="{Binding RegterCommand}" />
+                 Text="{Binding Organization, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" Height="30" />
+        <Button Style="{StaticResource DefaultButtonStyle}" Margin="4.667,5,5.333,5" Grid.Row="6" Grid.Column="2"
+                Name="btnRegisterAndPay" Content="Register and Pay" Command="{Binding RegterCommand}" Height="30" />
     </Grid>
 </Page>

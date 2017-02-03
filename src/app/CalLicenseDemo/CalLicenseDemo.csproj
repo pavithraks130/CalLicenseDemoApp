@@ -89,6 +89,9 @@
     <Compile Include="Views\LoginUser.xaml.cs">
       <DependentUpon>LoginUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MetCalModuleA.xaml.cs">
+      <DependentUpon>MetCalModuleA.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PaymentContainerWindow.xaml.cs">
       <DependentUpon>PaymentContainerWindow.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\LoginUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MetCalModuleA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
