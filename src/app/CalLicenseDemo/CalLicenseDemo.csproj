@@ -92,6 +92,7 @@
     <Compile Include="Model\License.cs" />
     <Compile Include="Model\PasswordHelper.cs" />
     <Compile Include="Model\UserLicense.cs" />
+    <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\LoginUserViewModel.cs" />
     <Compile Include="ViewModel\RedirectToAmountPaymentPageViewModel.cs" />
     <Compile Include="ViewModel\SubscriptionViewModel.cs" />
@@ -255,6 +256,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Fluke.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\User.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

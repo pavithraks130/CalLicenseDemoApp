@@ -14,9 +14,30 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid>
-        <StackPanel>
-        <TextBlock Text="Dashboard" Style="{StaticResource TextBlockHeaderTextStyle}" />
-        </StackPanel>
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                <ColumnDefinition Width="0.3*" MaxWidth="150"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0" Text="Dashboard" Style="{StaticResource TextBlockHeaderTextStyle}" />
+            <Menu Grid.Column="1" Background="Transparent">
+                <MenuItem>
+                    <MenuItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding LoggedInUser}" Foreground="White"></TextBlock>
+                            <Image Source="pack://application:,,,/Resources/User.jpg" Height="30" Width="30"></Image>
+                        </StackPanel>
+                    </MenuItem.Header>
+                    <MenuItem Header="Profile"></MenuItem>
+                    <MenuItem Header="Account Settings"></MenuItem>
+                    <MenuItem Header="Logout"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </Grid>
     </Grid>
 </Page>

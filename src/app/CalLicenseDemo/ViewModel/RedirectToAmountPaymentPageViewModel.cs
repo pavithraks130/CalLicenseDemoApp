@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CalLicenseDemo.ViewModel
 {
-    class RedirectToAmountPaymentPageViewModel : BaseEntity
+    public class RedirectToAmountPaymentPageViewModel : BaseEntity
     {
-        private double _amount;
-        public double Amount
+        public ICommand BackToLoginCommand
+        { get; set; }
+
+
+        public RedirectToAmountPaymentPageViewModel()
         {
-            get
-            {
-                return _amount;
-            }
-            set
-            {
-                _amount = value;
-                OnPropertyChanged("Amount");
-            }
+            BackToLoginCommand = new RelayCommand(BackToLoginPageCommandExecuted);
+        }
+
+        private void BackToLoginPageCommandExecuted(object parameter)
+        {
+            NavigateNextPage?.Invoke(null, null);
         }
     }
 }

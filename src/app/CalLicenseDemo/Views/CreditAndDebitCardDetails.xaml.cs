@@ -1,4 +1,5 @@
 ﻿using CalLicenseDemo.Logic;
+using CalLicenseDemo.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace CalLicenseDemo
     /// <summary>
     /// Interaction logic for CreditAndDebitCardDetails.xaml
     /// </summary>
-    public partial class CreditAndDebitCardDetails : UserControl
+    public partial class CreditAndDebitCardDetails : Page
     {
         public CreditAndDebitCardDetails()
         {
@@ -35,11 +36,7 @@ namespace CalLicenseDemo
         }
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            // if (DataValidations.IsValidCardDetails(textBox, ListofMonths, txtCVV, listOfYears))
-            if (true)
-                PPRedirectToAmountPage.IsOpen = true;
-            else
-                MessageBox.Show("Please enter valid detailes");
+           this.NavigationService.Navigate(new RedirectToAmountPaymentPage());
         }
 
     }
