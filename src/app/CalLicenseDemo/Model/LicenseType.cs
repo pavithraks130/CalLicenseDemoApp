@@ -15,13 +15,10 @@ namespace CalLicenseDemo.Model
 
         [Key]
         public int TypeId { get; set; }
-
         public string TypeName { get; set; }
         public string Description { get; set; }
         public int ActiveDuration { get; set; }
-
         public  string ImageUrl { get; set; }
-
         public double Price { get; set; }
         public virtual ICollection<Feature> FeatureList { get; set; }
     }

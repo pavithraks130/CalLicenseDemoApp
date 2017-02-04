@@ -71,6 +71,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\SingletonLicense.cs" />
+    <Compile Include="Common\StringToListConverter.cs" />
     <Compile Include="DatabaseContext\LicenseAppDBContext.cs" />
     <Compile Include="Logic\DataValidations.cs" />
     <Compile Include="Logic\LicenseLogic.cs" />
@@ -131,9 +132,6 @@
     <Compile Include="Views\RegisterUser.xaml.cs">
       <DependentUpon>RegisterUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Subscription.xaml.cs">
-      <DependentUpon>Subscription.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SubscriptonScreen.xaml.cs">
       <DependentUpon>SubscriptonScreen.xaml</DependentUpon>
     </Compile>
@@ -186,10 +184,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\RegisterUser.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Subscription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

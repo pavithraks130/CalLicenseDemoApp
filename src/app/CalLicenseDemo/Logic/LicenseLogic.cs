@@ -5,6 +5,7 @@ using System.Linq;
 using System.Management;
 using System.Security.Cryptography;
 using System.Text;
+using CalLicenseDemo.Common;
 using CalLicenseDemo.DatabaseContext;
 using CalLicenseDemo.Model;
 using LicenseKey;
@@ -30,13 +31,13 @@ namespace CalLicenseDemo.Logic
             _dbContext.Dispose();
         }
 
-        public void ActivateSubscription(string subscriptionType)
+        public void ActivateSubscription()
         {
             //code for creating the licensekey and mapping with user and updating on the server.
-            var liceseKey = GenerateLicense(subscriptionType);
+            var liceseKey = GenerateLicense();
 
             UserLicenseJsonData licenseDetails;
-            var licType = _dbContext.LicenseType.ToList().FirstOrDefault(l => l.TypeId.ToString() == subscriptionType);
+            var licType = SingletonLicense.Instance.SelectedSubscription;//_dbContext.LicenseType.ToList().FirstOrDefault(l => l.TypeId.ToString() == subscriptionType);
             var folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 "CalibrationLicense");
 
@@ -49,7 +50,7 @@ namespace CalLicenseDemo.Logic
             {
                 var deserializeData = File.ReadAllBytes(Path.Combine(folderPath, "LicenseData.json"));
                 var data = Encoding.ASCII.GetString(deserializeData);
-                licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(data);
+                 licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(data);
             }
             else
             {
@@ -63,15 +64,17 @@ namespace CalLicenseDemo.Logic
             licenseDetails.LicenseList.Add(detail);
 
             //Saving the license file
-            var datalicence = JsonConvert.SerializeObject(detail);
-            var serializedata = Encoding.ASCII.GetBytes(datalicence);
-            File.WriteAllBytes(Path.Combine(folderPath, "LicenseData.json"), serializedata);
+            var datalicence = JsonConvert.SerializeObject(licenseDetails);
+            byte[] serializedata = Encoding.ASCII.GetBytes(datalicence);
+            var serializerdatastring = System.Text.Encoding.UTF8.GetString(serializedata, 0, serializedata.Length);
+            var bw = new BinaryWriter(File.Open(Path.Combine(folderPath, "LicenseData.txt"), FileMode.OpenOrCreate));
+            bw.Write(serializedata.ToArray());
+            bw.Dispose();
         }
 
-        public string GenerateLicense(string subscriptionType)
+        public string GenerateLicense()
         {
             bool status;
-            //status = CreateUserInfo();
             var userUniqueId = UniqueuserIdentifier();
             var licenseKey = string.Empty;
             while (string.IsNullOrEmpty(licenseKey))
@@ -81,7 +84,7 @@ namespace CalLicenseDemo.Logic
                     licenseKey = key;
             }
 
-            status = UpdateSubScriptionDetails(userUniqueId, licenseKey, subscriptionType);
+            status = UpdateSubScriptionDetails(userUniqueId, licenseKey);
             if (status)
                 return licenseKey;
             return string.Empty;
@@ -101,12 +104,12 @@ namespace CalLicenseDemo.Logic
             return keygeneration.GetLicenseKey();
         }
 
-        public bool UpdateSubScriptionDetails(string userUniqueId, string licenseKey, string subscriptiontype)
+        public bool UpdateSubScriptionDetails(string userUniqueId, string licenseKey)
         {
             var lic = new License();
             lic.IsAvailable = false;
             lic.LicenseKey = licenseKey;
-            lic.LicenseTypeId = Convert.ToInt32(subscriptiontype);
+            lic.LicenseTypeId = SingletonLicense.Instance.SelectedSubscription.TypeId;
 
             var userLic = new UserLicense();
             userLic.UserKey = userUniqueId;
