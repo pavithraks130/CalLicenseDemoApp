@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using CalLicenseDemo.ViewModel;
+using System.Collections.Generic;
 
 namespace CalLicenseDemo.Views
 {
@@ -12,7 +13,7 @@ namespace CalLicenseDemo.Views
         {
             InitializeComponent();
             var viewmodel = new RegistrationViewModel(NavigationService);
-            viewmodel.NavigateNextPage += delegate { this.NavigationService.Navigate(new SubscriptonScreen()); };
+            viewmodel.NavigateNextPage += delegate(string screenName,Dictionary<string,string> additionalInfo){ this.NavigationService.Navigate(new SubscriptonScreen()); };
             DataContext = viewmodel;
         }
 

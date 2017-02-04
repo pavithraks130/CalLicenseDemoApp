@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using CalLicenseDemo.ViewModel;
+using System.Collections.Generic;
 
 namespace CalLicenseDemo.Views
 {
@@ -13,7 +14,7 @@ namespace CalLicenseDemo.Views
             InitializeComponent();
             //Navigation Service is an inbuilt prperty of page
             var viewmodel = new SubscriptionViewModel();
-            viewmodel.NavigateNextPage += () => { this.NavigationService.Navigate(new PaymentOption()); };
+            viewmodel.NavigateNextPage += (string screenName, Dictionary<string,string> additionalInfo) => { this.NavigationService.Navigate(new PaymentOption()); };
             DataContext = viewmodel;
         }
     }

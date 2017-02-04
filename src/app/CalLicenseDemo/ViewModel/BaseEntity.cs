@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
 
 namespace CalLicenseDemo.ViewModel
 {
+    public delegate void NavigateNextPage(string screenName, Dictionary<string, string> additionalInfo);
     public class BaseEntity : INotifyPropertyChanged
     {
-        public Action NavigateNextPage;
+        public NavigateNextPage NavigateNextPage;
 
         public event PropertyChangedEventHandler PropertyChanged;
         

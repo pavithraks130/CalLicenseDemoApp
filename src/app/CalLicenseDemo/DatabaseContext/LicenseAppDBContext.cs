@@ -6,7 +6,7 @@ namespace CalLicenseDemo.DatabaseContext
 {
     public class LicenseAppDBContext : DbContext
     {
-        public LicenseAppDBContext() : base("LicnceDatabase")
+        public LicenseAppDBContext() : base("LicenseDatabase")
         {
         }
 

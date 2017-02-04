@@ -78,7 +78,7 @@ namespace CalLicenseDemo.ViewModel
             var logic = new LicenseLogic { User = user };
             var status = logic.CreateUserInfo();
             if (NavigateNextPage != null)
-                NavigateNextPage();
+                NavigateNextPage(null,null);
             //Service.Navigate(new SubscriptonScreen());
         }
     }

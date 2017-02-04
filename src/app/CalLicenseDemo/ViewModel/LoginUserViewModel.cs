@@ -76,7 +76,7 @@ namespace CalLicenseDemo.ViewModel
             if (status)
             {
                 if (NavigateNextPage != null)
-                    NavigateNextPage();
+                    NavigateNextPage(null,null);
                 //logic.GetFeatureList();
                 //if (SingletonLicense.Instance.FeatureList.Count == 0)
                 //    MessageBox.Show("Please Subscribe for License , all the current licenses are expired!");

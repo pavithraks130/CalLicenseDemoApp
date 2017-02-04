@@ -42,7 +42,7 @@ namespace CalLicenseDemo.ViewModel
             {
                 SingletonLicense.Instance.SelectedSubscription = typeObj;
                 if (NavigateNextPage != null)
-                    NavigateNextPage();
+                    NavigateNextPage(null,null);
             }
         }
     }
