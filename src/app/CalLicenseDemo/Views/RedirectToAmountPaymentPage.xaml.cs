@@ -1,4 +1,5 @@
 ﻿using CalLicenseDemo.ViewModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows;
@@ -9,7 +10,7 @@ namespace CalLicenseDemo.Views
     /// <summary>
     /// Interaction logic for RedirectToAmountPage.xaml
     /// </summary>
-    public partial class RedirectToAmountPaymentPage : UserControl
+    public partial class RedirectToAmountPaymentPage : Page
     {
 
         /// <summary>
@@ -19,13 +20,21 @@ namespace CalLicenseDemo.Views
         public RedirectToAmountPaymentPage()
         {
             InitializeComponent();
-            DataContext = new RedirectToAmountPaymentPageViewModel();
+            var viewModel = new RedirectToAmountPaymentPageViewModel();
+            viewModel.NavigateNextPage += delegate (string screenName, Dictionary<string, string> additionalInfo) { this.NavigationService.Navigate(new LoginUser()); };
+            DataContext = viewModel;
             m_oWorker = new BackgroundWorker();
             m_oWorker.DoWork += new DoWorkEventHandler(m_oWorker_DoWork);
             m_oWorker.ProgressChanged += new ProgressChangedEventHandler(m_oWorker_ProgressChanged);
             m_oWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(m_oWorker_RunWorkerCompleted);
             m_oWorker.WorkerReportsProgress = true;
             m_oWorker.WorkerSupportsCancellation = true;
+
+            ProgressBarPayment.Visibility = Visibility.Visible;
+            lblProgress.Visibility = Visibility.Visible;
+            statusBarPayment.Visibility = Visibility.Collapsed;
+            //Start the async operation here
+            m_oWorker.RunWorkerAsync();
         }
 
         /// <summary>
@@ -48,9 +57,13 @@ namespace CalLicenseDemo.Views
             {
                 lblProgress.Content = "Payment Success";
             }
-            buttonPayment.IsEnabled = true;
-            buttonCancel.IsEnabled = false;
+          
             statusBarPayment.Visibility = Visibility.Visible;
+
+            System.Threading.Thread.Sleep(1000);
+
+
+            
         }
 
         /// <summary>
@@ -78,8 +91,7 @@ namespace CalLicenseDemo.Views
             for (int i = 0; i < 200; i++)
             {
                 if(i<150)
-                Thread.Sleep(200);
-                Thread.Sleep(100);
+                Thread.Sleep(50);
                 m_oWorker.ReportProgress(i);
 
                 //If cancel button was pressed while the execution is in progress
@@ -95,33 +107,6 @@ namespace CalLicenseDemo.Views
 
             //Report 100% completion on operation completed
             m_oWorker.ReportProgress(100);
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            //Window parentWindow = Window.GetWindow(this);
-            //parentWindow.Close();
-
-            if (m_oWorker.IsBusy)
-            {
-                //Stop/Cancel the async operation here
-                m_oWorker.CancelAsync();
-            }
-
-        }
-
-        private void buttonPayment_Click(object sender, RoutedEventArgs e)
-        {
-            buttonPayment.IsEnabled = false;
-            buttonCancel.IsEnabled = true;
-            ProgressBarPayment.Visibility = Visibility.Visible;
-            lblProgress.Visibility = Visibility.Visible;
-            statusBarPayment.Visibility = Visibility.Collapsed;
-            //Start the async operation here
-            m_oWorker.RunWorkerAsync();
-
-          
-
         }
     }
 }

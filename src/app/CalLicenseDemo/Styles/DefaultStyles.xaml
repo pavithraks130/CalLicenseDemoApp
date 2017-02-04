@@ -6,7 +6,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
-    <Style x:Key="TextBlockDefaultStyle" TargetType="{x:Type TextBlock}">
+    <Style x:Key="DefaultTextBlockStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="White" />
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
@@ -49,5 +49,11 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="#FFC20F" />
     </Style>
+
+    <ItemsPanelTemplate x:Key="MenuItemPanelTemplate">
+        <StackPanel Margin="-20,0,0,0" Background="White"/>
+    </ItemsPanelTemplate>
 </ResourceDictionary>

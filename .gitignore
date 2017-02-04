@@ -251,3 +251,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/src/app/CalLicenseDemo.zip
+/src/app/CalLicenseDemo/LicenseSoftware.sqlite.sql
+/src/app/CalLicenseDemo/LicenseSoftwareExport.sql

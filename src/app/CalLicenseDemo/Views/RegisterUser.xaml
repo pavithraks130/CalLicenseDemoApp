@@ -55,6 +55,8 @@
         <TextBox Margin="5" Grid.Row="5" Grid.Column="2" Name="txtOrganization"
                  Text="{Binding Organization, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
         <Button Style="{StaticResource DefaultButtonStyle}" Margin="5" Grid.Row="6" Grid.Column="2"
-                Name="btnRegisterAndPay" Content="Register and Pay" Command="{Binding RegisterCommand}" />
+                Name="btnRegisterAndPay" Content="Get Paid License" Command="{Binding RegisterCommand}" CommandParameter="Paid" />
+        <Button Style="{StaticResource DefaultButtonStyle}" Margin="5" Grid.Row="6" Grid.Column="1"
+                Name="btnRegisterAndStartTrial" Content="Start Trial License" Command="{Binding RegisterCommand}" CommandParameter="Trial" />
     </Grid>
 </Page>

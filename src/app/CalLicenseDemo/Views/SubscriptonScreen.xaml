@@ -55,17 +55,17 @@
                                 <RowDefinition Height="0.2*" />
                             </Grid.RowDefinitions>
                             <Image Source="{Binding ImageUrl}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-                            <TextBlock Text="subscription Type" Grid.Row="1" Style="{StaticResource TextBlockDefaultStyle}"
+                            <TextBlock Text="subscription Type" Grid.Row="1" Style="{StaticResource DefaultTextBlockStyle}"
                                    Grid.Column="0" Margin="10" />
-                            <TextBlock Text="{Binding TypeName}" Style="{StaticResource TextBlockDefaultStyle}"
+                            <TextBlock Text="{Binding TypeName}" Style="{StaticResource DefaultTextBlockStyle}"
                                    Grid.Row="1" Grid.Column="1" Margin="10" />
-                            <TextBlock Text="Features" Grid.Row="2" Style="{StaticResource TextBlockDefaultStyle}"
+                            <TextBlock Text="Features" Grid.Row="2" Style="{StaticResource DefaultTextBlockStyle}"
                                    Grid.Column="0" Margin="10"/>
                             <TextBlock Text="{Binding FeatureList,Converter= {StaticResource StringToListConverter}}" Style="{StaticResource TextBlockDefaultStyle}"
                                    Grid.Row="2" Grid.Column="1" Margin="10"/>
-                            <TextBlock Text="Price" Grid.Row="3" Style="{StaticResource TextBlockDefaultStyle}"
+                            <TextBlock Text="Price" Grid.Row="3" Style="{StaticResource DefaultTextBlockStyle}"
                                    Grid.Column="0" Margin="10" />
-                            <TextBlock Text="{Binding Price}" Style="{StaticResource TextBlockDefaultStyle}" Grid.Row="3"
+                            <TextBlock Text="{Binding Price}" Style="{StaticResource DefaultTextBlockStyle}" Grid.Row="3"
                                    Grid.Column="1" Margin="10" />
                             <Button Content="BuyNow" Style="{StaticResource DefaultButtonStyle}" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ItemsControl}}}" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" CommandParameter="{Binding TypeId}"></Button>
                         </Grid>
