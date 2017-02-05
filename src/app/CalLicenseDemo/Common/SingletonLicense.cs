@@ -16,5 +16,10 @@ namespace CalLicenseDemo.Common
         {
             get { return _instance ?? (_instance = new SingletonLicense()); }
         }
+
+        public SingletonLicense()
+        {
+            FeatureList = new List<Feature>();
+        }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
 namespace CalLicenseDemo.Model
@@ -10,6 +11,7 @@ namespace CalLicenseDemo.Model
         public int FeatureId { get; set; }
 
         public string FeatureTitle { get; set; }
+
         [JsonIgnore]
         public  ICollection<LicenseType> LicenseTypes { get; set; }
     }

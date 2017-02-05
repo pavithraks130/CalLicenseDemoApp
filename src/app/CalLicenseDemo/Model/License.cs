@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CalLicenseDemo.Model
 {
-    public sealed class License
+    public  class License
     {
         public License()
         {
@@ -18,9 +18,9 @@ namespace CalLicenseDemo.Model
 
         public string LicenseKey { get; set; }
         public bool IsAvailable { get; set; }
-        public int LicenseTypeId { get; set; }
 
+        public  int LicenseTypeId { get; set; }
         [ForeignKey("LicenseTypeId")]
-        public LicenseType LicenseType { get; set; }
+        public virtual LicenseType LicenseType { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace CalLicenseDemo.Model
         public int ActiveDuration { get; set; }
         public  string ImageUrl { get; set; }
         public double Price { get; set; }
+
         public virtual ICollection<Feature> FeatureList { get; set; }
     }
 }

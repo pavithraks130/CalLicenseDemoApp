@@ -22,8 +22,6 @@ namespace CalLicenseDemo.Logic
             _dbContext = new LicenseAppDBContext();
         }
 
-        public User User { get; set; }
-
         public string ErrorMessage { get; set; }
 
         public void Dispose()
@@ -34,11 +32,12 @@ namespace CalLicenseDemo.Logic
         public void ActivateSubscription()
         {
             //code for creating the licensekey and mapping with user and updating on the server.
-            var liceseKey = GenerateLicense();
+
+            string liceseKey = SingletonLicense.Instance.SelectedSubscription.TypeName.ToLower() == "trial" ? "trial" : GetlicenseKey();
 
             UserLicenseJsonData licenseDetails;
-            var licType = SingletonLicense.Instance.SelectedSubscription;//_dbContext.LicenseType.ToList().FirstOrDefault(l => l.TypeId.ToString() == subscriptionType);
-            var folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            var licType = SingletonLicense.Instance.SelectedSubscription;
+            var folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "CalibrationLicense");
 
             //Checking the directory in app data. the License file will be saved in the appdata folder
@@ -46,11 +45,11 @@ namespace CalLicenseDemo.Logic
                 Directory.CreateDirectory(folderPath);
 
             //checking the license file for adding the new license records to the file.
-            if (File.Exists(Path.Combine(folderPath, "LicenseData.json")))
+            if (File.Exists(Path.Combine(folderPath, "LicenseData.txt")))
             {
-                var deserializeData = File.ReadAllBytes(Path.Combine(folderPath, "LicenseData.json"));
+                var deserializeData = File.ReadAllBytes(Path.Combine(folderPath, "LicenseData.txt"));
                 var data = Encoding.ASCII.GetString(deserializeData);
-                 licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(data);
+                licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(data);
             }
             else
             {
@@ -61,6 +60,8 @@ namespace CalLicenseDemo.Logic
             var detail = new LicenseDetails();
             detail.LicenseKey = liceseKey;
             detail.Type = licType;
+            detail.ActivationDate = DateTime.Now;
+            detail.ExpireDate = detail.ActivationDate.AddDays(licType.ActiveDuration);
             licenseDetails.LicenseList.Add(detail);
 
             //Saving the license file
@@ -70,6 +71,8 @@ namespace CalLicenseDemo.Logic
             var bw = new BinaryWriter(File.Open(Path.Combine(folderPath, "LicenseData.txt"), FileMode.OpenOrCreate));
             bw.Write(serializedata.ToArray());
             bw.Dispose();
+
+            SingletonLicense.Instance.SelectedSubscription = null;
         }
 
         public string GenerateLicense()
@@ -109,19 +112,22 @@ namespace CalLicenseDemo.Logic
             var lic = new License();
             lic.IsAvailable = false;
             lic.LicenseKey = licenseKey;
-            lic.LicenseTypeId = SingletonLicense.Instance.SelectedSubscription.TypeId;
+            lic.LicenseType = SingletonLicense.Instance.SelectedSubscription;
 
             var userLic = new UserLicense();
             userLic.UserKey = userUniqueId;
             userLic.ActivationDate = DateTime.Today;
+            userLic.User = SingletonLicense.Instance.User;
 
             try
             {
                 lic = _dbContext.License.Add(lic);
-                userLic.LicenseId = lic.LicenseId;
+                _dbContext.SaveChanges();
+                userLic.License = lic;
                 _dbContext.UserLicense.Add(userLic);
+                _dbContext.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -169,43 +175,14 @@ namespace CalLicenseDemo.Logic
             return null;
         }
 
-        public bool CreateUserInfo()
-        {
-            try
-            {
-                if (_dbContext.User.ToList().Any(u => u.Email == User.Email))
-                {
-                    ErrorMessage = "Email id is lready registered";
-                    return false;
-                }
-                var _team =
-                    _dbContext.Team.ToList()
-                        .FirstOrDefault(
-                            t => t.Name == User.Organization.Name && t.GroupEmail == User.Organization.GroupEmail);
-                if (_team != null)
-                {
-                    User.Organization = _team;
-                    User.TeamID = _team.TeamId;
-                }
-                else
-                {
-                    _team = _dbContext.Team.Add(User.Organization);
-                    User.TeamID = _team.TeamId;
-                }
-                User = _dbContext.User.Add(User);
-                _dbContext.SaveChanges();
-
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-            return true;
-        }
-
         public List<LicenseType> GetSubscriptionDetails()
         {
-            return _dbContext.LicenseType.ToList();
+            return _dbContext.LicenseType.ToList().FindAll(l => l.TypeName.ToLower() != "trial");
+        }
+
+        public LicenseType GetTrialLicense()
+        {
+            return _dbContext.LicenseType.FirstOrDefault(l => l.TypeName.ToLower() == "trial");
         }
     }
 }
