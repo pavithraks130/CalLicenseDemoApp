@@ -32,8 +32,7 @@ namespace CalLicenseDemo.Logic
         public void ActivateSubscription()
         {
             //code for creating the licensekey and mapping with user and updating on the server.
-
-            string liceseKey = SingletonLicense.Instance.SelectedSubscription.TypeName.ToLower() == "trial" ? "trial" : GetlicenseKey();
+            string liceseKey = GenerateLicense();
 
             UserLicenseJsonData licenseDetails;
             var licType = SingletonLicense.Instance.SelectedSubscription;
@@ -80,13 +79,15 @@ namespace CalLicenseDemo.Logic
             bool status;
             var userUniqueId = UniqueuserIdentifier();
             var licenseKey = string.Empty;
-            while (string.IsNullOrEmpty(licenseKey))
-            {
-                var key = GetlicenseKey();
-                if (!_dbContext.License.ToList().Any(l => l.LicenseKey == key))
-                    licenseKey = key;
-            }
-
+            if (SingletonLicense.Instance.SelectedSubscription.TypeName.ToLower() == "trial")
+                while (string.IsNullOrEmpty(licenseKey))
+                {
+                    var key = GetlicenseKey();
+                    if (!_dbContext.License.ToList().Any(l => l.LicenseKey == key))
+                        licenseKey = key;
+                }
+            else
+                licenseKey = "trial";
             status = UpdateSubScriptionDetails(userUniqueId, licenseKey);
             if (status)
                 return licenseKey;
