@@ -72,18 +72,16 @@ namespace CalLicenseDemo.ViewModel
             }
             var logic = new LoginLogic();
             IsEnableLogin = false;
-            var status = logic.ValidateUserLogin(Email, Password);
+            var status = logic.AuthenticateUser(Email, Password);
 
             if (status)
             {
-
+                SingletonLicense.Instance.IsUserLoggedIn = true;
                 logic.GetFeatureList();
                 var redirectPage = new Dictionary<string, string>();
                 if (SingletonLicense.Instance.FeatureList != null)
-                    //MessageBox.Show("Please Subscribe for License , all the current licenses are expired!");
                     redirectPage.Add("page", "Subscription");
-                if (NavigateNextPage != null)
-                    NavigateNextPage(null, redirectPage);
+                NavigateNextPage?.Invoke(null, redirectPage);
             }
             else
             {

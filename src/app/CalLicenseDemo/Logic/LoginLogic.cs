@@ -35,7 +35,7 @@ namespace CalLicenseDemo.Logic
             return !(_dbContext.User.Any(u => u.Email.ToLower() == email.ToLower()));
         }
 
-        public bool ValidateUserLogin(string userName, string password)
+        public bool AuthenticateUser(string userName, string password)
         {
             var encryptedPassword = password;
             var status = _dbContext.User.ToList().Any(u => u.Email.ToLower() == userName.ToLower());
@@ -67,6 +67,7 @@ namespace CalLicenseDemo.Logic
         /// <summary>
         ///     Verifying the user license is still active and listing feature based on the
         /// </summary>
+
         public void GetFeatureList()
         {
             var folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
@@ -82,11 +83,16 @@ namespace CalLicenseDemo.Logic
                 var deserializeData = File.ReadAllBytes(Path.Combine(folderPath, "LicenseData.txt"));
                 var data = Encoding.ASCII.GetString(deserializeData);
                 licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(data);
+                var validLienseList = licenseDetails;
                 foreach (var ld in licenseDetails.LicenseList)
                     if (ld.ExpireDate.Date > DateTime.Today.Date)
                         SingletonLicense.Instance.FeatureList.AddRange(ld.Type.FeatureList.ToList());
+                    else
+                        //Code is used to remove the Subscription which is expired
+                        validLienseList.LicenseList.Remove(ld);
             }
         }
+
         public bool CreateUserInfo(RegistrationModel registrationModel)
         {
             try
