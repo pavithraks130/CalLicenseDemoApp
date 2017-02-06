@@ -71,7 +71,11 @@ namespace CalLicenseDemo.ViewModel
             }
             var logic = new LoginLogic();
             IsEnableLogin = false;
-            var status = logic.AuthenticateUser(Email, Password);
+            var status = Common.common.CheckNetworkAvailablity();
+            if (status)
+                status = logic.AuthenticateUser(Email, Password);
+            else 
+                status = logic.AuthenticateUserOffline(Email, Password);
 
             if (status)
             {
@@ -81,15 +85,13 @@ namespace CalLicenseDemo.ViewModel
                 if (SingletonLicense.Instance.FeatureList != null)
                     redirectPage.Add("page", "Subscription");
                 NavigateNextPage?.Invoke(null, redirectPage);
+                IsEnableLogin = true;
             }
             else
             {
                 MessageBox.Show(logic.ErrorMessage);
                 logic.ErrorMessage = String.Empty;
             }
-            IsEnableLogin = true;
         }
-
-       
     }
 }

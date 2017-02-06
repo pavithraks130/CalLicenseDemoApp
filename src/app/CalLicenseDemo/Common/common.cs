@@ -12,7 +12,17 @@ namespace CalLicenseDemo.Common
     class common
     {
 
+
+        private static readonly string folderPath =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                "CalibrationLicense");
+
+        private static readonly string tempFolderPath =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                "CalibrationLicense");
+
         private static string password = @"myKey123";
+
         public static void EncryptFile(string inputFile, string outputFile)
         {
 
@@ -35,7 +45,7 @@ namespace CalLicenseDemo.Common
 
                 int data;
                 while ((data = fsIn.ReadByte()) != -1)
-                    cs.WriteByte((byte)data);
+                    cs.WriteByte((byte) data);
 
 
                 fsIn.Close();
@@ -47,7 +57,7 @@ namespace CalLicenseDemo.Common
                 MessageBox.Show("Encryption failed!", "Error");
             }
         }
-       
+
         public static void DecryptFile(string inputFile, string outputFile)
         {
 
@@ -69,13 +79,49 @@ namespace CalLicenseDemo.Common
 
                 int data;
                 while ((data = cs.ReadByte()) != -1)
-                    fsOut.WriteByte((byte)data);
+                    fsOut.WriteByte((byte) data);
 
                 fsOut.Close();
                 cs.Close();
                 fsCrypt.Close();
 
             }
+        }
+
+        public static bool CheckNetworkAvailablity()
+        {
+            return System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
+        }
+
+        public static void SaveDatatoFile(string jsonData, string fileName)
+        {
+            if (!Directory.Exists(tempFolderPath))
+                Directory.CreateDirectory(tempFolderPath);
+
+            //Saving the license file
+            byte[] serializedata = Encoding.UTF8.GetBytes(jsonData);
+            var serializerdatastring = System.Text.Encoding.UTF8.GetString(serializedata, 0, serializedata.Length);
+            var bw = new BinaryWriter(File.Open(Path.Combine(tempFolderPath, fileName), FileMode.OpenOrCreate));
+            bw.Write(serializedata.ToArray());
+            bw.Dispose();
+            Common.common.EncryptFile(Path.Combine(tempFolderPath, fileName), Path.Combine(folderPath, fileName));
+        }
+
+        public static string GetJsonDataFromFile(string fileName)
+        {
+            string jsonData = String.Empty;
+            Common.common.DecryptFile(Path.Combine(folderPath, fileName), Path.Combine(tempFolderPath, fileName));
+            if (File.Exists(Path.Combine(tempFolderPath, fileName)))
+            {
+                var deserializeData = File.ReadAllBytes(Path.Combine(tempFolderPath, fileName));
+                jsonData = Encoding.ASCII.GetString(deserializeData);
+            }
+            return jsonData;
+        }
+
+        public static bool IsFileExist(string fileName)
+        {
+            return File.Exists(Path.Combine(folderPath, fileName));
         }
     }
 }

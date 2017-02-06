@@ -24,6 +24,7 @@ namespace CalLicenseDemo.Common
         {
             FeatureList = new List<Feature>();
             Context = new LicenseAppDBContext();
+            LicenseData = new UserLicenseJsonData();
         }
 
         public UserLicenseJsonData LicenseData { get; set; }

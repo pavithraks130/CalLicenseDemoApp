@@ -53,7 +53,13 @@ namespace CalLicenseDemo.Logic
                 {
                     string hashPasword = CreatePasswordhash(password, user.ThumbPrint);
                     if (hashPasword == user.PasswordHash)
+                    {
                         SingletonLicense.Instance.User = user;
+                        var jsonData = JsonConvert.SerializeObject(user);
+                        if (!common.IsFileExist("credential.txt"))
+                            common.SaveDatatoFile(jsonData, "credential.txt");
+                        return true;
+                    }
                     else
                         ErrorMessage = "Invalid Password";
                 }
@@ -61,10 +67,8 @@ namespace CalLicenseDemo.Logic
                     ErrorMessage = "Specified Credentials are invalid";
             }
             else
-            {
                 ErrorMessage = "Specified Email is not registered";
-            }
-            return user != null;
+            return false;
         }
 
         /// <summary>
@@ -73,24 +77,18 @@ namespace CalLicenseDemo.Logic
 
         public void GetFeatureList()
         {
-            Common.common.DecryptFile(Path.Combine(folderPath, "LicenseData.txt"), Path.Combine(tempFolderPath, "LicenseData.txt"));
-           
-            UserLicenseJsonData licenseDetails;
-            //checking the license file for adding the new license records to the file.
-            if (File.Exists(Path.Combine(tempFolderPath, "LicenseData.txt")))
-            {
-                var deserializeData = File.ReadAllBytes(Path.Combine(tempFolderPath, "LicenseData.txt"));
-                var data = Encoding.ASCII.GetString(deserializeData);
-                licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(data);
-                var validLienseList = licenseDetails;
-                foreach (var ld in licenseDetails.LicenseList)
-                    if (ld.ExpireDate.Date > DateTime.Today.Date)
-                        SingletonLicense.Instance.FeatureList.AddRange(ld.Type.FeatureList.ToList());
-                    else
-                        //Code is used to remove the Subscription which is expired
-                        validLienseList.LicenseList.Remove(ld);
-                SingletonLicense.Instance.LicenseData = validLienseList;
-            }
+            String jsonData = common.GetJsonDataFromFile("LicenseData.txt");
+            if (String.IsNullOrEmpty(jsonData)) return;
+            var licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(jsonData);
+            var validLienseList = licenseDetails;
+            foreach (var ld in licenseDetails.LicenseList)
+                if (ld.ExpireDate.Date > DateTime.Today.Date)
+                    SingletonLicense.Instance.FeatureList.AddRange(ld.Type.FeatureList.ToList());
+                else
+                    //Code is used to remove the Subscription which is expired
+                    validLienseList.LicenseList.Remove(ld);
+
+            SingletonLicense.Instance.LicenseData = validLienseList;
         }
 
         public bool CreateUserInfo(RegistrationModel registrationModel)
@@ -175,5 +173,30 @@ namespace CalLicenseDemo.Logic
 
             return new String(chars);
         }
+
+        public bool AuthenticateUserOffline(string email, string password)
+        {
+            if (!common.IsFileExist("credential.txt"))
+            {
+                ErrorMessage = "Network is not available for authentication";
+                return false;
+            }
+
+            string jsonData = common.GetJsonDataFromFile("credential.txt");
+            User user = JsonConvert.DeserializeObject<User>(jsonData);
+            string hashPasword = string.Empty;
+            if (user.Email.ToLower() == email)
+            {
+                hashPasword = CreatePasswordhash(password, user.ThumbPrint);
+                if(hashPasword == user.PasswordHash)
+                    SingletonLicense.Instance.User = user;
+                return true;
+            }
+            else
+                ErrorMessage = "Invalid Email";
+            return false;
+        }
+
+
     }
 }
