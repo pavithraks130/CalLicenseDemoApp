@@ -53,8 +53,8 @@
             <ListBoxItem Content="Version - V1.0" Foreground="White"></ListBoxItem>
             <ListBoxItem Content="{Binding CurrentDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White"></ListBoxItem>
             <ListBoxItem Content="{Binding ExpDate ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White"></ListBoxItem>
-            <ListBoxItem Content="Tax - 8$" Foreground="White"></ListBoxItem>
-            <ListBoxItem Content="Total Cost - 100$" Foreground="White"></ListBoxItem>
+            <ListBoxItem Content="{Binding Tax , Mode= TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White"></ListBoxItem>
+            <ListBoxItem Content="{Binding TotalCost, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White"></ListBoxItem>
         </ListBox>
 
     </Grid>

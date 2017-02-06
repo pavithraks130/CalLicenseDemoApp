@@ -14,6 +14,14 @@ namespace CalLicenseDemo.ViewModel
         private ObservableCollection<string> _cardValidityMonth = new ObservableCollection<string>();
         private string currentDate;
         private string expDate;
+        private string totalCost;
+
+        public string TotalCost
+        {
+            get { return totalCost; }
+            set { totalCost = value; }
+
+        }
 
         public string CardName
         {
@@ -120,6 +128,15 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        private string tax;
+
+        public string Tax
+        {
+            get { return tax; }
+            set { tax = value; }
+        }
+
+
         public CreditAndDebitCardDetailsViewModel()
         {
             cardDetails = new CardDetails();
@@ -127,6 +144,8 @@ namespace CalLicenseDemo.ViewModel
             DateTime theDate = DateTime.Now;
             DateTime yearInTheFuture = theDate.AddYears(1);
             expDate = "License Expiry Date - " + yearInTheFuture;
+            totalCost = "Total cost - " + SingletonLicense.Instance.SelectedSubscription.Price +"~/";
+            tax = "Tax - " + SingletonLicense.Instance.SelectedSubscription.Price * .05 + "~/";
             LoadListOfYears();
             LoadListOfMonths();
             PurchaseCommand = new RelayCommand(OnPurchase);
