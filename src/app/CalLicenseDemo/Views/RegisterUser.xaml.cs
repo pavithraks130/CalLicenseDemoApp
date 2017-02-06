@@ -13,7 +13,7 @@ namespace CalLicenseDemo.Views
         public RegisterUser()
         {
             InitializeComponent();
-            var viewmodel = new RegistrationViewModel(NavigationService);
+            var viewmodel = new RegisterUserViewModel(NavigationService);
             viewmodel.NavigateNextPage += NavigateNextPage;
             DataContext = viewmodel;
         }
@@ -26,6 +26,11 @@ namespace CalLicenseDemo.Views
                 this.NavigationService.Navigate(new SubscriptonScreen());
             else
                 this.NavigationService.Navigate(new LoginUser());
+        }
+
+        private void button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new CreditAndDebitCardDetails());
         }
     }
 }

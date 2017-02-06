@@ -60,6 +60,6 @@
         </DockPanel>
         <!--<Popup x:Name="paymentOption" Placement="Center">
             <local:PaymentOption />
-        </Popup>
+        </Popup>-->
     </Grid>
 </Page>

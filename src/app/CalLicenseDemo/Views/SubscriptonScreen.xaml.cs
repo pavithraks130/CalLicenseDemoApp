@@ -21,7 +21,7 @@ namespace CalLicenseDemo.Views
         private void buttonPayment_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
-            this.NavigationService.Navigate(new CreditAndDebitCardDetails());
+           
             // paymentOption.IsOpen = true;
         }
     }

@@ -118,7 +118,7 @@
       <DependentUpon>PaymentOption.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
-    <Compile Include="ViewModel\RegistrationViewModel.cs" />
+    <Compile Include="ViewModel\RegisterUserViewModel.cs" />
     <Compile Include="Views\CreditAndDebitCardDetails.xaml.cs">
       <DependentUpon>CreditAndDebitCardDetails.xaml</DependentUpon>
     </Compile>
@@ -224,6 +224,52 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\App.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Common.Constants.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Common.RegisterUserViewModel.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Common.SingletonLicense.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Common.StringToListConverter.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.DatabaseContext.LicenseAppDBContext.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Logic.Base36.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Logic.DataValidations.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Logic.LicenseLogic.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Logic.LoginLogic.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Migrations.Configuration.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Migrations.ForeignKeyInitialization.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Migrations.initializationDatabase.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Migrations.LicenseModelCHanges.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Migrations.UserModelCHanges.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.CardDetails.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.Feature.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.License.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.LicenseDetails.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.LicenseType.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.PasswordHelper.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.RegistrationModel.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.Team.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.User.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.UserLicense.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Model.UserLicenseJsonData.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.ViewModel.BaseEntity.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.ViewModel.ChangePassword.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.ViewModel.CreditAndDebitCardDetailsViewModel.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.ViewModel.DashboardViewModel.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.ViewModel.LoginUserViewModel.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.ViewModel.RedirectToAmountPaymentPageViewModel.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.ViewModel.RelayCommand.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.ViewModel.SubscriptionViewModel.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Views.Dashboard.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Views.LoginUser.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Views.PaymentContainerWindow.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Views.RedirectToAmountPaymentPage.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Views.RegisterUser.datasource" />
+    <None Include="Properties\DataSources\CalLicenseDemo.Views.SubscriptonScreen.datasource" />
+    <None Include="Properties\DataSources\CreditAndDebitCardDetails.datasource" />
+    <None Include="Properties\DataSources\MainWindow.datasource" />
+    <None Include="Properties\DataSources\OtherPaymentDetails.datasource" />
+    <None Include="Properties\DataSources\PaymentOption.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -249,6 +295,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\User.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
