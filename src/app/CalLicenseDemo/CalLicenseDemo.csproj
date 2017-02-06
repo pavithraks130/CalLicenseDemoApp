@@ -105,6 +105,8 @@
     <Compile Include="ViewModel\RedirectToAmountPaymentPageViewModel.cs" />
     <Compile Include="ViewModel\SubscriptionViewModel.cs" />
     <Compile Include="ViewModel\CreditAndDebitCardDetailsViewModel.cs" />
+    <Compile Include="ViewModel\UserAccountDetailsViewModel.cs" />
+    <Compile Include="ViewModel\UserAccountSettingsViewModel.cs" />
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
@@ -135,6 +137,12 @@
     </Compile>
     <Compile Include="Views\SubscriptonScreen.xaml.cs">
       <DependentUpon>SubscriptonScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserAccountDetails.xaml.cs">
+      <DependentUpon>UserAccountDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserAccountSettings.xaml.cs">
+      <DependentUpon>UserAccountSettings.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +193,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SubscriptonScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserAccountDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserAccountSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

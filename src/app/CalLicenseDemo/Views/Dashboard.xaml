@@ -33,9 +33,9 @@
                             <Image Source="pack://application:,,,/Resources/User.jpg" Height="30" Width="30"></Image>
                         </StackPanel>
                     </MenuItem.Header>
-                    <MenuItem Header="Profile"></MenuItem>
-                    <MenuItem Header="Account Settings"></MenuItem>
-                    <MenuItem Header="Logout"></MenuItem>
+                    <MenuItem Header="Profile" Command="{Binding ProfileDetailsCommand}"></MenuItem>
+                    <MenuItem Header="Account Settings" Command="{Binding AccoutSettingsCommand}"></MenuItem>
+                    <MenuItem Header="Logout" Command="{Binding LogoutCommand}"></MenuItem>
                 </MenuItem>
             </Menu>
         </Grid>

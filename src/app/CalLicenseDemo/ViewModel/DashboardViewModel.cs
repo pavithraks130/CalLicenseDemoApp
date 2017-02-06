@@ -24,22 +24,25 @@ namespace CalLicenseDemo.ViewModel
 
         public DashboardViewModel()
         {
-
+            AccoutSettingsCommand = new RelayCommand(OnAccoutSettingsExecuted);
+            ProfileDetailsCommand = new RelayCommand(OnProfileDetailsExecuted);
+            LogoutCommand = new RelayCommand(OnLogoutExecuted);
         }
 
         private void OnAccoutSettingsExecuted(object parameter)
         {
-
+            NavigateNextPage("AccountDetails", null);
         }
 
         private void OnProfileDetailsExecuted(object parameter)
         {
-
+            NavigateNextPage("Profile", null);
         }
 
         private void OnLogoutExecuted(object parameter)
         {
-
+            Common.SingletonLicense.Instance.User = null;
+            NavigateNextPage("Login", null);
         }
     }
 }
