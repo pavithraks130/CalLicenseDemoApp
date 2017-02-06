@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using CalLicenseDemo.DatabaseContext;
 using CalLicenseDemo.Model;
 
 namespace CalLicenseDemo.Common
@@ -7,6 +8,8 @@ namespace CalLicenseDemo.Common
     {
         private static SingletonLicense _instance;
         public List<Feature> FeatureList { get; set; }
+
+        public LicenseAppDBContext Context { get; set; }
 
         public User User { get; set; }
 
@@ -20,7 +23,10 @@ namespace CalLicenseDemo.Common
         public SingletonLicense()
         {
             FeatureList = new List<Feature>();
+            Context = new LicenseAppDBContext();
         }
+
+        public UserLicenseJsonData LicenseData { get; set; }
 
         public bool IsUserLoggedIn { get; set; }
     }

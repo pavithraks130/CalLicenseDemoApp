@@ -1,4 +1,5 @@
-﻿using CalLicenseDemo.ViewModel;
+﻿using System.Collections.Generic;
+using CalLicenseDemo.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 
