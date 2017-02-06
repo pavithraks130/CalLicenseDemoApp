@@ -25,9 +25,7 @@ namespace CalLicenseDemo.Views
             if (licenseType == "Paid")
                 this.NavigationService.Navigate(new SubscriptonScreen());
             else
-            {
-                
-            }
+                this.NavigationService.Navigate(new LoginUser());
         }
     }
 }
