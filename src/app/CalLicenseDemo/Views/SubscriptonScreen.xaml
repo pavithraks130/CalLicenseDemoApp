@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:CalLicenseDemo"
+             xmlns:converter="clr-namespace:CalLicenseDemo.Common"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <Page.Resources>
@@ -11,12 +12,14 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,../Styles/DefaultStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <converter:StringToListConverter x:Key="StringToListConverter" ></converter:StringToListConverter>
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <TextBlock Text="Subscription Type" Style="{StaticResource TextBlockHeaderTextStyle}" />
-            <ListView FlowDirection="LeftToRight" x:Name="lvFeatureList" ItemsSource="{Binding SubscriptionList}" Background="Black" Margin="20" Width="Auto">
+        <DockPanel>
+            <TextBlock DockPanel.Dock="Top" Text="Subscription Type" Style="{StaticResource TextBlockHeaderTextStyle}" />
+            <ListView FlowDirection="LeftToRight" x:Name="lvFeatureList" Focusable="False"  ItemsSource="{Binding SubscriptionList}" Background="Black" Margin="20" Width="Auto">
+               
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" FlowDirection="LeftToRight"></WrapPanel>
@@ -43,7 +46,7 @@
                                    Grid.Row="1" Grid.Column="1" Margin="10" />
                             <TextBlock Text="Features" Grid.Row="2" Style="{StaticResource DefaultTextBlockStyle}"
                                    Grid.Column="0" Margin="10"/>
-                            <TextBlock Text="{Binding Description}" Style="{StaticResource DefaultTextBlockStyle}"
+                            <TextBlock Text="{Binding FeatureList,Converter= {StaticResource StringToListConverter}}" Style="{StaticResource DefaultTextBlockStyle}"
                                    Grid.Row="2" Grid.Column="1" Margin="10"/>
                             <TextBlock Text="Price" Grid.Row="3" Style="{StaticResource DefaultTextBlockStyle}"
                                    Grid.Column="0" Margin="10" />
@@ -54,9 +57,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button x:Name="buttonPayment" Content="MakePayment" Style="{StaticResource DefaultButtonStyle}" Click="buttonPayment_Click"/>
-        </StackPanel>
-        <Popup x:Name="paymentOption" Placement="Center">
+        </DockPanel>
+        <!--<Popup x:Name="paymentOption" Placement="Center">
             <local:PaymentOption />
         </Popup>
     </Grid>

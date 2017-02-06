@@ -23,14 +23,7 @@ namespace CalLicenseDemo.Model
         public bool IsExpired { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime ActivationDate { get; set; }
-        public int UserId { get; set; }
-
-        [ForeignKey("UserId")]
         public virtual User User { get; set; }
-
-        public int LicenseId { get; set; }
-
-        [ForeignKey("LicenseId")]
         public virtual License License { get; set; }
     }
 }

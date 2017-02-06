@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using CalLicenseDemo.Logic;
@@ -69,15 +70,16 @@ namespace CalLicenseDemo.ViewModel
             }
             var logic = new LoginLogic();
             IsEnableLogin = false;
-            var status = logic.ValidateUser(Email, Password);
+            var status = logic.AuthenticateUser(Email, Password);
 
             if (status)
             {
-                if (NavigateNextPage != null)
-                    NavigateNextPage(null,null);
-                //logic.GetFeatureList();
-                //if (SingletonLicense.Instance.FeatureList.Count == 0)
-                //    MessageBox.Show("Please Subscribe for License , all the current licenses are expired!");
+                SingletonLicense.Instance.IsUserLoggedIn = true;
+                logic.GetFeatureList();
+                var redirectPage = new Dictionary<string, string>();
+                if (SingletonLicense.Instance.FeatureList != null)
+                    redirectPage.Add("page", "Subscription");
+                NavigateNextPage?.Invoke(null, redirectPage);
             }
             else
             {

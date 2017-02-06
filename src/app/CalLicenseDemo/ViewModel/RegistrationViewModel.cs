@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using CalLicenseDemo.Common;
 using CalLicenseDemo.Logic;
 using CalLicenseDemo.Model;
 using CalLicenseDemo.Views;
@@ -11,7 +14,7 @@ namespace CalLicenseDemo.Common
 {
     internal class RegistrationViewModel : BaseEntity
     {
-        private readonly User user;
+        private readonly RegistrationModel user;
         public string FName
         {
             get { return user.FName; }
@@ -54,10 +57,10 @@ namespace CalLicenseDemo.Common
 
         public string Organization
         {
-            get { return user.Organization.Name; }
+            get { return user.OrganizationName; }
             set
             {
-                user.Organization.Name = value;
+                user.OrganizationName = value;
                 OnPropertyChanged("Organization");
             }
         }
@@ -70,7 +73,7 @@ namespace CalLicenseDemo.Common
 
         public RegistrationViewModel(NavigationService service)
         {
-            user = new User();
+            user = new RegistrationModel();
             Service = service;
             RegisterCommand = new RelayCommand(RegisterNewUser);
         }
@@ -82,11 +85,29 @@ namespace CalLicenseDemo.Common
                 MessageBox.Show("Please enter valid email address", "Warning");
                 return;
             }
-            var logic = new LicenseLogic { User = user };
-            var status = logic.CreateUserInfo();
-            if (NavigateNextPage != null)
-                NavigateNextPage(null,null);
-            //Service.Navigate(new SubscriptonScreen());
+            var userLogic = new LoginLogic();
+            //Validate Email
+            var status = userLogic.ValidateEmail(user.Email);
+
+            if (status)
+            {
+                userLogic.CreateUserInfo(user);
+                string licenseType = param.ToString();
+                if (licenseType == "Trial")
+                {
+                    var logic = new LicenseLogic();
+                    SingletonLicense.Instance.SelectedSubscription = logic.GetTrialLicense();
+                    logic.ActivateSubscription();
+                }
+                var dict = new Dictionary<string, string>();
+                dict.Add("licenseType", licenseType);
+                if (NavigateNextPage != null)
+                    NavigateNextPage(null, dict);
+            }
+            else
+            {
+                MessageBox.Show("Email Address already Exist");
+            }
         }
     }
 }

@@ -34,16 +34,11 @@ namespace CalLicenseDemo.ViewModel
         {
             int id = Convert.ToInt32(param);
             LicenseType typeObj = SubscriptionList.FirstOrDefault(l => l.TypeId == id);
-            if (typeObj.TypeName.ToLower() == "free")
-            {
-
-            }
-            else
-            {
-                SingletonLicense.Instance.SelectedSubscription = typeObj;
-                if (NavigateNextPage != null)
-                    NavigateNextPage(null,null);
-            }
+            //LicenseLogic logic = new LicenseLogic();
+            SingletonLicense.Instance.SelectedSubscription = typeObj;
+            //logic.ActivateSubscription();
+            if (NavigateNextPage != null)
+                NavigateNextPage(null, null);
         }
     }
 }

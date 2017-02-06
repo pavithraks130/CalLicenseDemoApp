@@ -10,11 +10,18 @@ namespace CalLicenseDemo.Common
 
         public User User { get; set; }
 
-        public  LicenseType SelectedSubscription { get; set; }
+        public LicenseType SelectedSubscription { get; set; }
 
         public static SingletonLicense Instance
         {
             get { return _instance ?? (_instance = new SingletonLicense()); }
         }
+
+        public SingletonLicense()
+        {
+            FeatureList = new List<Feature>();
+        }
+
+        public bool IsUserLoggedIn { get; set; }
     }
 }

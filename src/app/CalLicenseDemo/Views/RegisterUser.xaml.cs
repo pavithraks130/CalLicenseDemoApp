@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using System.Collections.Generic;
 using CalLicenseDemo.Common;
 
@@ -13,9 +14,18 @@ namespace CalLicenseDemo.Views
         {
             InitializeComponent();
             var viewmodel = new RegistrationViewModel(NavigationService);
-            viewmodel.NavigateNextPage += delegate(string screenName,Dictionary<string,string> additionalInfo){ this.NavigationService.Navigate(new SubscriptonScreen()); };
+            viewmodel.NavigateNextPage += NavigateNextPage;
             DataContext = viewmodel;
         }
 
+        private void NavigateNextPage(string screenName, Dictionary<string, string> additionalInfo)
+        {
+            string licenseType = String.Empty;
+            additionalInfo.TryGetValue("licenseType", out licenseType);
+            if (licenseType == "Paid")
+                this.NavigationService.Navigate(new SubscriptonScreen());
+            else
+                this.NavigationService.Navigate(new LoginUser());
+        }
     }
 }
