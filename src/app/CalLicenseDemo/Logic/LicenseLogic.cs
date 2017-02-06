@@ -13,47 +13,22 @@ using Newtonsoft.Json;
 
 namespace CalLicenseDemo.Logic
 {
-    internal class LicenseLogic : IDisposable
+    internal class LicenseLogic 
     {
-        private readonly LicenseAppDBContext _dbContext;
-
         public LicenseLogic()
         {
-            _dbContext = new LicenseAppDBContext();
+
         }
 
         public string ErrorMessage { get; set; }
-
-        public void Dispose()
-        {
-            _dbContext.Dispose();
-        }
 
         public void ActivateSubscription()
         {
             //code for creating the licensekey and mapping with user and updating on the server.
             string liceseKey = GenerateLicense();
-
             UserLicenseJsonData licenseDetails;
             var licType = SingletonLicense.Instance.SelectedSubscription;
-            var folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "CalibrationLicense");
-
-            //Checking the directory in app data. the License file will be saved in the appdata folder
-            if (!Directory.Exists(folderPath))
-                Directory.CreateDirectory(folderPath);
-
-            //checking the license file for adding the new license records to the file.
-            if (File.Exists(Path.Combine(folderPath, "LicenseData.txt")))
-            {
-                var deserializeData = File.ReadAllBytes(Path.Combine(folderPath, "LicenseData.txt"));
-                var data = Encoding.ASCII.GetString(deserializeData);
-                licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(data);
-            }
-            else
-            {
-                licenseDetails = new UserLicenseJsonData();
-            }
+            licenseDetails = SingletonLicense.Instance.LicenseData ?? new UserLicenseJsonData();
 
             //adding the new license record to the list
             var detail = new LicenseDetails();
@@ -62,16 +37,9 @@ namespace CalLicenseDemo.Logic
             detail.ActivationDate = DateTime.Now;
             detail.ExpireDate = detail.ActivationDate.AddDays(licType.ActiveDuration);
             licenseDetails.LicenseList.Add(detail);
-
-            //Saving the license file
-            var datalicence = JsonConvert.SerializeObject(licenseDetails);
-            byte[] serializedata = Encoding.ASCII.GetBytes(datalicence);
-            var serializerdatastring = System.Text.Encoding.UTF8.GetString(serializedata, 0, serializedata.Length);
-            var bw = new BinaryWriter(File.Open(Path.Combine(folderPath, "LicenseData.txt"), FileMode.OpenOrCreate));
-            bw.Write(serializedata.ToArray());
-            bw.Dispose();
-
             SingletonLicense.Instance.SelectedSubscription = null;
+            var datalicence = JsonConvert.SerializeObject(licenseDetails);
+            common.SaveDatatoFile(datalicence, "LicenseData.txt");
         }
 
         public string GenerateLicense()
@@ -79,11 +47,11 @@ namespace CalLicenseDemo.Logic
             bool status;
             var userUniqueId = UniqueuserIdentifier();
             var licenseKey = string.Empty;
-            if (SingletonLicense.Instance.SelectedSubscription.TypeName.ToLower() == "trial")
+            if (SingletonLicense.Instance.SelectedSubscription.TypeName.ToLower() != "trial")
                 while (string.IsNullOrEmpty(licenseKey))
                 {
                     var key = GetlicenseKey();
-                    if (!_dbContext.License.ToList().Any(l => l.LicenseKey == key))
+                    if (!SingletonLicense.Instance.Context.License.ToList().Any(l => l.LicenseKey == key))
                         licenseKey = key;
                 }
             else
@@ -122,11 +90,10 @@ namespace CalLicenseDemo.Logic
 
             try
             {
-                lic = _dbContext.License.Add(lic);
-                _dbContext.SaveChanges();
+                lic = SingletonLicense.Instance.Context.License.Add(lic);
                 userLic.License = lic;
-                _dbContext.UserLicense.Add(userLic);
-                _dbContext.SaveChanges();
+                SingletonLicense.Instance.Context.UserLicense.Add(userLic);
+                SingletonLicense.Instance.Context.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -147,14 +114,9 @@ namespace CalLicenseDemo.Logic
             var moc = mos.Get();
             foreach (ManagementObject mo in moc)
                 motherBoard = (string)mo["SerialNumber"];
-
-            var drive = "C";
-            var dsk = new ManagementObject(@"win32_logicaldisk.deviceid=""" + drive + @":""");
-            dsk.Get();
-            volumeSerial = dsk["VolumeSerialNumber"].ToString();
             try
             {
-                var _id = string.Concat("LicenceModule", processId, motherBoard, volumeSerial);
+                var _id = string.Concat("LicenceModule", processId, motherBoard);
                 var _byteIds = Encoding.UTF8.GetBytes(_id);
 
                 //Use MD5 to get the fixed length checksum of the ID string
@@ -178,12 +140,12 @@ namespace CalLicenseDemo.Logic
 
         public List<LicenseType> GetSubscriptionDetails()
         {
-            return _dbContext.LicenseType.ToList().FindAll(l => l.TypeName.ToLower() != "trial");
+            return SingletonLicense.Instance.Context.LicenseType.ToList().FindAll(l => l.TypeName.ToLower() != "trial");
         }
 
         public LicenseType GetTrialLicense()
         {
-            return _dbContext.LicenseType.FirstOrDefault(l => l.TypeName.ToLower() == "trial");
+            return SingletonLicense.Instance.Context.LicenseType.FirstOrDefault(l => l.TypeName.ToLower() == "trial");
         }
     }
 }

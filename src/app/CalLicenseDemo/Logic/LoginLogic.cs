@@ -13,44 +13,53 @@ namespace CalLicenseDemo.Logic
 {
     public class LoginLogic : IDisposable
     {
-        private readonly LicenseAppDBContext _dbContext;
+        private readonly string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+               "CalibrationLicense");
 
+        private readonly string tempFolderPath = Path.Combine(Path.GetTempPath(),
+                "CalibrationLicense");
         public string ErrorMessage { get; set; }
 
         public LoginLogic()
         {
-            _dbContext = new LicenseAppDBContext();
+            SingletonLicense.Instance.Context = new LicenseAppDBContext();
         }
 
         public void Dispose()
         {
-            _dbContext.Dispose();
+            SingletonLicense.Instance.Context.Dispose();
         }
 
         //Validate Email address return true if email does not exist and false if email Exist
         public bool ValidateEmail(string email)
         {
-            if (_dbContext.User.ToList().Count == 0)
+            if (SingletonLicense.Instance.Context.User.ToList().Count == 0)
                 return true;
-            return !(_dbContext.User.Any(u => u.Email.ToLower() == email.ToLower()));
+            return !(SingletonLicense.Instance.Context.User.Any(u => u.Email.ToLower() == email.ToLower()));
         }
 
         public bool AuthenticateUser(string userName, string password)
         {
             var encryptedPassword = password;
-            var status = _dbContext.User.ToList().Any(u => u.Email.ToLower() == userName.ToLower());
+            var status = SingletonLicense.Instance.Context.User.ToList().Any(u => u.Email.ToLower() == userName.ToLower());
             User user = null;
             if (status)
             {
                 user =
-                    _dbContext.User.ToList()
+                    SingletonLicense.Instance.Context.User.ToList()
                         .FirstOrDefault(u => u.Email.ToLower() == userName.ToLower());
 
                 if (user != null)
                 {
                     string hashPasword = CreatePasswordhash(password, user.ThumbPrint);
                     if (hashPasword == user.PasswordHash)
+                    {
                         SingletonLicense.Instance.User = user;
+                        var jsonData = JsonConvert.SerializeObject(user);
+                        if (!common.IsFileExist("credential.txt"))
+                            common.SaveDatatoFile(jsonData, "credential.txt");
+                        return true;
+                    }
                     else
                         ErrorMessage = "Invalid Password";
                 }
@@ -58,10 +67,8 @@ namespace CalLicenseDemo.Logic
                     ErrorMessage = "Specified Credentials are invalid";
             }
             else
-            {
                 ErrorMessage = "Specified Email is not registered";
-            }
-            return user != null;
+            return false;
         }
 
         /// <summary>
@@ -70,34 +77,25 @@ namespace CalLicenseDemo.Logic
 
         public void GetFeatureList()
         {
-            var folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "CalibrationLicense");
-            UserLicenseJsonData licenseDetails;
-            //Checking the directory in app data. the License file will be saved in the appdata folder
-            if (!Directory.Exists(folderPath))
-                Directory.CreateDirectory(folderPath);
+            String jsonData = common.GetJsonDataFromFile("LicenseData.txt");
+            if (String.IsNullOrEmpty(jsonData)) return;
+            var licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(jsonData);
+            var validLienseList = licenseDetails;
+            foreach (var ld in licenseDetails.LicenseList)
+                if (ld.ExpireDate.Date > DateTime.Today.Date)
+                    SingletonLicense.Instance.FeatureList.AddRange(ld.Type.FeatureList.ToList());
+                else
+                    //Code is used to remove the Subscription which is expired
+                    validLienseList.LicenseList.Remove(ld);
 
-            //checking the license file for adding the new license records to the file.
-            if (File.Exists(Path.Combine(folderPath, "LicenseData.txt")))
-            {
-                var deserializeData = File.ReadAllBytes(Path.Combine(folderPath, "LicenseData.txt"));
-                var data = Encoding.ASCII.GetString(deserializeData);
-                licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(data);
-                var validLienseList = licenseDetails;
-                foreach (var ld in licenseDetails.LicenseList)
-                    if (ld.ExpireDate.Date > DateTime.Today.Date)
-                        SingletonLicense.Instance.FeatureList.AddRange(ld.Type.FeatureList.ToList());
-                    else
-                        //Code is used to remove the Subscription which is expired
-                        validLienseList.LicenseList.Remove(ld);
-            }
+            SingletonLicense.Instance.LicenseData = validLienseList;
         }
 
         public bool CreateUserInfo(RegistrationModel registrationModel)
         {
             try
             {
-                if (_dbContext.User.ToList().Any(u => u.Email == registrationModel.Email))
+                if (SingletonLicense.Instance.Context.User.ToList().Any(u => u.Email == registrationModel.Email))
                 {
                     ErrorMessage = "Email id is lready registered";
                     return false;
@@ -108,7 +106,7 @@ namespace CalLicenseDemo.Logic
                 user.Email = registrationModel.Email;
 
                 Team _team =
-                    _dbContext.Team.ToList()
+                    SingletonLicense.Instance.Context.Team.ToList()
                         .FirstOrDefault(
                             t => t.Name.ToLower() == registrationModel.OrganizationName.ToLower());
                 if (_team != null)
@@ -116,14 +114,14 @@ namespace CalLicenseDemo.Logic
                 else
                 {
                     _team = new Team() { Name = registrationModel.OrganizationName };
-                    _team = _dbContext.Team.Add(_team);
+                    _team = SingletonLicense.Instance.Context.Team.Add(_team);
                     user.Organization = _team;
                 }
                 string thumbPrint = string.Empty;
                 user.PasswordHash = HashPassword(registrationModel.Password, out thumbPrint);
                 user.ThumbPrint = thumbPrint;
-                user = _dbContext.User.Add(user);
-                _dbContext.SaveChanges();
+                user = SingletonLicense.Instance.Context.User.Add(user);
+                SingletonLicense.Instance.Context.SaveChanges();
                 SingletonLicense.Instance.User = user;
             }
             catch (Exception)
@@ -175,5 +173,30 @@ namespace CalLicenseDemo.Logic
 
             return new String(chars);
         }
+
+        public bool AuthenticateUserOffline(string email, string password)
+        {
+            if (!common.IsFileExist("credential.txt"))
+            {
+                ErrorMessage = "Network is not available for authentication";
+                return false;
+            }
+
+            string jsonData = common.GetJsonDataFromFile("credential.txt");
+            User user = JsonConvert.DeserializeObject<User>(jsonData);
+            string hashPasword = string.Empty;
+            if (user.Email.ToLower() == email)
+            {
+                hashPasword = CreatePasswordhash(password, user.ThumbPrint);
+                if(hashPasword == user.PasswordHash)
+                    SingletonLicense.Instance.User = user;
+                return true;
+            }
+            else
+                ErrorMessage = "Invalid Email";
+            return false;
+        }
+
+
     }
 }

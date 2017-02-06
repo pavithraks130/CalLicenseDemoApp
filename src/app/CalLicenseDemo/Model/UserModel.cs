@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.IO.Packaging;
+using Newtonsoft.Json;
 
 namespace CalLicenseDemo.Model
 {
@@ -27,6 +28,7 @@ namespace CalLicenseDemo.Model
         public string PasswordHash { get; set; }
         public string ThumbPrint { get; set; }
         public virtual Team Organization { get; set; }
+        [JsonIgnore]
         public virtual List<UserLicense> Licenses { get; set; }
     }
 
