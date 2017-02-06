@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using CalLicenseDemo.ViewModel;
+﻿using CalLicenseDemo.ViewModel;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
