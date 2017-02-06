@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using CalLicenseDemo.Logic;
 using System.Text.RegularExpressions;
+using CalLicenseDemo.Common;
 
 namespace CalLicenseDemo.ViewModel
 {
