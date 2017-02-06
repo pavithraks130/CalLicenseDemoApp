@@ -1,5 +1,6 @@
 ﻿using CalLicenseDemo.Common;
 using CalLicenseDemo.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -11,6 +12,9 @@ namespace CalLicenseDemo.ViewModel
         private readonly CardDetails cardDetails;
         private ObservableCollection<short> _cardValidityYear = new ObservableCollection<short>();
         private ObservableCollection<string> _cardValidityMonth = new ObservableCollection<string>();
+        private string currentDate;
+        private string expDate;
+
         public string CardName
         {
             get
@@ -89,10 +93,40 @@ namespace CalLicenseDemo.ViewModel
         }
 
         public RelayCommand PurchaseCommand { get; private set; }
+        
+        public string CurrentDate
+        {
+            get
+            {
+                return currentDate;
+            }
+
+            set
+            {
+                currentDate = value;
+            }
+        }
+
+        public string ExpDate
+        {
+            get
+            {
+                return expDate;
+            }
+
+            set
+            {
+                expDate = value;
+            }
+        }
 
         public CreditAndDebitCardDetailsViewModel()
         {
             cardDetails = new CardDetails();
+            currentDate = "License Issued Date - " +DateTime.Now.ToString("M/d/yyyy");
+            DateTime theDate = DateTime.Now;
+            DateTime yearInTheFuture = theDate.AddYears(1);
+            expDate = "License Expiry Date - " + yearInTheFuture;
             LoadListOfYears();
             LoadListOfMonths();
             PurchaseCommand = new RelayCommand(OnPurchase);

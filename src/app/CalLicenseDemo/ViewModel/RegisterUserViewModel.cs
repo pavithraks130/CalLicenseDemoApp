@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
-using CalLicenseDemo.Common;
 using CalLicenseDemo.Logic;
 using CalLicenseDemo.Model;
-using CalLicenseDemo.Views;
-using System.Windows;
 using CalLicenseDemo.ViewModel;
 
 namespace CalLicenseDemo.Common
 {
-    internal class RegistrationViewModel : BaseEntity
+    internal class RegisterUserViewModel : BaseEntity
     {
         private readonly RegistrationModel user;
         public string FName
@@ -71,7 +67,7 @@ namespace CalLicenseDemo.Common
         public NavigationService Service { get; set; }
 
 
-        public RegistrationViewModel(NavigationService service)
+        public RegisterUserViewModel(NavigationService service)
         {
             user = new RegistrationModel();
             Service = service;
@@ -80,11 +76,11 @@ namespace CalLicenseDemo.Common
 
         private void RegisterNewUser(object param)
         {
-            if (Email == null || Email == "" || !DataValidations.IsValidEmailId(Email))
-            {
-                MessageBox.Show("Please enter valid email address", "Warning");
-                return;
-            }
+            //if (Email == null || Email == "" || !DataValidations.IsValidEmailId(Email))
+            //{
+            //    MessageBox.Show("Please enter valid email address", "Warning");
+            //    return;
+            //}
             var userLogic = new LoginLogic();
             //Validate Email
             var status = userLogic.ValidateEmail(user.Email);
