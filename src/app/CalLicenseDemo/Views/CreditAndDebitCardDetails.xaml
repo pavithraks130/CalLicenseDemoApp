@@ -34,15 +34,15 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label x:Name="label" Content="16 digit card number" FontWeight="Bold"  Foreground="White" Grid.Row="0"/>
-        <TextBox x:Name="textBox" TextWrapping="Wrap" Text="" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label x:Name="labelCardNumber" Content="16 digit card number" FontWeight="Bold"  Foreground="White" Grid.Row="0"/>
+        <TextBox x:Name="textBoxCardNumber" TextWrapping="Wrap" Text="{Binding CardNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Label x:Name="lblExpiryDate" Content="Expiry Date"  FontWeight="Bold" Foreground="White" Grid.Row="1" Grid.Column="0" />
-        <ComboBox x:Name="ListofMonths" Text="Month"  Grid.Row="1" Grid.Column="1" />
-        <ComboBox x:Name="listOfYears" IsSynchronizedWithCurrentItem="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="1" Grid.Column="2"/>
-        <Label x:Name="lblCVV" Content="CVV"   DockPanel.Dock="Right" FontWeight="Bold" Grid.Row="2" Foreground="White" Grid.Column="0" />
-        <TextBox  x:Name="txtCVV"  Grid.Row="2" Grid.Column="1" />
+        <ComboBox x:Name="listofMonths"  Grid.Row="1" Grid.Column="1" SelectedIndex="0" SelectedItem="{Binding SelectedMonth, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CardValidityMonth, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <ComboBox x:Name="listOfYears" IsSynchronizedWithCurrentItem="True" ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.Row="1" Grid.Column="2" SelectedItem="{Binding SelectedYear, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding CardValidityYear, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label x:Name="lblCVV" Content="CVV"  FontWeight="Bold" Grid.Row="2" Foreground="White" Grid.Column="0" />
+        <TextBox  x:Name="txtCVV"  Grid.Row="2" Grid.Column="1" Text="{Binding CardCVV, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
         <Label Content="Name on the card" FontWeight="Bold"  FontStyle="Oblique" Foreground="White" Grid.Row="3" Grid.Column="0"/>
-        <TextBox Text="Name" Foreground="LightGray" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
-        <Button Style="{StaticResource DefaultButtonStyle}" x:Name="button" Content="PURCHASE" Background="LightBlue" Click="button_Click" Grid.ColumnSpan="3"  Grid.Row="4"  />
+        <TextBox  Foreground="LightGray" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding CardName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <Button Style="{StaticResource DefaultButtonStyle}" x:Name="button" Content="PURCHASE" Background="LightBlue" Command="{Binding PurchaseCommand}" Grid.ColumnSpan="3"  Grid.Row="4"  />
     </Grid>
 </Page>

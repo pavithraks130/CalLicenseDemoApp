@@ -17,5 +17,12 @@ namespace CalLicenseDemo.Views
             viewmodel.NavigateNextPage += (string screenName, Dictionary<string,string> additionalInfo) => { this.NavigationService.Navigate(new CreditAndDebitCardDetails()); };
             DataContext = viewmodel;
         }
+
+        private void buttonPayment_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+            this.NavigationService.Navigate(new CreditAndDebitCardDetails());
+            // paymentOption.IsOpen = true;
+        }
     }
 }

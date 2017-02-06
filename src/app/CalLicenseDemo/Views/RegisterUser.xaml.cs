@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
-using CalLicenseDemo.ViewModel;
 using System.Collections.Generic;
+using CalLicenseDemo.Common;
 
 namespace CalLicenseDemo.Views
 {

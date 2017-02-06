@@ -4,8 +4,10 @@ using System.Windows.Navigation;
 using CalLicenseDemo.Logic;
 using CalLicenseDemo.Model;
 using CalLicenseDemo.Views;
+using System.Windows;
+using CalLicenseDemo.ViewModel;
 
-namespace CalLicenseDemo.ViewModel
+namespace CalLicenseDemo.Common
 {
     internal class RegistrationViewModel : BaseEntity
     {
@@ -75,6 +77,11 @@ namespace CalLicenseDemo.ViewModel
 
         private void RegisterNewUser(object param)
         {
+            if (Email == null || Email == "" || !DataValidations.IsValidEmailId(Email))
+            {
+                MessageBox.Show("Please enter valid email address", "Warning");
+                return;
+            }
             var logic = new LicenseLogic { User = user };
             var status = logic.CreateUserInfo();
             if (NavigateNextPage != null)

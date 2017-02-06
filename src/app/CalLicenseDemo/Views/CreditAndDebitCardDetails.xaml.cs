@@ -1,4 +1,5 @@
 ﻿using CalLicenseDemo.Logic;
+using CalLicenseDemo.ViewModel;
 using CalLicenseDemo.Views;
 using System;
 using System.Collections.Generic;
@@ -25,18 +26,14 @@ namespace CalLicenseDemo
         public CreditAndDebitCardDetails()
         {
             InitializeComponent();
-            for (int year = 2017; year < 2050; year++)
-                listOfYears.Items.Add(year);
-            ListofMonths.Items.Add("Select Month");
-            for (int month = 1; month <= 12; month++)
-            {
-                ListofMonths.Items.Add(+month);
-            }
-
+            var viewModel = new CreditAndDebitCardDetailsViewModel();
+            DataContext = viewModel;
+            viewModel.NavigateNextPage += OnNavigateNextPage;
         }
-        private void button_Click(object sender, RoutedEventArgs e)
+
+        private void OnNavigateNextPage(string screenName, Dictionary<string,string> additionalInfo)
         {
-           this.NavigationService.Navigate(new RedirectToAmountPaymentPage());
+            this.NavigationService.Navigate(new RedirectToAmountPaymentPage());
         }
 
     }

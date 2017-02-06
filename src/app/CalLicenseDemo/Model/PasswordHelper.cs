@@ -1,28 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace CalLicenseDemo.Model
 {
-   public class PasswordHelper
+    public class PasswordHelper
     {
-        public static readonly DependencyProperty PasswordProperty =
-       DependencyProperty.RegisterAttached("Password",
-       typeof(string), typeof(PasswordHelper),
-       new FrameworkPropertyMetadata(string.Empty, OnPasswordPropertyChanged));
+        public static readonly DependencyProperty PasswordProperty = DependencyProperty.RegisterAttached("Password",
+                                                                     typeof(string), typeof(PasswordHelper),
+                                                                     new FrameworkPropertyMetadata(string.Empty, OnPasswordPropertyChanged));
 
-        public static readonly DependencyProperty AttachProperty =
-            DependencyProperty.RegisterAttached("Attach",
-            typeof(bool), typeof(PasswordHelper), new PropertyMetadata(false, Attach));
+        public static readonly DependencyProperty AttachProperty = DependencyProperty.RegisterAttached("Attach",
+                                                                   typeof(bool), typeof(PasswordHelper), new PropertyMetadata(false, Attach));
 
-        private static readonly DependencyProperty IsUpdatingProperty =
-           DependencyProperty.RegisterAttached("IsUpdating", typeof(bool),
-           typeof(PasswordHelper));
-
+        private static readonly DependencyProperty IsUpdatingProperty = DependencyProperty.RegisterAttached("IsUpdating",
+                                                                        typeof(bool),typeof(PasswordHelper));
 
         public static void SetAttach(DependencyObject dp, bool value)
         {
@@ -54,8 +45,7 @@ namespace CalLicenseDemo.Model
             dp.SetValue(IsUpdatingProperty, value);
         }
 
-        private static void OnPasswordPropertyChanged(DependencyObject sender,
-            DependencyPropertyChangedEventArgs e)
+        private static void OnPasswordPropertyChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             PasswordBox passwordBox = sender as PasswordBox;
             passwordBox.PasswordChanged -= PasswordChanged;

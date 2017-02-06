@@ -54,9 +54,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button x:Name="buttonPayment" Content="MakePayment" Style="{StaticResource DefaultButtonStyle}" Click="buttonPayment_Click"/>
         </StackPanel>
-        <!--<Popup x:Name="paymentOption" Placement="Center">
+        <Popup x:Name="paymentOption" Placement="Center">
             <local:PaymentOption />
-        </Popup>-->
+        </Popup>
     </Grid>
 </Page>

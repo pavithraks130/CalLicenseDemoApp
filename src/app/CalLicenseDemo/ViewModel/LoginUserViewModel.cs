@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
-using CalLicenseDemo.Common;
 using CalLicenseDemo.Logic;
-using CalLicenseDemo.Views;
 using System.Text.RegularExpressions;
 
 namespace CalLicenseDemo.ViewModel
@@ -59,7 +57,7 @@ namespace CalLicenseDemo.ViewModel
 
         public void LoginUser(object param)
         {
-            if (Email == null || Email == "" || !IsVlaiEmail())
+            if (Email == null || Email == "" || !DataValidations.IsValidEmailId(Email))
             {
                 MessageBox.Show("Please enter valid email address", "Warning");
                 return;
@@ -89,15 +87,6 @@ namespace CalLicenseDemo.ViewModel
             IsEnableLogin = true;
         }
 
-        private bool IsVlaiEmail()
-        {
-            Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-            Match match = regex.Match(Email);
-            if (match.Success)
-            {
-                return true;
-            }
-            return false;
-        }
+       
     }
 }

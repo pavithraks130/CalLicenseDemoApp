@@ -88,6 +88,8 @@
     <Compile Include="Migrations\201702031041529_ImageColumnInLicenseType.Designer.cs">
       <DependentUpon>201702031041529_ImageColumnInLicenseType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\CardDetails.cs" />
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Model\Feature.cs" />
     <Compile Include="Model\License.cs" />
     <Compile Include="Model\PasswordHelper.cs" />
@@ -96,14 +98,12 @@
     <Compile Include="ViewModel\LoginUserViewModel.cs" />
     <Compile Include="ViewModel\RedirectToAmountPaymentPageViewModel.cs" />
     <Compile Include="ViewModel\SubscriptionViewModel.cs" />
+    <Compile Include="ViewModel\CreditAndDebitCardDetailsViewModel.cs" />
     <Compile Include="Views\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginUser.xaml.cs">
       <DependentUpon>LoginUser.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MetCalModuleA.xaml.cs">
-      <DependentUpon>MetCalModuleA.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PaymentContainerWindow.xaml.cs">
       <DependentUpon>PaymentContainerWindow.xaml</DependentUpon>
@@ -155,10 +155,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginUser.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MetCalModuleA.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
