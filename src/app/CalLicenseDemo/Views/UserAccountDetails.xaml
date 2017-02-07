@@ -40,10 +40,10 @@
         <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" Foreground="White" Text="Email:"></TextBlock>
         <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Foreground="White" Text="Organization:"></TextBlock>
 
-        <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Foreground="White" Text="{Binding FirstName}"></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Foreground="White" Text="{Binding LastName}"></TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Foreground="White" Text="{Binding Email}"></TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" Foreground="White" Text="{Binding Organization}"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Foreground="White" Text="{Binding FirstName}"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Foreground="White" Text="{Binding LastName}"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" Foreground="White" Text="{Binding Email}"></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" Foreground="White" Text="{Binding Organization}"></TextBlock>
         <Button Content="Back" Grid.Row="9" Grid.Column="4" Margin="2" Command="{Binding HomeCommand}" Style="{StaticResource DefaultButtonStyle}"></Button>
     </Grid>
 </Page>

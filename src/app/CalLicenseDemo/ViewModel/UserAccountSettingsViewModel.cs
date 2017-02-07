@@ -9,7 +9,39 @@ namespace CalLicenseDemo.ViewModel
 {
     class UserAccountSettingsViewModel : BaseEntity
     {
-       public ICommand HomeCommand { get; set; }
+        public string ActivationDate
+        {
+            get
+            {
+                return Common.SingletonLicense.Instance.LicenseData.LicenseList[0].ActivationDate.ToShortDateString();
+            }
+        }
+
+        public string ExpiryDate
+        {
+            get
+            {
+                return Common.SingletonLicense.Instance.LicenseData.LicenseList[0].ExpireDate.ToShortDateString();
+            }
+        }
+
+        public string DaysLeft
+        {
+            get
+            {
+                return (Common.SingletonLicense.Instance.LicenseData.LicenseList[0].ExpireDate.Date - DateTime.Today).TotalDays.ToString();
+            }
+        }
+
+        public string LoggedInUser
+        {
+            get
+            {
+                return "This Product is licensed to " + (Common.SingletonLicense.Instance.User.FName + " " + Common.SingletonLicense.Instance.User.LName);
+            }
+        }
+
+        public ICommand HomeCommand { get; set; }
 
         public UserAccountSettingsViewModel()
         {
