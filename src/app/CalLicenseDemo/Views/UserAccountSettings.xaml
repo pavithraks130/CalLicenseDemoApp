@@ -18,20 +18,31 @@
 
     <Grid Margin="20" Background="Black">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="0.25*"></RowDefinition>
             <RowDefinition Height="0.15*"></RowDefinition>
-            <RowDefinition Height="0.15*"></RowDefinition>
-            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
             <RowDefinition Height="0.1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.1*"></ColumnDefinition>
+            <ColumnDefinition Width="0.6*"></ColumnDefinition>
             <ColumnDefinition Width="0.4*"></ColumnDefinition>
-            <ColumnDefinition Width="0.4*"></ColumnDefinition>
-            <ColumnDefinition Width="0.3*"></ColumnDefinition>
+            <ColumnDefinition Width="0.1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="pack://application:,,,/Resources/LoginTitle.png"></Image>
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" Text="Account Settings" Foreground="White"></TextBlock>
-        <Button Content="Back" Grid.Row="4" Grid.Column="4" Margin="2" Command="{Binding HomeCommand}" Style="{StaticResource DefaultButtonStyle}"></Button>
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" Foreground="White" Text="Account Settings"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" Foreground="White" Text="{Binding LoggedInUser}"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Foreground="White" Text="License expires in (days):"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" Foreground="White" Text="Activation Date:"></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Foreground="White" Text="Expiry Date:"></TextBlock>
+
+        <TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Foreground="White" Text="{Binding DaysLeft}"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" Foreground="White" Text="{Binding ActivationDate}"></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" Foreground="White" Text="{Binding ExpiryDate}"></TextBlock>
+        <Button Content="Back" Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Margin="2" Command="{Binding HomeCommand}" Style="{StaticResource DefaultButtonStyle}"></Button>
     </Grid>
 </Page>
