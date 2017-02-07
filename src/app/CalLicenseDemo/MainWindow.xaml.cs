@@ -14,7 +14,12 @@ namespace CalLicenseDemo
         public MainWindow()
         {
             InitializeComponent();
+            this.NavigationService.Navigated += NavigationService_Navigated;
         }
 
+        private void NavigationService_Navigated(object sender, NavigationEventArgs e)
+        {
+           this.RemoveBackEntry();
+        }
     }
 }
