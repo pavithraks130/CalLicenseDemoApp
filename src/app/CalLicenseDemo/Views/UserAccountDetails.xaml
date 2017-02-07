@@ -18,10 +18,13 @@
 
     <Grid Margin="20" Background="Black">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.4*"></RowDefinition>
+            <RowDefinition Height="0.25*"></RowDefinition>
             <RowDefinition Height="0.15*"></RowDefinition>
-            <RowDefinition Height="0.15*"></RowDefinition>
-            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
+            <RowDefinition Height="0.1*"></RowDefinition>
             <RowDefinition Height="0.1*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -32,6 +35,15 @@
         </Grid.ColumnDefinitions>
         <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="pack://application:,,,/Resources/LoginTitle.png"></Image>
         <TextBlock Grid.Row="1" Grid.ColumnSpan="4" HorizontalAlignment="Center" Foreground="White" Text="Profile"></TextBlock>
-        <Button Content="Back" Grid.Row="4" Grid.Column="4" Margin="2" Command="{Binding HomeCommand}" Style="{StaticResource DefaultButtonStyle}"></Button>
+        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Foreground="White" Text="First Name:"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Foreground="White" Text="Last Name:"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Right" Foreground="White" Text="Email:"></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Foreground="White" Text="Organization:"></TextBlock>
+
+        <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Foreground="White" Text="{Binding FirstName}"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" Foreground="White" Text="{Binding LastName}"></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" Foreground="White" Text="{Binding Email}"></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left" Foreground="White" Text="{Binding Organization}"></TextBlock>
+        <Button Content="Back" Grid.Row="9" Grid.Column="4" Margin="2" Command="{Binding HomeCommand}" Style="{StaticResource DefaultButtonStyle}"></Button>
     </Grid>
 </Page>
