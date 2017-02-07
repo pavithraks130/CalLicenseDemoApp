@@ -37,7 +37,7 @@ namespace CalLicenseDemo.ViewModel
         {
             get
             {
-                return "This Product is licensed to" + (Common.SingletonLicense.Instance.User.FName + " " + Common.SingletonLicense.Instance.User.LName);
+                return "This Product is licensed to " + (Common.SingletonLicense.Instance.User.FName + " " + Common.SingletonLicense.Instance.User.LName);
             }
         }
 

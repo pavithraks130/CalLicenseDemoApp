@@ -3,26 +3,27 @@ using CalLicenseDemo.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace CalLicenseDemo.ViewModel
 {
-    internal class CreditAndDebitCardDetailsViewModel : BaseEntity
+    internal class CreditAndDebitCardDetailsViewModel : BaseEntity, IDataErrorInfo
     {
-       
+        #region Private fields
+
         private readonly CardDetails cardDetails;
         private ObservableCollection<short> _cardValidityYear = new ObservableCollection<short>();
         private ObservableCollection<string> _cardValidityMonth = new ObservableCollection<string>();
+        private string tax;
         private string currentDate;
         private string expDate;
         private string totalCost;
 
-        public string TotalCost
-        {
-            get { return totalCost; }
-            set { totalCost = value; }
+        #endregion Private fields
 
-        }
-
+        /// <summary>
+        /// credit or debit card holder name
+        /// </summary>
         public string CardName
         {
             get
@@ -36,6 +37,25 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        /// <summary>
+        /// credit or debit card CVV number
+        /// </summary>
+        public short CardCVV
+        {
+            get
+            {
+                return cardDetails.CVVNum;
+            }
+            set
+            {
+                cardDetails.CVVNum = value;
+                OnPropertyChanged("CardName");
+            }
+        }
+
+        /// <summary>
+        /// credit or debit card number
+        /// </summary>
         public string CardNumber
         {
             get
@@ -49,6 +69,9 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        /// <summary>
+        /// Month collection
+        /// </summary>
         public ObservableCollection<string> CardValidityMonth
         {
             get
@@ -61,6 +84,10 @@ namespace CalLicenseDemo.ViewModel
                 OnPropertyChanged("CardValidityMonth");
             }
         }
+
+        /// <summary>
+        /// credit or debit card expiry date month 
+        /// </summary>
         public string SelectedMonth
         {
             get
@@ -73,7 +100,10 @@ namespace CalLicenseDemo.ViewModel
                 OnPropertyChanged("SelectedMonth");
             }
         }
-        
+
+        /// <summary>
+        /// Year collection.
+        /// </summary>
         public ObservableCollection<short> CardValidityYear
         {
             get
@@ -87,6 +117,9 @@ namespace CalLicenseDemo.ViewModel
 
         }
 
+        /// <summary>
+        /// credit or debit card expiry date year 
+        /// </summary>
         public short SelectedYear
         {
             get
@@ -100,8 +133,15 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        /// <summary>
+        /// Purchase action
+        /// </summary>
         public RelayCommand PurchaseCommand { get; private set; }
-        
+
+        #region Order Details Summary
+        /// <summary>
+        /// CurrentDate
+        /// </summary>
         public string CurrentDate
         {
             get
@@ -115,6 +155,9 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        /// <summary>
+        /// Expiry Date
+        /// </summary>
         public string ExpDate
         {
             get
@@ -128,39 +171,128 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
-        private string tax;
-
+        /// <summary>
+        /// Tax amount
+        /// </summary>
         public string Tax
         {
             get { return tax; }
             set { tax = value; }
         }
+        /// <summary>
+        /// Total cost of licence
+        /// </summary>
+        public string TotalCost
+        {
+            get { return totalCost; }
+            set { totalCost = value; }
 
+        }
 
+        #endregion Order Details Summary
+
+        #region IDataErrorInfo
+        /// <summary>
+        /// Error data 
+        /// </summary>
+        public string Error
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /// <summary>
+        /// Data validation on user input.
+        /// </summary>
+        /// <param name="columnName">property name</param>
+        /// <returns></returns>
+        public string this[string columnName]
+        {
+            get
+            {
+                if ("CardName" == columnName)
+                {
+                    if (string.IsNullOrEmpty(CardName))
+                    {
+                        return "Name field is empty";
+                    }
+                }
+                if ("CardNumber" == columnName)
+                {
+                    if (string.IsNullOrEmpty(CardNumber))
+                    {
+                        return "Card number field is empty";
+                    }
+                    if (CardNumber.Length != Constants.CARD_NUMBER_LENGTH)
+                    {
+                        return "Invalid card number";
+                    }
+                }
+                if ("SelectedMonth" == columnName)
+                {
+                    if (string.IsNullOrEmpty(SelectedMonth))
+                    {
+                        return "Month field is empty";
+                    }
+                }
+                if ("SelectedYear" == columnName)
+                {
+                    if (string.IsNullOrEmpty(SelectedYear.ToString()))
+                    {
+                        return "Year field is empty";
+                    }
+                }
+                if ("CardCVV" == columnName)
+                {
+                    if (string.IsNullOrEmpty(CardCVV.ToString()))
+                    {
+                        return "CVV field is empty";
+                    }
+                    if (CardCVV.ToString().Length != Constants.CARD_CVV_LENGTH)
+                    {
+                        return "Invalid CVV";
+                    }
+                }
+                return string.Empty;
+            }
+        }
+
+        #endregion IDataErrorInfo
+
+        /// <summary>
+        ///Initialization of CreditAndDebitCardDetailsViewModel
+        /// </summary>
         public CreditAndDebitCardDetailsViewModel()
         {
             cardDetails = new CardDetails();
-            currentDate = "License Issued Date - " +DateTime.Now.ToString("M/d/yyyy");
+            currentDate = "License Issued Date - " + DateTime.Now.ToString("M/d/yyyy");
             DateTime theDate = DateTime.Now;
             DateTime yearInTheFuture = theDate.AddYears(1);
             expDate = "License Expiry Date - " + yearInTheFuture;
-            totalCost = "Total cost - " + SingletonLicense.Instance.SelectedSubscription.Price +"~/";
-            tax = "Tax - " + SingletonLicense.Instance.SelectedSubscription.Price * .05 + "~/";
+            totalCost = "Total cost - " + SingletonLicense.Instance.SelectedSubscription.Price + "/~";
+            tax = "Tax - " + SingletonLicense.Instance.SelectedSubscription.Price * .05 + "/~";
             LoadListOfYears();
             LoadListOfMonths();
             PurchaseCommand = new RelayCommand(OnPurchase);
 
         }
 
+        /// <summary>
+        /// Load month list collection data.
+        /// </summary>
         private void LoadListOfMonths()
         {
-            _cardValidityMonth.Add("Select Month");
             for (short month = Constants.START_MONTH; month <= Constants.END_MONTH; month++)
             {
-                _cardValidityMonth.Add(month.ToString());
+                _cardValidityMonth.Add(Convert.ToString((MonthEnum)month));
             }
         }
 
+        /// <summary>
+        /// Load year list collection data.
+        /// </summary>
         private void LoadListOfYears()
         {
             _cardValidityYear = new ObservableCollection<short>();
@@ -170,14 +302,21 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        /// <summary>
+        /// Performing the licence purchase action.
+        /// </summary>
+        /// <param name="parm"></param>
         private void OnPurchase(object parm)
         {
-            //validate card details
-            //redirect to payment page
-            var kvp = new Dictionary<string, string>();
-            kvp.Add("Amount", "750");
-            NavigateNextPage("PurchasePage", kvp);
+            if (!string.IsNullOrEmpty(CardName) && !string.IsNullOrEmpty(CardNumber) && !string.IsNullOrEmpty(SelectedMonth)
+                && !string.IsNullOrEmpty(SelectedYear.ToString()) && !string.IsNullOrEmpty(CardCVV.ToString()))
+            {
+                var kvp = new Dictionary<string, string>();
+                kvp.Add("Amount", "750");
+                NavigateNextPage("PurchasePage", kvp);
+            }
         }
     }
-
+   
+   
 }
