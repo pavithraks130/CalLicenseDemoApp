@@ -7,6 +7,9 @@ using System.ComponentModel;
 
 namespace CalLicenseDemo.ViewModel
 {
+    /// <summary>
+    /// Used to perform Credit and DebitCardDetails related updates
+    /// </summary>
     internal class CreditAndDebitCardDetailsViewModel : BaseEntity, IDataErrorInfo
     {
         #region Private fields
