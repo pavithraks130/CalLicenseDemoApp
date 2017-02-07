@@ -60,8 +60,7 @@ namespace CalLicenseDemo.Logic
                             common.SaveDatatoFile(jsonData, "credential.txt");
                         return true;
                     }
-                    else
-                        ErrorMessage = "Invalid Password";
+                    ErrorMessage = "Invalid Password";
                 }
                 else
                     ErrorMessage = "Specified Credentials are invalid";
@@ -127,7 +126,7 @@ namespace CalLicenseDemo.Logic
                 Team _team =
                     SingletonLicense.Instance.Context.Team.ToList()
                         .FirstOrDefault(
-                            t => t.Name.ToLower() == registrationModel.OrganizationName.ToLower());
+                            t => t.Name.ToLower().Trim() == registrationModel.OrganizationName.ToLower().Trim());
                 if (_team != null)
                     user.Organization = _team;
                 else

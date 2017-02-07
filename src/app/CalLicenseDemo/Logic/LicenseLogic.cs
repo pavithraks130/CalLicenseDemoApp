@@ -27,9 +27,9 @@ namespace CalLicenseDemo.Logic
 
             //code for creating the licensekey and mapping with user and updating on the server.
             string liceseKey = GenerateLicense();
-            UserLicenseJsonData licenseDetails;
+            LicenseJsonData licenseDetails;
             var licType = SingletonLicense.Instance.SelectedSubscription;
-            licenseDetails = SingletonLicense.Instance.LicenseData ?? new UserLicenseJsonData();
+            licenseDetails = SingletonLicense.Instance.LicenseData ?? new LicenseJsonData();
 
             //adding the new license record to the list
             var detail = new LicenseDetails();

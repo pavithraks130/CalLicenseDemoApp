@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Collections.Generic;
+using System.Windows;
 using CalLicenseDemo.Common;
 
 namespace CalLicenseDemo.Views
@@ -25,7 +26,10 @@ namespace CalLicenseDemo.Views
             if (licenseType == "Paid")
                 this.NavigationService.Navigate(new SubscriptonScreen());
             else
+            {
+                MessageBox.Show("Trial License is Activated from Now");
                 this.NavigationService.Navigate(new LoginUser());
+            }
         }
 
         private void button_Click(object sender, System.Windows.RoutedEventArgs e)
