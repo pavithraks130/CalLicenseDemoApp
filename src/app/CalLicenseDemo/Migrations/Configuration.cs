@@ -21,13 +21,13 @@ namespace CalLicenseDemo.Migrations
                  Convert.ToBoolean(System.Configuration.ConfigurationSettings.AppSettings.Get("DbIntialized"));
             if (DbIntialized)
             {
-                var feature1 = new Feature() { FeatureTitle = "Feature1" };
-                var feature2 = new Feature() { FeatureTitle = "Feature2" };
-                var feature3 = new Feature() { FeatureTitle = "Feature3" };
-                var feature4 = new Feature() { FeatureTitle = "Feature4" };
-                var feature5 = new Feature() { FeatureTitle = "Feature5" };
-                var feature6 = new Feature() { FeatureTitle = "Feature6" };
-                var feature7 = new Feature() { FeatureTitle = "Feature7" };
+                var feature1 = new Feature() { FeatureTitle = "Asset Manager" };
+                var feature2 = new Feature() { FeatureTitle = "Report Gen" };
+                var feature3 = new Feature() { FeatureTitle = "Procedure Editor" };
+                var feature4 = new Feature() { FeatureTitle = "Test Execution" };
+                var feature5 = new Feature() { FeatureTitle = "Christmas Gift" };
+                var feature6 = new Feature() { FeatureTitle = "Device Configurator" };
+                var feature7 = new Feature() { FeatureTitle = "Cloud Storage" };
 
                 context.Feature.Add(feature1);
                 context.Feature.Add(feature2);
@@ -47,14 +47,14 @@ namespace CalLicenseDemo.Migrations
                 });
                 context.LicenseType.Add(new LicenseType()
                 {
-                    TypeName = "Subscription1",
+                    TypeName = "Standard",
                     Price = 750,
                     ActiveDuration = 250,
                     FeatureList = new List<Feature>() { feature1, feature2, feature3, feature4, feature5 }
                 });
                 context.LicenseType.Add(new LicenseType()
                 {
-                    TypeName = "SUbscription2",
+                    TypeName = "Ultimate",
                     Price = 1200,
                     ActiveDuration = 365,
                     FeatureList =
