@@ -24,10 +24,10 @@ namespace CalLicenseDemo.Common
         {
             FeatureList = new List<Feature>();
             Context = new LicenseAppDBContext();
-            LicenseData = new UserLicenseJsonData();
+            LicenseData = new LicenseJsonData();
         }
 
-        public UserLicenseJsonData LicenseData { get; set; }
+        public LicenseJsonData LicenseData { get; set; }
 
         public bool IsUserLoggedIn { get; set; }
 

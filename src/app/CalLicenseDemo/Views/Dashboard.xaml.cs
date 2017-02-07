@@ -1,5 +1,6 @@
 ﻿using CalLicenseDemo.ViewModel;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace CalLicenseDemo.Views
@@ -31,6 +32,11 @@ namespace CalLicenseDemo.Views
                     this.NavigationService.Navigate(new UserAccountDetails());
                     break;
             }
+        }
+
+        private void BtnSubscription_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new SubscriptonScreen());
         }
     }
 }

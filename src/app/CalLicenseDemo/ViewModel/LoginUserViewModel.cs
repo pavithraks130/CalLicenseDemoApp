@@ -155,15 +155,19 @@ namespace CalLicenseDemo.ViewModel
             {
                 var logic = new LoginLogic();
                 IsEnableLogin = false;
-                var status = SingletonLicense.Instance.IsNetworkAvilable ? logic.AuthenticateUser(Email, Password) : logic.AuthenticateUserOffline(Email, Password);
+                var status = SingletonLicense.Instance.IsNetworkAvilable;
+                if(status)
+                    status = logic.AuthenticateUser(Email, Password);
+                else
+                {
+                    MessageBox.Show("Network Not available");
+                    return;
+                }
                 if (status)
                 {
+                   
                     SingletonLicense.Instance.IsUserLoggedIn = true;
-                    logic.GetFeatureList();
-                    var redirectPage = new Dictionary<string, string>();
-                    if (SingletonLicense.Instance.FeatureList != null)
-                        redirectPage.Add("page", "Subscription");
-                    NavigateNextPage?.Invoke(null, redirectPage);
+                    NavigateNextPage?.Invoke(null, null);
                     IsEnableLogin = true;
                 }
                 else

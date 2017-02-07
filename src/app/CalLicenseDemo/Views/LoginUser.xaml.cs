@@ -20,10 +20,9 @@ namespace CalLicenseDemo.Views
 
         private void NavigateNextPage(string screenName, Dictionary<string, string> additionalInfo)
         {
-            if (additionalInfo.Count > 0)
+          
                 this.NavigationService.Navigate(new Dashboard());
-            else
-                this.NavigationService.Navigate(new SubscriptonScreen());
+          
         }
 
         private void ButtonNewUser_OnClick(object sender, RoutedEventArgs e)
