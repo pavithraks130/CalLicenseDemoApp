@@ -42,7 +42,7 @@
             </Menu>
         </Grid>
 
-        <StackPanel Grid.Row="1"  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Background="Black">
+        <StackPanel Grid.Row="1"  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding PanelVisiblity}">
             <TextBlock x:Name="txtTrialNotification" Text="{Binding TrialaNotificationMessage}" Foreground="Red"></TextBlock>
             <Button x:Name="btnSubscription" Content="Subscription" Click="BtnSubscription_OnClick" Style="{StaticResource DefaultButtonStyle}"></Button>
         </StackPanel>

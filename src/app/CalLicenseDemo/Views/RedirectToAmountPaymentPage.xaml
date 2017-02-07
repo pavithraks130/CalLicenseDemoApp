@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CalLicenseDemo.Views"
-             mc:Ignorable="d" Height="350" Width="525"
+             mc:Ignorable="d"
              Background="Black">
     <Page.Resources>
         <ResourceDictionary>
@@ -15,10 +15,10 @@
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.25*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
@@ -27,12 +27,12 @@
         <StackPanel Grid.Row="0">
             <Label Content="Powered by XYZ Payment Gateway" Foreground="White"  />
         </StackPanel>
-        <ProgressBar  x:Name ="ProgressBarPayment"  Grid.Row="1" Grid.Column="0"   Background="LightYellow"/>
+        <ProgressBar  x:Name ="ProgressBarPayment" Margin="10" Height="40"  Grid.Row="1" Grid.Column="0"   Background="LightYellow"/>
         <Label x:Name="lblProgress" Content=""  Grid.Row="1" Grid.Column="1"  Foreground="White"/>
-        <Label x:Name ="statusBarPayment" Grid.Row="2" VerticalAlignment="Top" Background="LimeGreen" >
-            Liecence issued to user
+        <Label x:Name ="statusBarPayment" Grid.Row="2" Grid.ColumnSpan="2" Margin="3" VerticalAlignment="Center" Background="LimeGreen" >
+            Liecence issued to user, Login with your credentials
         </Label>
-        <Button Content="Back to Login Page" Style="{StaticResource DefaultButtonStyle}" Grid.Row="3" Command="{Binding BackToLoginCommand}" Grid.ColumnSpan="2" MaxWidth="200"></Button>
+        <Button Content="Back to Login Page" Margin="10" Style="{StaticResource DefaultButtonStyle}" Grid.Row="3" Command="{Binding BackToLoginCommand}" Grid.ColumnSpan="2" MaxWidth="200"></Button>
 
     </Grid>
 </Page>
