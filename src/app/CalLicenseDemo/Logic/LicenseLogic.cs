@@ -88,7 +88,8 @@ namespace CalLicenseDemo.Logic
             userLic.UserKey = userUniqueId;
             userLic.ActivationDate = DateTime.Today;
             userLic.User = SingletonLicense.Instance.User;
-
+            DateTime expireDate = DateTime.Today;
+            userLic.ExpirationDate = expireDate.AddDays(SingletonLicense.Instance.SelectedSubscription.ActiveDuration);
             try
             {
                 lic = SingletonLicense.Instance.Context.License.Add(lic);

@@ -94,6 +94,18 @@
     <Compile Include="Migrations\201702051704590_LicenseModelCHanges.Designer.cs">
       <DependentUpon>201702051704590_LicenseModelCHanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702070451239_ExpireDateTouserLicense.cs" />
+    <Compile Include="Migrations\201702070451239_ExpireDateTouserLicense.Designer.cs">
+      <DependentUpon>201702070451239_ExpireDateTouserLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702070457149_MigrationChanges.cs" />
+    <Compile Include="Migrations\201702070457149_MigrationChanges.Designer.cs">
+      <DependentUpon>201702070457149_MigrationChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702070502265_UserLicPropNameChange.cs" />
+    <Compile Include="Migrations\201702070502265_UserLicPropNameChange.Designer.cs">
+      <DependentUpon>201702070502265_UserLicPropNameChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\CardDetails.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -233,6 +245,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702051704590_LicenseModelCHanges.resx">
       <DependentUpon>201702051704590_LicenseModelCHanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702070451239_ExpireDateTouserLicense.resx">
+      <DependentUpon>201702070451239_ExpireDateTouserLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702070457149_MigrationChanges.resx">
+      <DependentUpon>201702070457149_MigrationChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702070502265_UserLicPropNameChange.resx">
+      <DependentUpon>201702070502265_UserLicPropNameChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -8,7 +8,6 @@ namespace CalLicenseDemo.Model
         public License()
         {
             LicenseId = 0;
-            LicenseType = new LicenseType();
             LicenseKey = string.Empty;
             IsAvailable = false;
         }
@@ -18,7 +17,6 @@ namespace CalLicenseDemo.Model
 
         public string LicenseKey { get; set; }
         public bool IsAvailable { get; set; }
-
         public  int LicenseTypeId { get; set; }
         [ForeignKey("LicenseTypeId")]
         public virtual LicenseType LicenseType { get; set; }

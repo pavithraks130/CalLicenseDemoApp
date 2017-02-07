@@ -8,6 +8,9 @@ namespace CalLicenseDemo.DatabaseContext
     {
         public LicenseAppDBContext() : base("LicenseDatabase")
         {
+            //Configuration.LazyLoadingEnabled = true;
+            Configuration.ProxyCreationEnabled = true;
+            Configuration.AutoDetectChangesEnabled = true;
         }
 
         public DbSet<Team> Team { get; set; }

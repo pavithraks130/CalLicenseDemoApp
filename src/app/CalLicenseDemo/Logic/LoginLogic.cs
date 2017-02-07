@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -46,8 +47,7 @@ namespace CalLicenseDemo.Logic
             if (status)
             {
                 user =
-                    SingletonLicense.Instance.Context.User.ToList()
-                        .FirstOrDefault(u => u.Email.ToLower() == userName.ToLower());
+                    SingletonLicense.Instance.Context.User.Where(u => u.Email.ToLower() == userName.ToLower()).ToList()[0];
 
                 if (user != null)
                 {
@@ -97,7 +97,16 @@ namespace CalLicenseDemo.Logic
 
         public void GetFeatureList()
         {
-            UserLicense userLicense = SingletonLicense.Instance.Context.UserLicense.ToList().FindAll(l => l.User = SingletonLicense.Instance.User);
+            List<UserLicense> userLicense = SingletonLicense.Instance.Context.UserLicense.ToList().FindAll(l => l.UserId == SingletonLicense.Instance.User.UserId);
+            foreach (var ld in userLicense)
+            {
+                if (ld.ExpirationDate.Date > DateTime.Today.Date)
+                    foreach (var feature in ld.License.LicenseType.FeatureList)
+                    {
+                        if (!SingletonLicense.Instance.FeatureList.Contains(feature))
+                            SingletonLicense.Instance.FeatureList.Add(feature);
+                    }
+            }
         }
 
 

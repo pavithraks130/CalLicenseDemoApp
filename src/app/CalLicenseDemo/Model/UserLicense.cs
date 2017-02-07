@@ -13,7 +13,6 @@ namespace CalLicenseDemo.Model
             IsExpired = false;
             IsDeleted = false;
             ActivationDate = DateTime.MinValue;
-            License = new License();
         }
 
         [Key]
@@ -23,8 +22,12 @@ namespace CalLicenseDemo.Model
         public bool IsExpired { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime ActivationDate { get; set; }
-        public DateTime ExpireLicense { get; set; }
+        public DateTime ExpirationDate { get; set; }
+        public  int UserId { get; set; }
+        public int LicenseId { get; set; }
+        [ForeignKey("UserId")]
         public virtual User User { get; set; }
+        [ForeignKey("LicenseId")]
         public virtual License License { get; set; }
     }
 }

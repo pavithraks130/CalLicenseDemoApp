@@ -9,10 +9,9 @@ namespace CalLicenseDemo.Model
     {
         [Key]
         public int FeatureId { get; set; }
-
         public string FeatureTitle { get; set; }
 
         [JsonIgnore]
-        public  ICollection<LicenseType> LicenseTypes { get; set; }
+        public virtual  ICollection<LicenseType> LicenseTypes { get; set; }
     }
 }

@@ -88,15 +88,14 @@ namespace CalLicenseDemo.Common
             }
         }
 
-        public static bool CheckNetworkAvailablity()
-        {
-            return System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
-        }
-
         public static void SaveDatatoFile(string jsonData, string fileName)
         {
             if (!Directory.Exists(tempFolderPath))
                 Directory.CreateDirectory(tempFolderPath);
+
+
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
 
             //Saving the license file
             byte[] serializedata = Encoding.UTF8.GetBytes(jsonData);

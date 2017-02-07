@@ -16,8 +16,6 @@ namespace CalLicenseDemo.Model
             Email = string.Empty;
             PasswordHash = String.Empty;
             ThumbPrint = string.Empty;
-            Organization = new Team();
-            Licenses = new List<UserLicense>();
         }
 
         [Key]
@@ -27,9 +25,11 @@ namespace CalLicenseDemo.Model
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string ThumbPrint { get; set; }
-        public virtual Team Organization { get; set; }
+        public int TeamId { get; set; }
+        [ForeignKey("TeamId")]
+        public  virtual Team Organization { get; set; }
         [JsonIgnore]
-        public virtual List<UserLicense> Licenses { get; set; }
+        public virtual  List<UserLicense> Licenses { get; set; }
     }
 
     public class RegistrationModel
@@ -55,7 +55,5 @@ namespace CalLicenseDemo.Model
 
         public string Name { get; set; }
         public string GroupEmail { get; set; }
-
-        public virtual List<User> Users { get; set; }
     }
 }
