@@ -12,6 +12,29 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,../Styles/DefaultStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <ControlTemplate x:Key="ErrorTemplate">
+                <Border BorderBrush="Red" BorderThickness="1">
+                    <AdornedElementPlaceholder />
+                </Border>
+            </ControlTemplate>
+
+            <Style TargetType="TextBox">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip"
+                                 Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="PasswordBox">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip"
+                                 Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
 
         </ResourceDictionary>
     </Page.Resources>
@@ -44,16 +67,16 @@
         <Label Style="{StaticResource LabelDefaultStyle}" Grid.Row="5" Grid.Column="1" Name="lblOrganization"
                Content="Organization:" HorizontalAlignment="Right" />
         <TextBox Margin="5" Grid.Row="1" Grid.Column="2" Name="txtFirstName"
-                 Text="{Binding FName, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" Height="30" />
+                 Text="{Binding FName, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,ValidatesOnNotifyDataErrors=True}" Height="30" />
         <TextBox Margin="5" Grid.Row="2" Grid.Column="2" Name="txtLastName"
-                 Text="{Binding LName, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, Mode=TwoWay}" Height="30"/>
+                 Text="{Binding LName, NotifyOnSourceUpdated=True, NotifyOnValidationError=True, Mode=TwoWay,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,ValidatesOnNotifyDataErrors=True}" Height="30"/>
         <TextBox Margin="5" Grid.Row="3" Grid.Column="2" Name="txtEmailID"
-                 Text="{Binding Email,NotifyOnSourceUpdated=True,NotifyOnValidationError=True, Mode=TwoWay}" Height="30" />
+                 Text="{Binding Email,NotifyOnSourceUpdated=True,NotifyOnValidationError=True, Mode=TwoWay,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,ValidatesOnNotifyDataErrors=True}" Height="30" />
 
-        <PasswordBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword" psw:PasswordHelper.Attach="True" psw:PasswordHelper.Password="{Binding Password , Mode=TwoWay}"  PasswordChar="*" FontSize="16"
+        <PasswordBox Margin="5" Grid.Row="4" Grid.Column="2" Name="txtRegPassword" psw:PasswordHelper.Attach="True" psw:PasswordHelper.Password="{Binding Password , Mode=TwoWay,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,ValidatesOnNotifyDataErrors=True}"  PasswordChar="*" FontSize="16"
                 Height="30"  />
         <TextBox Margin="5" Grid.Row="5" Grid.Column="2" Name="txtOrganization"
-                 Text="{Binding Organization, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay}" />
+                 Text="{Binding Organization, NotifyOnSourceUpdated=True, NotifyOnValidationError=True,Mode=TwoWay,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,ValidatesOnNotifyDataErrors=True}" />
         <Button Style="{StaticResource DefaultButtonStyle}" Margin="5" Grid.Row="6" Grid.Column="2"
                 Name="btnRegisterAndPay" Content="Get Paid License" Command="{Binding RegisterCommand}" CommandParameter="Paid" />
         <Button Style="{StaticResource DefaultButtonStyle}" Margin="5" Grid.Row="6" Grid.Column="1"
