@@ -55,7 +55,7 @@ namespace CalLicenseDemo.ViewModel
             else
             {
                 PanelVisiblity = Visibility.Collapsed;
-                TrialaNotificationMessage = String.Empty;
+                TrialaNotificationMessage = string.Empty;
             }
         }
 
