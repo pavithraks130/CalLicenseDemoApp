@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 
 namespace CalLicenseDemo.Logic
 {
-    internal class LicenseLogic 
+    internal class LicenseLogic
     {
         public LicenseLogic()
         {
@@ -83,19 +83,20 @@ namespace CalLicenseDemo.Logic
             lic.IsAvailable = false;
             lic.LicenseKey = licenseKey;
             lic.LicenseType = SingletonLicense.Instance.SelectedSubscription;
-
             var userLic = new UserLicense();
             userLic.UserKey = userUniqueId;
             userLic.ActivationDate = DateTime.Today;
-            userLic.User = SingletonLicense.Instance.User;
+            userLic.UserId = SingletonLicense.Instance.User.UserId;
             DateTime expireDate = DateTime.Today;
             userLic.ExpirationDate = expireDate.AddDays(SingletonLicense.Instance.SelectedSubscription.ActiveDuration);
             try
             {
                 lic = SingletonLicense.Instance.Context.License.Add(lic);
+                SingletonLicense.Instance.Context.SaveChanges();
                 userLic.License = lic;
                 SingletonLicense.Instance.Context.UserLicense.Add(userLic);
                 SingletonLicense.Instance.Context.SaveChanges();
+
             }
             catch (Exception ex)
             {

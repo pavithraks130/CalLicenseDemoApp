@@ -142,11 +142,13 @@ namespace CalLicenseDemo.Logic
                 {
                     _team = new Team() { Name = registrationModel.OrganizationName };
                     _team = SingletonLicense.Instance.Context.Team.Add(_team);
+                    SingletonLicense.Instance.Context.SaveChanges();
                     user.Organization = _team;
                 }
                 string thumbPrint = string.Empty;
                 user.PasswordHash = HashPassword(registrationModel.Password, out thumbPrint);
                 user.ThumbPrint = thumbPrint;
+                user.TeamId = _team.TeamId;
                 user = SingletonLicense.Instance.Context.User.Add(user);
                 SingletonLicense.Instance.Context.SaveChanges();
                 SingletonLicense.Instance.User = user;

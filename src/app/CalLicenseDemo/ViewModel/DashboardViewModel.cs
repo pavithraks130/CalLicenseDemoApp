@@ -72,6 +72,10 @@ namespace CalLicenseDemo.ViewModel
         private void OnLogoutExecuted(object parameter)
         {
             Common.SingletonLicense.Instance.User = null;
+            Common.SingletonLicense.Instance.FeatureList.Clear();
+            Common.SingletonLicense.Instance.LicenseData = null;
+            Common.SingletonLicense.Instance.IsUserLoggedIn = false;
+            Common.SingletonLicense.Instance.IsUserLoggedIn = false;
             NavigateNextPage("Login", null);
         }
     }
