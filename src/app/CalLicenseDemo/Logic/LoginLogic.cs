@@ -97,15 +97,24 @@ namespace CalLicenseDemo.Logic
         public void GetFeatureList()
         {
             List<UserLicense> userLicense = SingletonLicense.Instance.Context.UserLicense.ToList().FindAll(l => l.UserId == SingletonLicense.Instance.User.UserId);
+            LicenseJsonData data = new LicenseJsonData();
             foreach (var ld in userLicense)
             {
                 if (ld.ExpirationDate.Date > DateTime.Today.Date)
+                {
                     foreach (var feature in ld.License.LicenseType.FeatureList)
                     {
                         if (!SingletonLicense.Instance.FeatureList.Contains(feature))
                             SingletonLicense.Instance.FeatureList.Add(feature);
                     }
+                    LicenseDetails details = new LicenseDetails();
+                    details.ActivationDate = ld.ActivationDate;
+                    details.ExpireDate = ld.ExpirationDate;
+                    data.LicenseList.Add(details);
+                }
             }
+
+            SingletonLicense.Instance.LicenseData = data;
         }
 
 
