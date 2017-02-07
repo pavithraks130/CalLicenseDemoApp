@@ -66,15 +66,11 @@
         <Label x:Name="lblCVV" Content="CVV"  FontWeight="Bold" Grid.Row="2" Foreground="White" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,102.333,0" />
         <TextBox  x:Name="txtCVV"  Grid.Row="2" Grid.Column="1" Text="{Binding CardCVV, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,NotifyOnValidationError=True,ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True}" Margin="20.333,20,19.333,20" />
         <Label Content="Name on the card" FontWeight="Bold"  FontStyle="Oblique" Foreground="White" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,102.333,0"/>
-        <TextBox  Foreground="LightGray" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding CardName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,NotifyOnValidationError=True,ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True}" Margin="20.333,20,19,20" />
+        <TextBox  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding CardName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,NotifyOnValidationError=True,ValidatesOnDataErrors=True,ValidatesOnNotifyDataErrors=True,ValidatesOnExceptions=True}" Margin="20.333,20,19,20" />
         <Button Style="{StaticResource DefaultButtonStyle}" x:Name="button" Content="PURCHASE" Background="LightBlue" Command="{Binding PurchaseCommand}" Grid.ColumnSpan="3"  Grid.Row="4" Margin="0,0,0,0.333"  />
         <GridSplitter Grid.Column="3"  Grid.Row="0" Grid.RowSpan="5" Width="3" HorizontalAlignment="Stretch"  Margin="0,0,0,0"  />
         <Label x:Name="labelOrderDetails" Style="{StaticResource LabelDefaultStyle}" Content="Order Details:" Foreground="White" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <ListBox Grid.Row="1"   Grid.Column="4" Grid.RowSpan="3" MinWidth="200" Foreground="White" Background="Black" Margin="0,10,25,0" Padding="0,0,0,0">
-            <ListBoxItem Content="Id - #QZ 2234 " Foreground="White"></ListBoxItem>
-            <ListBoxItem Content="Version - V1.0" Foreground="White"></ListBoxItem>
-            <ListBoxItem Content="{Binding CurrentDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White"></ListBoxItem>
-            <ListBoxItem Content="{Binding ExpDate ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White"></ListBoxItem>
             <ListBoxItem Content="{Binding Tax , Mode= TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White"></ListBoxItem>
             <ListBoxItem Content="{Binding TotalCost, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="White"></ListBoxItem>
         </ListBox>
