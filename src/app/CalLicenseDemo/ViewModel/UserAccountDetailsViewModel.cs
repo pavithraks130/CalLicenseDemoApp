@@ -9,6 +9,38 @@ namespace CalLicenseDemo.ViewModel
 {
     class UserAccountDetailsViewModel:BaseEntity
     {
+
+        public string FirstName
+        {
+            get
+            {
+                return Common.SingletonLicense.Instance.User.FName;
+            }
+        }
+
+        public string LastName
+        {
+            get
+            {
+                return Common.SingletonLicense.Instance.User.LName;
+            }
+        }
+
+        public string Email
+        {
+            get
+            {
+                return Common.SingletonLicense.Instance.User.Email;
+            }
+        }
+
+        public string Organization
+        {
+            get
+            {
+                return Common.SingletonLicense.Instance.User.Organization.Name;
+            }
+        }
         public ICommand HomeCommand { get; set; }
 
         public UserAccountDetailsViewModel()

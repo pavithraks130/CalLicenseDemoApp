@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CalLicenseDemo.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,14 @@ namespace CalLicenseDemo.ViewModel
             get
             {
                return (Common.SingletonLicense.Instance.User.FName + " " + Common.SingletonLicense.Instance.User.LName);
+            }
+        }
+
+        public List<Feature> CurrentFeatureList
+        {
+            get
+            {
+                return Common.SingletonLicense.Instance.FeatureList;
             }
         }
 

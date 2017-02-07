@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CalLicenseDemo.Views"
+      xmlns:Model="clr-namespace:CalLicenseDemo.Model"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="Dashboard">
@@ -38,6 +39,19 @@
                     <MenuItem Header="Logout" Command="{Binding LogoutCommand}"></MenuItem>
                 </MenuItem>
             </Menu>
+
+           
         </Grid>
+        <ListBox Name="lstFeatureList" ItemsSource="{Binding CurrentFeatureList}" Grid.Row="1" >
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type Model:Feature}">
+                    <StackPanel Width="150" Height="50" Background="Black">
+                        <Border Background="Transparent" BorderBrush="#FFC20F" CornerRadius="3" BorderThickness="2" VerticalAlignment="Stretch">
+                            <TextBlock Text="{Binding FeatureTitle}" Foreground="#FFC20F" FontWeight="Bold"></TextBlock>
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>
