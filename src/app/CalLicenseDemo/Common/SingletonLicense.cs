@@ -30,5 +30,10 @@ namespace CalLicenseDemo.Common
         public UserLicenseJsonData LicenseData { get; set; }
 
         public bool IsUserLoggedIn { get; set; }
+
+        public bool IsNetworkAvilable
+        {
+            get { return System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable(); }
+        }
     }
 }

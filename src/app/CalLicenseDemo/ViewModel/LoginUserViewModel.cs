@@ -71,12 +71,7 @@ namespace CalLicenseDemo.ViewModel
             }
             var logic = new LoginLogic();
             IsEnableLogin = false;
-            var status = Common.common.CheckNetworkAvailablity();
-            if (status)
-                status = logic.AuthenticateUser(Email, Password);
-            else 
-                status = logic.AuthenticateUserOffline(Email, Password);
-
+            var status = SingletonLicense.Instance.IsNetworkAvilable ? logic.AuthenticateUser(Email, Password) : logic.AuthenticateUserOffline(Email, Password);
             if (status)
             {
                 SingletonLicense.Instance.IsUserLoggedIn = true;

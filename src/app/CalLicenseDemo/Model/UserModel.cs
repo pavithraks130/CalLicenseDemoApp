@@ -55,5 +55,7 @@ namespace CalLicenseDemo.Model
 
         public string Name { get; set; }
         public string GroupEmail { get; set; }
+
+        public virtual List<User> Users { get; set; }
     }
 }

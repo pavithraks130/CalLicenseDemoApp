@@ -75,21 +75,31 @@ namespace CalLicenseDemo.Logic
         ///     Verifying the user license is still active and listing feature based on the
         /// </summary>
 
+        //public void GetFeatureList()
+        //{
+        //    String jsonData = common.GetJsonDataFromFile("LicenseData.txt");
+        //    if (String.IsNullOrEmpty(jsonData)) return;
+        //    var licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(jsonData);
+        //    var validLienseList = licenseDetails;
+        //    foreach (var ld in licenseDetails.LicenseList)
+        //        if (ld.ExpireDate.Date > DateTime.Today.Date)
+        //            foreach (var feature in ld.Type.FeatureList)
+        //            {
+        //                if (!SingletonLicense.Instance.FeatureList.Contains(feature))
+        //                    SingletonLicense.Instance.FeatureList.Add(feature);
+        //            }
+        //        else
+        //            //Code is used to remove the Subscription which is expired
+        //            validLienseList.LicenseList.Remove(ld);
+
+        //    SingletonLicense.Instance.LicenseData = validLienseList;
+        //}
+
         public void GetFeatureList()
         {
-            String jsonData = common.GetJsonDataFromFile("LicenseData.txt");
-            if (String.IsNullOrEmpty(jsonData)) return;
-            var licenseDetails = JsonConvert.DeserializeObject<UserLicenseJsonData>(jsonData);
-            var validLienseList = licenseDetails;
-            foreach (var ld in licenseDetails.LicenseList)
-                if (ld.ExpireDate.Date > DateTime.Today.Date)
-                    SingletonLicense.Instance.FeatureList.AddRange(ld.Type.FeatureList.ToList());
-                else
-                    //Code is used to remove the Subscription which is expired
-                    validLienseList.LicenseList.Remove(ld);
-
-            SingletonLicense.Instance.LicenseData = validLienseList;
+            UserLicense userLicense = SingletonLicense.Instance.Context.UserLicense.ToList().FindAll(l => l.User = SingletonLicense.Instance.User);
         }
+
 
         public bool CreateUserInfo(RegistrationModel registrationModel)
         {
@@ -188,7 +198,7 @@ namespace CalLicenseDemo.Logic
             if (user.Email.ToLower() == email)
             {
                 hashPasword = CreatePasswordhash(password, user.ThumbPrint);
-                if(hashPasword == user.PasswordHash)
+                if (hashPasword == user.PasswordHash)
                     SingletonLicense.Instance.User = user;
                 return true;
             }

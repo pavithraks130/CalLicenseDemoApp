@@ -24,6 +24,7 @@ namespace CalLicenseDemo.Logic
 
         public void ActivateSubscription()
         {
+
             //code for creating the licensekey and mapping with user and updating on the server.
             string liceseKey = GenerateLicense();
             UserLicenseJsonData licenseDetails;
@@ -97,6 +98,7 @@ namespace CalLicenseDemo.Logic
             }
             catch (Exception ex)
             {
+                ErrorMessage = ex.Message;
                 return false;
             }
             return true;
@@ -132,8 +134,9 @@ namespace CalLicenseDemo.Logic
                 //Concat these 4 part into one string
                 return string.Format("{0}-{1}-{2}-{3}", _part1Id, _part2Id, _part3Id, _part4Id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ErrorMessage = ex.Message;
             }
             return null;
         }
