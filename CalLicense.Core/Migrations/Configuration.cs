@@ -1,21 +1,21 @@
 using System.Collections.Generic;
-using CalLicenseDemo.Model;
 
-namespace CalLicenseDemo.Migrations
+namespace CalLicense.Core.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using CalLicense.Core.Model;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CalLicenseDemo.DatabaseContext.LicenseAppDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CalLicense.Core.DatabaseContext.LicenseAppDBContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(CalLicenseDemo.DatabaseContext.LicenseAppDBContext context)
+        protected override void Seed(CalLicense.Core.DatabaseContext.LicenseAppDBContext context)
         {
             bool DbIntialized =
                  Convert.ToBoolean(System.Configuration.ConfigurationSettings.AppSettings.Get("DbIntialized"));

@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CalLicenseDemo.Model
+namespace CalLicense.Core.Model
 {
     public class UserLicense
     {

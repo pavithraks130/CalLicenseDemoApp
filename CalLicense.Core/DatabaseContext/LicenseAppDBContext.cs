@@ -1,8 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using CalLicenseDemo.Model;
+using CalLicense.Core.Model;
 
-namespace CalLicenseDemo.DatabaseContext
+namespace CalLicense.Core.DatabaseContext
 {
     public class LicenseAppDBContext : DbContext
     {

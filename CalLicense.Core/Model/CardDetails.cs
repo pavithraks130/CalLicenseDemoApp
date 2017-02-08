@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CalLicenseDemo.Model
+namespace CalLicense.Core.Model
 {
     public class CardDetails
     {

@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace CalLicenseDemo.Model
+namespace CalLicenseDemo.Common
 {
     public class PasswordHelper
     {

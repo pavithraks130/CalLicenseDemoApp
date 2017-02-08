@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using CalLicenseDemo.DatabaseContext;
-using CalLicenseDemo.Model;
+using CalLicense.Core.DatabaseContext;
+using CalLicense.Core.Model;
 
 namespace CalLicenseDemo.Common
 {

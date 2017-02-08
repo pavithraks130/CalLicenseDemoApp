@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.IO.Packaging;
+using System.Data;
 using Newtonsoft.Json;
 
-namespace CalLicenseDemo.Model
+namespace CalLicense.Core.Model
 {
     public class User
     {
@@ -22,14 +22,16 @@ namespace CalLicenseDemo.Model
         public int UserId { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
+        [Index("Ix_EmailUniqueKey", 1, IsUnique = true)]
+        [MaxLength(500)]
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string ThumbPrint { get; set; }
         public int TeamId { get; set; }
         [ForeignKey("TeamId")]
-        public  virtual Team Organization { get; set; }
+        public virtual Team Organization { get; set; }
         [JsonIgnore]
-        public virtual  List<UserLicense> Licenses { get; set; }
+        public virtual List<UserLicense> Licenses { get; set; }
     }
 
     public class RegistrationModel

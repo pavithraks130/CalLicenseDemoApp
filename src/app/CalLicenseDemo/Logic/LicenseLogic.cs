@@ -6,8 +6,7 @@ using System.Management;
 using System.Security.Cryptography;
 using System.Text;
 using CalLicenseDemo.Common;
-using CalLicenseDemo.DatabaseContext;
-using CalLicenseDemo.Model;
+using CalLicense.Core.Model;
 using LicenseKey;
 using Newtonsoft.Json;
 

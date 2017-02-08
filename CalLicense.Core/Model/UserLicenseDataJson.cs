@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CalLicenseDemo.Model
+namespace CalLicense.Core.Model
 {
     /// <summary>
     ///     Model for storing the license details in the local system. Based on the subscription the features will be enabled.

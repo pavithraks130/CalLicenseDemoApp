@@ -1,4 +1,4 @@
-namespace CalLicenseDemo.Migrations
+namespace CalLicense.Core.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

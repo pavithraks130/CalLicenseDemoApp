@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CalLicenseDemo.Model
+namespace CalLicense.Core.Model
 {
     public class LicenseType
     {
