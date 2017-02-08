@@ -268,7 +268,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CalLicense.Core\CalLicense.Core.csproj">
+    <ProjectReference Include="..\CalLicense.Core\CalLicense.Core.csproj">
       <Project>{b0b1c5f8-7830-4bd9-a8d1-759f27fc097a}</Project>
       <Name>CalLicense.Core</Name>
     </ProjectReference>

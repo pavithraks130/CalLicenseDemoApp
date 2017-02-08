@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalLicenseDemo", "src\app\C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseKey", "src\app\LicenseKey\LicenseKey.csproj", "{1DC3F930-86BE-4404-8366-49BF479244E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalLicense.Core", "CalLicense.Core\CalLicense.Core.csproj", "{B0B1C5F8-7830-4BD9-A8D1-759F27FC097A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalLicense.Core", "src\app\CalLicense.Core\CalLicense.Core.csproj", "{B0B1C5F8-7830-4BD9-A8D1-759F27FC097A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
