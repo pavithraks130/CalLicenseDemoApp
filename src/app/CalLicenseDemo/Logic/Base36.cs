@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace CalLicenseDemo.Logic
 {
+    /// <summary>
+    /// Base-36 format conversion class
+    /// </summary>
     public static class Base36
     {
         private const string CharList = "0123456789abcdefghijklmnopqrstuvwxyz";

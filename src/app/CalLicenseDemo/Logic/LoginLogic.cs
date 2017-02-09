@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
 using CalLicenseDemo.Common;
 using CalLicense.Core.Model;
 using CalLicense.Core.DatabaseContext;
-using CalLicenseDemo.ViewModel;
 using Newtonsoft.Json;
 
 namespace CalLicenseDemo.Logic
 {
+    /// <summary>
+    /// Validation methods for verifying the login details.
+    /// </summary>
     public class LoginLogic : IDisposable
     {
         private readonly string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
@@ -19,19 +20,32 @@ namespace CalLicenseDemo.Logic
 
         private readonly string tempFolderPath = Path.Combine(Path.GetTempPath(),
                 "CalibrationLicense");
+        /// <summary>
+        /// It holds the error message
+        /// </summary>
         public string ErrorMessage { get; set; }
 
+        /// <summary>
+        /// LoginLogic constructor initialization
+        /// </summary>
         public LoginLogic()
         {
             SingletonLicense.Instance.Context = new LicenseAppDBContext();
         }
 
+        /// <summary>
+        /// clearing the object from application runtime memory.
+        /// </summary>
         public void Dispose()
         {
             SingletonLicense.Instance.Context.Dispose();
         }
-
-        //Validate Email address return true if email does not exist and false if email Exist
+        /// <summary>
+        /// Validate Email address.
+        /// </summary>
+        /// <param name="email">email data</param>
+        /// <returns> true:if email does not exist
+        /// false:if email Exist</returns>
         public bool ValidateEmail(string email)
         {
             if (SingletonLicense.Instance.Context.User.ToList().Count == 0)
@@ -39,6 +53,12 @@ namespace CalLicenseDemo.Logic
             return !(SingletonLicense.Instance.Context.User.Any(u => u.Email.ToLower() == email.ToLower()));
         }
 
+        /// <summary>
+        /// Logic for authenticate the user login information.
+        /// </summary>
+        /// <param name="userName">userName details</param>
+        /// <param name="password">password details</param>
+        /// <returns></returns>
         public bool AuthenticateUser(string userName, string password)
         {
             var encryptedPassword = password;
@@ -94,6 +114,9 @@ namespace CalLicenseDemo.Logic
         //    SingletonLicense.Instance.LicenseData = validLienseList;
         //}
 
+        /// <summary>
+        ///    To get the feature list information for login user. 
+        /// </summary>
         public void GetFeatureList()
         {
             List<UserLicense> userLicense = SingletonLicense.Instance.Context.UserLicense.ToList().FindAll(l => l.UserId == SingletonLicense.Instance.User.UserId);
@@ -118,6 +141,12 @@ namespace CalLicenseDemo.Logic
         }
 
 
+        /// <summary>
+        /// This method is used to generate the user profile in Database system
+        /// </summary>
+        /// <param name="registrationModel">registrationModel</param>
+        /// <returns> true:User profile created
+        /// false:user already exist</returns>
         public bool CreateUserInfo(RegistrationModel registrationModel)
         {
             try
@@ -160,6 +189,12 @@ namespace CalLicenseDemo.Logic
             return true;
         }
 
+        /// <summary>
+        /// Password encription method
+        /// </summary>
+        /// <param name="password">user entered password</param>
+        /// <param name="thumbprint">password attaching with thumbprint</param>
+        /// <returns></returns>
         public string HashPassword(string password, out string thumbprint)
         {
             int size = 10;
@@ -167,6 +202,11 @@ namespace CalLicenseDemo.Logic
             return CreatePasswordhash(password, thumbprint);
         }
 
+        /// <summary>
+        /// serialization of password
+        /// </summary>
+        /// <param name="size">password split size</param>
+        /// <returns></returns>
         public string CreateSalt(int size)
         {
             byte[] bytedata = new byte[size];
@@ -174,7 +214,12 @@ namespace CalLicenseDemo.Logic
             rngProvider.GetBytes(bytedata);
             return Convert.ToBase64String(bytedata);
         }
-
+        /// <summary>
+        /// Password encription 
+        /// </summary>
+        /// <param name="password">password</param>
+        /// <param name="thumbPrint">thumbPrint</param>
+        /// <returns></returns>
         public string CreatePasswordhash(string password, string thumbPrint)
         {
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(password + thumbPrint);
@@ -182,7 +227,11 @@ namespace CalLicenseDemo.Logic
             var byteHashData = sha256.ComputeHash(bytes);
             return ByteArrayToHexString(byteHashData);
         }
-
+        /// <summary>
+        /// Password encription 
+        /// </summary>
+        /// <param name="bytes">bytes</param>
+        /// <returns>heaxdecimal string fromate</returns>
         public String ByteArrayToHexString(byte[] bytes)
         {
             int length = bytes.Length;
@@ -203,6 +252,12 @@ namespace CalLicenseDemo.Logic
             return new String(chars);
         }
 
+        /// <summary>
+        /// Offline user authenication
+        /// </summary>
+        /// <param name="email">email details</param>
+        /// <param name="password">password details</param>
+        /// <returns></returns>
         public bool AuthenticateUserOffline(string email, string password)
         {
             if (!common.IsFileExist("credential.txt"))

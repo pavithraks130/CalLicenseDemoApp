@@ -80,11 +80,11 @@ namespace CalLicenseDemo.Views
         }
 
         /// <summary>
-        /// Time consuming operations go here </br>
-        /// i.e. Database operations,Reporting
+        /// Time consuming operations go here 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
         void m_oWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             //time consuming operation

@@ -12,15 +12,27 @@ using Newtonsoft.Json;
 
 namespace CalLicenseDemo.Logic
 {
+    /// <summary>
+    /// Generating license key logic
+    /// </summary>
     internal class LicenseLogic
     {
+        /// <summary>
+        /// Constructor data initialization
+        /// </summary>
         public LicenseLogic()
         {
 
         }
 
+        /// <summary>
+        /// Error message information property
+        /// </summary>
         public string ErrorMessage { get; set; }
 
+        /// <summary>
+        /// Activating license key to subscriber.
+        /// </summary>
         public void ActivateSubscription()
         {
 
@@ -42,6 +54,10 @@ namespace CalLicenseDemo.Logic
             common.SaveDatatoFile(datalicence, "LicenseData.txt");
         }
 
+        /// <summary>
+        /// Generating license key logic
+        /// </summary>
+        /// <returns>License key string</returns>
         public string GenerateLicense()
         {
             bool status;
@@ -62,6 +78,10 @@ namespace CalLicenseDemo.Logic
             return string.Empty;
         }
 
+        /// <summary>
+        /// This method will gives the license key
+        /// </summary>
+        /// <returns>License key string</returns>
         public string GetlicenseKey()
         {
             var keygeneration = new GenerateKey();
@@ -76,6 +96,12 @@ namespace CalLicenseDemo.Logic
             return keygeneration.GetLicenseKey();
         }
 
+        /// <summary>
+        /// Updating user subscription details
+        /// </summary>
+        /// <param name="userUniqueId">userUniqueId</param>
+        /// <param name="licenseKey">licenseKey</param>
+        /// <returns></returns>
         public bool UpdateSubScriptionDetails(string userUniqueId, string licenseKey)
         {
             var lic = new License();
@@ -105,6 +131,10 @@ namespace CalLicenseDemo.Logic
             return true;
         }
 
+        /// <summary>
+        /// Identifying the new user.
+        /// </summary>
+        /// <returns>returns the user info</returns>
         public string UniqueuserIdentifier()
         {
             string processId = string.Empty, motherBoard = string.Empty, volumeSerial = string.Empty;
@@ -142,11 +172,20 @@ namespace CalLicenseDemo.Logic
             return null;
         }
 
+        /// <summary>
+        /// To get user subscription details
+        /// </summary>
+        /// <returns>License type details</returns>
+
         public List<LicenseType> GetSubscriptionDetails()
         {
             return SingletonLicense.Instance.Context.LicenseType.ToList().FindAll(l => l.TypeName.ToLower() != "trial");
         }
 
+        /// <summary>
+        /// To get the trial license info
+        /// </summary>
+        /// <returns>license type info</returns>
         public LicenseType GetTrialLicense()
         {
             return SingletonLicense.Instance.Context.LicenseType.FirstOrDefault(l => l.TypeName.ToLower() == "trial");

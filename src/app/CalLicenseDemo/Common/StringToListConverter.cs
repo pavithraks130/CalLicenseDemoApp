@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using CalLicense.Core.Model;
 
 namespace CalLicenseDemo.Common
 {
+    /// <summary>
+    /// String to list object converter logic 
+    /// </summary>
     public class StringToListConverter : IValueConverter
     {
+        /// <summary>
+        /// It converts string data into object 
+        /// </summary>
+        /// <param name="value">input value</param>
+        /// <param name="targetType">target type</param>
+        /// <param name="parameter">parameter type</param>
+        /// <param name="culture">culture info</param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var featureList = (ICollection<Feature>)value;
@@ -27,6 +36,14 @@ namespace CalLicenseDemo.Common
             }
         }
 
+        /// <summary>
+        /// Convert back to string logic
+        /// </summary>
+        /// <param name="value">value</param>
+        /// <param name="targetType">target type</param>
+        /// <param name="parameter">parameter info</param>
+        /// <param name="culture">culture info</param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

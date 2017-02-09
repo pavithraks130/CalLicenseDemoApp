@@ -7,10 +7,12 @@ using System.Windows;
 
 namespace CalLicenseDemo.Common
 {
+    /// <summary>
+    /// Common data
+    /// </summary>
     class common
     {
-
-
+        #region private fields
         private static readonly string folderPath =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "CalibrationLicense");
@@ -21,6 +23,13 @@ namespace CalLicenseDemo.Common
 
         private static string password = @"myKey123";
 
+        #endregion private fields
+
+        /// <summary>
+        /// Used to encript the given file
+        /// </summary>
+        /// <param name="inputFile">input file name</param>
+        /// <param name="outputFile">output file name</param>
         public static void EncryptFile(string inputFile, string outputFile)
         {
 
@@ -56,6 +65,11 @@ namespace CalLicenseDemo.Common
             }
         }
 
+        /// <summary>
+        /// Decode the encripted file
+        /// </summary>
+        /// <param name="inputFile">input file</param>
+        /// <param name="outputFile">output file</param>
         public static void DecryptFile(string inputFile, string outputFile)
         {
 
@@ -86,6 +100,11 @@ namespace CalLicenseDemo.Common
             }
         }
 
+        /// <summary>
+        /// Save data into file
+        /// </summary>
+        /// <param name="jsonData">json Data file</param>
+        /// <param name="fileName">file name</param>
         public static void SaveDatatoFile(string jsonData, string fileName)
         {
             if (!Directory.Exists(tempFolderPath))
@@ -104,6 +123,11 @@ namespace CalLicenseDemo.Common
             Common.common.EncryptFile(Path.Combine(tempFolderPath, fileName), Path.Combine(folderPath, fileName));
         }
 
+        /// <summary>
+        /// Extract the jsondata from given input file 
+        /// </summary>
+        /// <param name="fileName">file name</param>
+        /// <returns>returns string data</returns>
         public static string GetJsonDataFromFile(string fileName)
         {
             string jsonData = String.Empty;
@@ -116,6 +140,11 @@ namespace CalLicenseDemo.Common
             return jsonData;
         }
 
+        /// <summary>
+        /// File exist status check
+        /// </summary>
+        /// <param name="fileName">input file name</param>
+        /// <returns>true:File exists or false:File not exists</returns>
         public static bool IsFileExist(string fileName)
         {
             return File.Exists(Path.Combine(folderPath, fileName));
