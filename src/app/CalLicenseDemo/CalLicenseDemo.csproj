@@ -77,48 +77,14 @@
     </ApplicationDefinition>
     <Compile Include="Common\common.cs" />
     <Compile Include="Common\Enum.cs" />
+    <Compile Include="Common\PasswordHelper.cs" />
     <Compile Include="Common\SingletonLicense.cs" />
     <Compile Include="Common\StringToListConverter.cs" />
-    <Compile Include="DatabaseContext\LicenseAppDBContext.cs" />
     <Compile Include="Logic\DataValidations.cs" />
     <Compile Include="Logic\LicenseLogic.cs" />
     <Compile Include="Logic\LoginLogic.cs" />
     <Compile Include="Logic\Base36.cs" />
-    <Compile Include="Migrations\201702050941423_initializationDatabase.cs" />
-    <Compile Include="Migrations\201702050941423_initializationDatabase.Designer.cs">
-      <DependentUpon>201702050941423_initializationDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702050950053_ForeignKeyInitialization.cs" />
-    <Compile Include="Migrations\201702050950053_ForeignKeyInitialization.Designer.cs">
-      <DependentUpon>201702050950053_ForeignKeyInitialization.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702051159030_UserModelCHanges.cs" />
-    <Compile Include="Migrations\201702051159030_UserModelCHanges.Designer.cs">
-      <DependentUpon>201702051159030_UserModelCHanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702051704590_LicenseModelCHanges.cs" />
-    <Compile Include="Migrations\201702051704590_LicenseModelCHanges.Designer.cs">
-      <DependentUpon>201702051704590_LicenseModelCHanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702070451239_ExpireDateTouserLicense.cs" />
-    <Compile Include="Migrations\201702070451239_ExpireDateTouserLicense.Designer.cs">
-      <DependentUpon>201702070451239_ExpireDateTouserLicense.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702070457149_MigrationChanges.cs" />
-    <Compile Include="Migrations\201702070457149_MigrationChanges.Designer.cs">
-      <DependentUpon>201702070457149_MigrationChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702070502265_UserLicPropNameChange.cs" />
-    <Compile Include="Migrations\201702070502265_UserLicPropNameChange.Designer.cs">
-      <DependentUpon>201702070502265_UserLicPropNameChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Model\CardDetails.cs" />
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\Feature.cs" />
-    <Compile Include="Model\License.cs" />
-    <Compile Include="Model\PasswordHelper.cs" />
-    <Compile Include="Model\UserLicense.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\LoginUserViewModel.cs" />
     <Compile Include="ViewModel\RedirectToAmountPaymentPageViewModel.cs" />
@@ -149,7 +115,6 @@
     <Compile Include="Views\RedirectToAmountPaymentPage.xaml.cs">
       <DependentUpon>RedirectToAmountPaymentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\UserLicenseDataJson.cs" />
     <Compile Include="ViewModel\BaseEntity.cs" />
     <Compile Include="Views\RegisterUser.xaml.cs">
       <DependentUpon>RegisterUser.xaml</DependentUpon>
@@ -225,8 +190,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\LicenseType.cs" />
-    <Compile Include="Model\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -240,27 +203,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201702050941423_initializationDatabase.resx">
-      <DependentUpon>201702050941423_initializationDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702050950053_ForeignKeyInitialization.resx">
-      <DependentUpon>201702050950053_ForeignKeyInitialization.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702051159030_UserModelCHanges.resx">
-      <DependentUpon>201702051159030_UserModelCHanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702051704590_LicenseModelCHanges.resx">
-      <DependentUpon>201702051704590_LicenseModelCHanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702070451239_ExpireDateTouserLicense.resx">
-      <DependentUpon>201702070451239_ExpireDateTouserLicense.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702070457149_MigrationChanges.resx">
-      <DependentUpon>201702070457149_MigrationChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702070502265_UserLicPropNameChange.resx">
-      <DependentUpon>201702070502265_UserLicPropNameChange.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -326,6 +268,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CalLicense.Core\CalLicense.Core.csproj">
+      <Project>{b0b1c5f8-7830-4bd9-a8d1-759f27fc097a}</Project>
+      <Name>CalLicense.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LicenseKey\LicenseKey.csproj">
       <Project>{1dc3f930-86be-4404-8366-49bf479244e0}</Project>
       <Name>LicenseKey</Name>
@@ -339,9 +285,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\User.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FlukeCalibration.ico" />

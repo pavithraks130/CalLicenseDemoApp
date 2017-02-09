@@ -1,5 +1,5 @@
 ﻿using CalLicenseDemo.Common;
-using CalLicenseDemo.Model;
+using CalLicense.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

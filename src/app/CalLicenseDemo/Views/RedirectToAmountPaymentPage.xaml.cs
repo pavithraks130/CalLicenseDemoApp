@@ -62,11 +62,8 @@ namespace CalLicenseDemo.Views
             statusBarPayment.Visibility = Visibility.Visible;
             System.Threading.Thread.Sleep(1000);
             if (SingletonLicense.Instance.IsUserLoggedIn)
-            {
-                LoginLogic logic = new LoginLogic();
-                logic.GetFeatureList();
                 this.NavigationService.Navigate(new Dashboard());
-            }
+
         }
 
         /// <summary>

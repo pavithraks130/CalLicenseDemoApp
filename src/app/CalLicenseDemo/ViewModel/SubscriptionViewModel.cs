@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using CalLicenseDemo.Common;
 using CalLicenseDemo.Logic;
-using CalLicenseDemo.Model;
+using CalLicense.Core.Model;
 
 namespace CalLicenseDemo.ViewModel
 {

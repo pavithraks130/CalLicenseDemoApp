@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using CalLicenseDemo.Logic;
-using CalLicenseDemo.Model;
+using CalLicense.Core.Model;
 using CalLicenseDemo.ViewModel;
 using System.ComponentModel;
 using System;
