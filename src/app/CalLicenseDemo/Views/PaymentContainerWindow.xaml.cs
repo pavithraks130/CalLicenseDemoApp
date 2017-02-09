@@ -19,6 +19,9 @@ namespace CalLicenseDemo.Views
     /// </summary>
     public partial class PaymentContainerWindow : Window
     {
+        /// <summary>
+        /// Constructor initialization of data
+        /// </summary>
         public PaymentContainerWindow()
         {
             InitializeComponent();

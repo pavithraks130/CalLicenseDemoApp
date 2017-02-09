@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace CalLicenseDemo.ViewModel
 {
-    class UserAccountDetailsViewModel:BaseEntity
+    /// <summary>
+    /// User Account Details ViewModel class to hold user details.
+    /// </summary>
+    class UserAccountDetailsViewModel : BaseEntity
     {
-
+        /// <summary>
+        /// User account:First name property
+        /// </summary>
         public string FirstName
         {
             get
@@ -18,6 +18,9 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        /// <summary>
+        /// User account:Last Name property
+        /// </summary>
         public string LastName
         {
             get
@@ -25,7 +28,9 @@ namespace CalLicenseDemo.ViewModel
                 return Common.SingletonLicense.Instance.User.LName;
             }
         }
-
+        /// <summary>
+        /// User account:Email property
+        /// </summary>
         public string Email
         {
             get
@@ -33,7 +38,9 @@ namespace CalLicenseDemo.ViewModel
                 return Common.SingletonLicense.Instance.User.Email;
             }
         }
-
+        /// <summary>
+        /// User account:Organisation property
+        /// </summary>
         public string Organization
         {
             get
@@ -41,13 +48,22 @@ namespace CalLicenseDemo.ViewModel
                 return Common.SingletonLicense.Instance.User.Organization.Name;
             }
         }
+        /// <summary>
+        /// Redirect to home screen
+        /// </summary>
         public ICommand HomeCommand { get; set; }
 
+        /// <summary>
+        /// Constructor initialisation.
+        /// </summary>
         public UserAccountDetailsViewModel()
         {
             HomeCommand = new RelayCommand(HomeCommandExecuted);
         }
-
+        /// <summary>
+        /// Redirect to home screen
+        /// </summary>
+        /// <param name="parameter">parameter</param>
         private void HomeCommandExecuted(object parameter)
         {
             NavigateNextPage("Home", null);

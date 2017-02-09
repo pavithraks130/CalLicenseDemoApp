@@ -21,6 +21,9 @@ namespace CalLicenseDemo.Views
     /// </summary>
     public partial class UserAccountDetails : Page
     {
+        /// <summary>
+        /// Data initialization
+        /// </summary>
         public UserAccountDetails()
         {
             InitializeComponent();
@@ -29,6 +32,11 @@ namespace CalLicenseDemo.Views
             viewModel.NavigateNextPage = OnNextPageNavigated;
         }
 
+        /// <summary>
+        /// Page navigation method.
+        /// </summary>
+        /// <param name="screenName">screenName</param>
+        /// <param name="additionalInfo">additionalInfo</param>
         private void OnNextPageNavigated(string screenName, Dictionary<string, string> additionalInfo)
         {
             this.NavigationService.Navigate(new Dashboard());

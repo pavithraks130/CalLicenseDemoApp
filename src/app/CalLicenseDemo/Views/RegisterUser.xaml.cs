@@ -11,6 +11,9 @@ namespace CalLicenseDemo.Views
     /// </summary>
     public partial class RegisterUser : Page
     {
+        /// <summary>
+        /// Data initialization
+        /// </summary>
         public RegisterUser()
         {
             InitializeComponent();
@@ -19,6 +22,11 @@ namespace CalLicenseDemo.Views
             DataContext = viewmodel;
         }
 
+        /// <summary>
+        /// Page navigation
+        /// </summary>
+        /// <param name="screenName">screenName</param>
+        /// <param name="additionalInfo">additionalInfo</param>
         private void NavigateNextPage(string screenName, Dictionary<string, string> additionalInfo)
         {
             string licenseType = String.Empty;
@@ -32,6 +40,11 @@ namespace CalLicenseDemo.Views
             }
         }
 
+        /// <summary>
+        /// page navigation action
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new CreditAndDebitCardDetails());

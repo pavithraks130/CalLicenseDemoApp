@@ -9,6 +9,8 @@ namespace CalLicenseDemo.Views
     /// </summary>
     public partial class SubscriptonScreen : Page
     {
+        /// <summary>
+        /// </summary>
         public SubscriptonScreen()
         {
             InitializeComponent();
@@ -18,10 +20,13 @@ namespace CalLicenseDemo.Views
             DataContext = viewmodel;
         }
 
+        /// <summary>
+        /// page navigation action
+        /// </summary>
+        /// <param name="sender">sender</param>
+        /// <param name="e">e</param>
         private void buttonPayment_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
-           
             // paymentOption.IsOpen = true;
         }
     }

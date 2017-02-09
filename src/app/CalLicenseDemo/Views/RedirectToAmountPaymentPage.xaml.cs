@@ -107,8 +107,6 @@ namespace CalLicenseDemo.Views
                 }
 
             }
-
-
             LicenseLogic logic = new LicenseLogic();
             logic.ActivateSubscription();
             //Report 100% completion on operation completed

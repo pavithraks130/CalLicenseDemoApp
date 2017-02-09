@@ -10,9 +10,15 @@ using System;
 
 namespace CalLicenseDemo.Common
 {
+    /// <summary>
+    /// Used to perform new user registration.
+    /// </summary>
     internal class RegisterUserViewModel : BaseEntity, IDataErrorInfo
     {
         private readonly RegistrationModel user;
+        /// <summary>
+        /// First name property
+        /// </summary>
         public string FName
         {
             get { return user.FName; }
@@ -23,6 +29,9 @@ namespace CalLicenseDemo.Common
             }
         }
 
+        /// <summary>
+        /// Last name property 
+        /// </summary>
         public string LName
         {
             get { return user.LName; }
@@ -33,6 +42,9 @@ namespace CalLicenseDemo.Common
             }
         }
 
+        /// <summary>
+        /// Email address property
+        /// </summary>
         public string Email
         {
             get { return user.Email; }
@@ -43,6 +55,9 @@ namespace CalLicenseDemo.Common
             }
         }
 
+        /// <summary>
+        /// Password property
+        /// </summary>
         public string Password
         {
             get { return user.Password; }
@@ -52,7 +67,9 @@ namespace CalLicenseDemo.Common
                 OnPropertyChanged("Password");
             }
         }
-
+        /// <summary>
+        /// Organization name property
+        /// </summary>
         public string Organization
         {
             get { return user.OrganizationName; }
@@ -62,11 +79,20 @@ namespace CalLicenseDemo.Common
                 OnPropertyChanged("Organization");
             }
         }
+        /// <summary>
+        /// Register user action
+        /// </summary>
 
         public ICommand RegisterCommand { get; set; }
 
+        /// <summary>
+        /// Navigation service
+        /// </summary>
         public NavigationService Service { get; set; }
 
+        /// <summary>
+        /// Error details
+        /// </summary>
         public string Error
         {
             get
@@ -75,6 +101,11 @@ namespace CalLicenseDemo.Common
             }
         }
 
+        /// <summary>
+        /// Property validation 
+        /// </summary>
+        /// <param name="columnName">columnName:Property Id</param>
+        /// <returns></returns>
         public string this[string columnName]
         {
             get
@@ -103,6 +134,10 @@ namespace CalLicenseDemo.Common
             }
         }
 
+        /// <summary>
+        /// LastName validation
+        /// </summary>
+        /// <returns></returns>
         private string LastNameValidation()
         {
             if (string.IsNullOrEmpty(LName))
@@ -112,6 +147,10 @@ namespace CalLicenseDemo.Common
             return string.Empty;
         }
 
+        /// <summary>
+        /// FirstName validation
+        /// </summary>
+        /// <returns></returns>
         private string FirstNameValidation()
         {
             if (string.IsNullOrEmpty(FName))
@@ -121,6 +160,10 @@ namespace CalLicenseDemo.Common
             return string.Empty;
         }
 
+        /// <summary>
+        /// Organization name validation
+        /// </summary>
+        /// <returns></returns>
         private string OrganizationValidation()
         {
             if (string.IsNullOrEmpty(Organization))
@@ -130,6 +173,10 @@ namespace CalLicenseDemo.Common
             return string.Empty;
         }
 
+        /// <summary>
+        /// Email address validation
+        /// </summary>
+        /// <returns></returns>
         private string EmailValidation()
         {
             if (string.IsNullOrEmpty(Email))
@@ -144,6 +191,10 @@ namespace CalLicenseDemo.Common
 
         }
 
+        /// <summary>
+        /// Password validation
+        /// </summary>
+        /// <returns></returns>
         private string PasswordValidation()
         {
             if (string.IsNullOrEmpty(Password))
@@ -153,12 +204,19 @@ namespace CalLicenseDemo.Common
             return string.Empty;
 
         }
+        /// <summary>
+        /// RegisterUserViewModel class constructor initialisation 
+        /// </summary>
+        /// <param name="service">service</param>
         public RegisterUserViewModel(NavigationService service)
         {
             user = new RegistrationModel();
             Service = service;
             RegisterCommand = new RelayCommand(RegisterNewUser);
         }
+        /// <summary>
+        /// Register user action
+        /// </summary
         private void RegisterNewUser(object param)
         {
             if (!string.IsNullOrEmpty(LName) && !string.IsNullOrEmpty(FName) && !string.IsNullOrEmpty(Organization) && !string.IsNullOrEmpty(Email) && !string.IsNullOrEmpty(Password))

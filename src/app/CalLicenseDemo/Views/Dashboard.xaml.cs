@@ -10,6 +10,9 @@ namespace CalLicenseDemo.Views
     /// </summary>
     public partial class Dashboard : Page
     {
+        /// <summary>
+        /// Constructor data initialization
+        /// </summary>
         public Dashboard()
         {
             InitializeComponent();
@@ -18,6 +21,11 @@ namespace CalLicenseDemo.Views
             DataContext = viewModel;
         }
 
+        /// <summary>
+        /// Page navigation action
+        /// </summary>
+        /// <param name="screenToNavigate">screento navigate info</param>
+        /// <param name="additionalInfo">additional info</param>
         private void OnPageNavigated(string screenToNavigate, Dictionary<string,string> additionalInfo)
         {
           switch(screenToNavigate)
@@ -34,6 +42,11 @@ namespace CalLicenseDemo.Views
             }
         }
 
+        /// <summary>
+        /// subscription page navigation info
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSubscription_OnClick(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new SubscriptonScreen());

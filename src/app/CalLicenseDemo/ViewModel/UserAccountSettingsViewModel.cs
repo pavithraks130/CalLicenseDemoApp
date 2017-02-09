@@ -7,8 +7,15 @@ using System.Windows.Input;
 
 namespace CalLicenseDemo.ViewModel
 {
+    /// <summary>
+    /// UserAccount Settings ViewModel class.
+    /// </summary>
     class UserAccountSettingsViewModel : BaseEntity
     {
+
+        /// <summary>
+        ///Licence activation date property
+        /// </summary>
         public string ActivationDate
         {
             get
@@ -17,6 +24,9 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        /// <summary>
+        /// License expiry date property
+        /// </summary>
         public string ExpiryDate
         {
             get
@@ -25,6 +35,9 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        /// <summary>
+        /// License expiry total number of days left.
+        /// </summary>
         public string DaysLeft
         {
             get
@@ -32,7 +45,9 @@ namespace CalLicenseDemo.ViewModel
                 return (Common.SingletonLicense.Instance.LicenseData.LicenseList[0].ExpireDate.Date - DateTime.Today).TotalDays.ToString();
             }
         }
-
+        /// <summary>
+        /// Loggedin user details property
+        /// </summary>
         public string LoggedInUser
         {
             get
@@ -41,6 +56,9 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        /// <summary>
+        /// Home screen redirect command
+        /// </summary>
         public ICommand HomeCommand { get; set; }
 
         public UserAccountSettingsViewModel()
@@ -48,6 +66,10 @@ namespace CalLicenseDemo.ViewModel
             HomeCommand = new RelayCommand(HomeCommandExecuted);
         }
 
+        /// <summary>
+        /// Redirect to Home screen action
+        /// </summary>
+        /// <param name="parameter">page information</param>
         private void HomeCommandExecuted(object parameter)
         {
             NavigateNextPage("Home", null);

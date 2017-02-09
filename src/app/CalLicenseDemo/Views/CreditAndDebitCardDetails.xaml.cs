@@ -23,6 +23,9 @@ namespace CalLicenseDemo
     /// </summary>
     public partial class CreditAndDebitCardDetails : Page
     {
+        /// <summary>
+        /// Constructor initialization of data
+        /// </summary>
         public CreditAndDebitCardDetails()
         {
             InitializeComponent();
@@ -31,6 +34,11 @@ namespace CalLicenseDemo
             viewModel.NavigateNextPage += OnNavigateNextPage;
         }
 
+        /// <summary>
+        /// Navigation to diffrent page action
+        /// </summary>
+        /// <param name="screenName">screenName</param>
+        /// <param name="additionalInfo">additionalInfo</param>
         private void OnNavigateNextPage(string screenName, Dictionary<string,string> additionalInfo)
         {
             this.NavigationService.Navigate(new RedirectToAmountPaymentPage());

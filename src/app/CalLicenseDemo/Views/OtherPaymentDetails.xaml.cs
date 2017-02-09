@@ -7,6 +7,9 @@ namespace CalLicenseDemo
     /// </summary>
     public partial class OtherPaymentDetails : UserControl
     {
+        /// <summary>
+        /// Constructor data initialization
+        /// </summary>
         public OtherPaymentDetails()
         {
             InitializeComponent();

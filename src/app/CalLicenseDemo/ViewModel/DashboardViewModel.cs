@@ -11,10 +11,13 @@ using CalLicenseDemo.Logic;
 namespace CalLicenseDemo.ViewModel
 {
     /// <summary>
-    /// DashboardViewModel
+    /// This calss is used to perform home screen operations.
     /// </summary>
     public class DashboardViewModel : BaseEntity
     {
+        /// <summary>
+        /// LoggedInUser property
+        /// </summary>
         public string LoggedInUser
         {
             get
@@ -23,7 +26,10 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
-        public List<Feature> CurrentFeatureList
+        /// <summary>
+        /// LoggedInUser collection property
+        /// </summary>
+        public List<Feature> c
         {
             get
             {
@@ -31,15 +37,35 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
-        public  string TrialaNotificationMessage { get; set; }
+        /// <summary>
+        /// TrialaNotificationMessage property
+        /// </summary>
+        public string TrialaNotificationMessage { get; set; }
 
-        public  Visibility PanelVisiblity { get; set; }
+        /// <summary>
+        /// PanelVisiblity property
+        /// </summary>
+        public Visibility PanelVisiblity { get; set; }
 
+        /// <summary>
+        /// AccoutSettingsCommand property
+        /// </summary>
         public ICommand AccoutSettingsCommand { get; set; }
+
+        /// <summary>
+        /// ProfileDetailsCommand property
+        /// </summary>
         public ICommand ProfileDetailsCommand { get; set; }
 
+
+        /// <summary>
+        /// LogoutCommand property
+        /// </summary>
         public ICommand LogoutCommand { get; set; }
 
+        /// <summary>
+        /// data initialisation on constructor
+        /// </summary>
         public DashboardViewModel()
         {
             AccoutSettingsCommand = new RelayCommand(OnAccoutSettingsExecuted);
@@ -59,16 +85,28 @@ namespace CalLicenseDemo.ViewModel
             }
         }
 
+        /// <summary>
+        /// To perform account details info
+        /// </summary>
+        /// <param name="parameter">parameter</param>
         private void OnAccoutSettingsExecuted(object parameter)
         {
             NavigateNextPage("AccountDetails", null);
         }
 
+        /// <summary>
+        ///  To perform OnProfileDetails action 
+        /// </summary>
+        /// <param name="parameter">parameter</param>
         private void OnProfileDetailsExecuted(object parameter)
         {
             NavigateNextPage("Profile", null);
         }
 
+        /// <summary>
+        /// To perform logout action.
+        /// </summary>
+        /// <param name="parameter"></param>
         private void OnLogoutExecuted(object parameter)
         {
             Common.SingletonLicense.Instance.User = null;
