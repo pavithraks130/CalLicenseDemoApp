@@ -3,18 +3,28 @@ using System.Collections.Generic;
 namespace CalLicense.Core.Migrations
 {
     using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
     using CalLicense.Core.Model;
 
+    /// <summary>
+    /// Default database configuration class creation.
+    /// PM>Add-migrations command will generates this class.
+    /// </summary>
     internal sealed class Configuration : DbMigrationsConfiguration<CalLicense.Core.DatabaseContext.LicenseAppDBContext>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
+        /// <summary>
+        /// seed method to instantiate dbcontext.
+        /// Adding default data into table
+        /// </summary>
+        /// <param name="context"></param>
         protected override void Seed(CalLicense.Core.DatabaseContext.LicenseAppDBContext context)
         {
             bool DbIntialized =
