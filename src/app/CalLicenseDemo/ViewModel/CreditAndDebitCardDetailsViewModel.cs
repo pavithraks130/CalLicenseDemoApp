@@ -274,8 +274,8 @@ namespace CalLicenseDemo.ViewModel
             DateTime theDate = DateTime.Now;
             DateTime yearInTheFuture = theDate.AddYears(1);
             expDate = "License Expiry Date - " + yearInTheFuture;
-            totalCost = "Total cost - " + SingletonLicense.Instance.SelectedSubscription.Price + "/~";
-            tax = "Tax - " + SingletonLicense.Instance.SelectedSubscription.Price * .05 + "/~";
+            totalCost = "Total cost - " + SingletonLicense.Instance.SelectedSubscription.Price + "$";
+            tax = "Tax - " + SingletonLicense.Instance.SelectedSubscription.Price * .05 + "$";
             LoadListOfYears();
             LoadListOfMonths();
             PurchaseCommand = new RelayCommand(OnPurchase);
